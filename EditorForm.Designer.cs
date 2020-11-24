@@ -30,7 +30,7 @@ namespace VectorGraphicsEditor
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditorForm));
-            this.button2 = new System.Windows.Forms.Button();
+            this.createLine = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -41,20 +41,22 @@ namespace VectorGraphicsEditor
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // button2
+            // createLine
             // 
-            this.button2.Location = new System.Drawing.Point(12, 64);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(51, 46);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.createLine.Cursor = System.Windows.Forms.Cursors.Default;
+            this.createLine.Location = new System.Drawing.Point(12, 64);
+            this.createLine.Name = "createLine";
+            this.createLine.Size = new System.Drawing.Size(73, 46);
+            this.createLine.TabIndex = 1;
+            this.createLine.Text = "прямая";
+            this.createLine.UseVisualStyleBackColor = true;
+            this.createLine.Click += new System.EventHandler(this.createLine_Click);
             // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(12, 116);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(51, 46);
+            this.button3.Size = new System.Drawing.Size(73, 46);
             this.button3.TabIndex = 2;
             this.button3.Text = "button3";
             this.button3.UseVisualStyleBackColor = true;
@@ -67,7 +69,7 @@ namespace VectorGraphicsEditor
             this.toolStripButton3});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1360, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1164, 25);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -103,22 +105,25 @@ namespace VectorGraphicsEditor
             this.pictureBox1.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.pictureBox1.Location = new System.Drawing.Point(91, 64);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1258, 502);
+            this.pictureBox1.Size = new System.Drawing.Size(1034, 597);
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove1);
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove2);
             this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
             // 
             // EditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1360, 571);
+            this.ClientSize = new System.Drawing.Size(1164, 687);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.createLine);
             this.Name = "EditorForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.EditorForm_Load);
@@ -132,7 +137,7 @@ namespace VectorGraphicsEditor
 
         #endregion
 
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button createLine;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
