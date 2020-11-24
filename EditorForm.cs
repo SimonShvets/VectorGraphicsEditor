@@ -39,25 +39,8 @@ namespace VectorGraphicsEditor
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-<<<<<<< HEAD
-=======
-            switch (chooseButton)
-            {
-                case (0):
-                    break;
-                case (1):
-                    point = e.Location;
-                    mouseDown = true;
-                    break;
-                case (2):
-                    break;
-            }
->>>>>>> main
-            
             point = e.Location;
             mouseDown = true;
-
-              
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
