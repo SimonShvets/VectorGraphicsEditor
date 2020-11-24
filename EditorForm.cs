@@ -18,6 +18,7 @@ namespace VectorGraphicsEditor
         Image image;
         Point point;
         bool mouseDown;
+        int chooseButton;
 
 
         public EditorForm()
@@ -37,8 +38,18 @@ namespace VectorGraphicsEditor
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            point = e.Location;
-            mouseDown = true;
+            switch (chooseButton)
+            {
+                case (0):
+                    break;
+                case (1):
+                    break;
+                case (2):
+                    point = e.Location;
+                    mouseDown = true;
+                    break;
+            }
+            
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
@@ -51,41 +62,65 @@ namespace VectorGraphicsEditor
             }
 
         }
-        private void pictureBox1_MouseMove1(object sender, MouseEventArgs e)
-        {
-            if (mouseDown)
-            {
-                graphics.DrawLine(pen, point, e.Location);
-                pictureBox1.Image = mainBitmap;
-                point = e.Location;
-            }
-
-        }
-        private void pictureBox1_MouseMove2(object sender, MouseEventArgs e)
-        {
-            if (mouseDown)
-            {
-                graphics.DrawLine(pen, point, e.Location);
-                pictureBox1.Image = mainBitmap;
-                point = e.Location;
-            }
-
-        }
-
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             mouseDown = false;
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void hand_Click(object sender, EventArgs e)
         {
-
+            chooseButton = 0;
         }
-
+        private void brush_Click(object sender, EventArgs e)
+        {
+            chooseButton = 1;
+        }
         private void createLine_Click(object sender, EventArgs e)
         {
             pictureBox1.Cursor = Cursors.Cross;
+            chooseButton = 2;
+
+        }
+
+        private void rectangle_Click(object sender, EventArgs e)
+        {
+            chooseButton = 3;
+        }
+
+        private void cycle_Click(object sender, EventArgs e)
+        {
+            chooseButton = 4;
+        }
+
+        private void elipse_Click(object sender, EventArgs e)
+        {
+            chooseButton = 5;
+        }
+
+        private void triangle_Click(object sender, EventArgs e)
+        {
+            chooseButton = 6;
+        }
+
+        private void straightTriangle_Click(object sender, EventArgs e)
+        {
+            chooseButton = 7;
+        }
+
+        private void isoscelesTriangle_Click(object sender, EventArgs e)
+        {
+            chooseButton = 8;
+        }
+
+        private void wrongPolygon_Click(object sender, EventArgs e)
+        {
+            chooseButton = 9;
+        }
+
+        private void Polygon_Click(object sender, EventArgs e)
+        {
+            chooseButton = 10;
         }
     }
 }
