@@ -18,6 +18,7 @@ namespace VectorGraphicsEditor
         Image image;
         Point point;
         bool mouseDown;
+        bool needClear;
         int chooseButton;
 
 
@@ -38,33 +39,48 @@ namespace VectorGraphicsEditor
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            switch (chooseButton)
-            {
-                case (0):
-                    break;
-                case (1):
-                    break;
-                case (2):
-                    point = e.Location;
-                    mouseDown = true;
-                    break;
-            }
             
+            point = e.Location;
+            mouseDown = true;
+
+              
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
             if (mouseDown)
             {
-                graphics.DrawLine(pen, point, e.Location);
-                pictureBox1.Image = mainBitmap;
-                point = e.Location;
+
+                switch (chooseButton)
+                {
+                    case (0):
+                        break;
+                    case (1):
+                        graphics.DrawLine(pen, point, e.Location);
+                        pictureBox1.Image = mainBitmap;
+                        point = e.Location;
+                        break;
+                    case (2):
+                        break;
+                    case (3):
+                        if (needClear)
+                        {
+                            graphics.Clear(Color.White);
+                        }
+                        PointF[] points = new PointF[4] { point, new Point(point.X, e.Y), e.Location, new Point(e.X, point.Y) };
+                        graphics.DrawPolygon(pen, points);
+                        pictureBox1.Image = mainBitmap;
+                        needClear = true;
+                        break;
+                }
+
             }
 
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
+            needClear = false;
             mouseDown = false;
         }
 
@@ -85,6 +101,7 @@ namespace VectorGraphicsEditor
 
         private void rectangle_Click(object sender, EventArgs e)
         {
+            
             chooseButton = 3;
         }
 
