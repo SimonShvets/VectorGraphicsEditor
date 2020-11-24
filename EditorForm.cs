@@ -39,24 +39,6 @@ namespace VectorGraphicsEditor
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-            switch (chooseButton)
-            {
-                case (0):
-                    break;
-                case (1):
-                    point = e.Location;
-                    mouseDown = true;
-                    break;
-                case (2):
-                    break;
-            }
-=======
->>>>>>> Addrect
-            
->>>>>>> main
             point = e.Location;
             mouseDown = true;
         }
@@ -82,7 +64,7 @@ namespace VectorGraphicsEditor
                         }
                         graphics.DrawLine(pen, point, e.Location);
                         pictureBox1.Image = mainBitmap;
-                        //needClear = true;
+                        needClear = true;
                         break;
                     case (3):
                         if (needClear)
