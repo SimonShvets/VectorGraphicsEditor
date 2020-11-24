@@ -50,6 +50,27 @@ namespace VectorGraphicsEditor
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
+            // createLine
+            // 
+            this.createLine.Cursor = System.Windows.Forms.Cursors.Default;
+            this.createLine.Location = new System.Drawing.Point(12, 168);
+            this.createLine.Name = "createLine";
+            this.createLine.Size = new System.Drawing.Size(73, 46);
+            this.createLine.TabIndex = 1;
+            this.createLine.Text = "прямая по N точкам";
+            this.createLine.UseVisualStyleBackColor = true;
+            this.createLine.Click += new System.EventHandler(this.createLine_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(12, 116);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(73, 46);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "кисть";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.brush_Click);
+            // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -100,27 +121,6 @@ namespace VectorGraphicsEditor
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
-            //
-            // button
-            // 
-            this.createLine.Cursor = System.Windows.Forms.Cursors.Default;
-            this.createLine.Location = new System.Drawing.Point(12, 168);
-            this.createLine.Name = "createLine";
-            this.createLine.Size = new System.Drawing.Size(73, 46);
-            this.createLine.TabIndex = 1;
-            this.createLine.Text = "прямая по N точкам";
-            this.createLine.UseVisualStyleBackColor = true;
-            this.createLine.Click += new System.EventHandler(this.createLine_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(12, 116);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(73, 46);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "кисть";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.brush_Click);
             // 
             // button1
             // 
