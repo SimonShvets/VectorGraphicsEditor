@@ -43,10 +43,10 @@ namespace VectorGraphicsEditor
                 case (0):
                     break;
                 case (1):
-                    break;
-                case (2):
                     point = e.Location;
                     mouseDown = true;
+                    break;
+                case (2):
                     break;
             }
             
