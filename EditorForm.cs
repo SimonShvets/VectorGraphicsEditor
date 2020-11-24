@@ -39,8 +39,6 @@ namespace VectorGraphicsEditor
         {
             point = e.Location;
             mouseDown = true;
-
-
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
@@ -53,10 +51,41 @@ namespace VectorGraphicsEditor
             }
 
         }
+        private void pictureBox1_MouseMove1(object sender, MouseEventArgs e)
+        {
+            if (mouseDown)
+            {
+                graphics.DrawLine(pen, point, e.Location);
+                pictureBox1.Image = mainBitmap;
+                point = e.Location;
+            }
+
+        }
+        private void pictureBox1_MouseMove2(object sender, MouseEventArgs e)
+        {
+            if (mouseDown)
+            {
+                graphics.DrawLine(pen, point, e.Location);
+                pictureBox1.Image = mainBitmap;
+                point = e.Location;
+            }
+
+        }
+
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             mouseDown = false;
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void createLine_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Cursor = Cursors.Cross;
         }
     }
 }
