@@ -61,6 +61,13 @@ namespace VectorGraphicsEditor
                         point = e.Location;
                         break;
                     case (2):
+                        if (needClear)
+                        {
+                            graphics.Clear(Color.White);
+                        }
+                        graphics.DrawLine(pen, point, e.Location);
+                        pictureBox1.Image = mainBitmap;
+                        //needClear = true;
                         break;
                     case (3):
                         if (needClear)
