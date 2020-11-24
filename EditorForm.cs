@@ -39,9 +39,6 @@ namespace VectorGraphicsEditor
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
             switch (chooseButton)
             {
                 case (0):
@@ -53,10 +50,6 @@ namespace VectorGraphicsEditor
                 case (2):
                     break;
             }
-=======
->>>>>>> Addrect
-            
->>>>>>> main
             point = e.Location;
             mouseDown = true;
         }
@@ -82,7 +75,7 @@ namespace VectorGraphicsEditor
                         }
                         graphics.DrawLine(pen, point, e.Location);
                         pictureBox1.Image = mainBitmap;
-                        //needClear = true;
+                        needClear = true;
                         break;
                     case (3):
                         if (needClear)
@@ -92,6 +85,20 @@ namespace VectorGraphicsEditor
                         PointF[] points = new PointF[4] { point, new Point(point.X, e.Y), e.Location, new Point(e.X, point.Y) };
                         graphics.DrawPolygon(pen, points);
                         pictureBox1.Image = mainBitmap;
+                        needClear = true;
+                        break;
+                    case (7):
+                        if (needClear)
+                        {
+                            graphics.Clear(Color.White);
+                        }
+                        Point[] pointss = new Point[3];
+                        pointss[0] = point;
+                        pointss[1] = new Point(point.X, e.Y);
+                        pointss[2] = e.Location;
+
+                        graphics.DrawPolygon(pen, pointss);
+                        pictureBox1.Image = mainBitmap;                        
                         needClear = true;
                         break;
                 }
