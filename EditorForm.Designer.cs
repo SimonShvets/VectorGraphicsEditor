@@ -61,7 +61,7 @@ namespace VectorGraphicsEditor
             this.createLine.TabIndex = 1;
             this.createLine.Text = "прямая по N точкам";
             this.createLine.UseVisualStyleBackColor = true;
-            this.createLine.Click += new System.EventHandler(this.createLine_Click);
+            this.createLine.Click += new System.EventHandler(this.CreateLine_Click);
             // 
             // button3
             // 
@@ -71,7 +71,7 @@ namespace VectorGraphicsEditor
             this.button3.TabIndex = 2;
             this.button3.Text = "кисть";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.brush_Click);
+            this.button3.Click += new System.EventHandler(this.Brush_Click);
             // 
             // toolStrip1
             // 
@@ -132,7 +132,7 @@ namespace VectorGraphicsEditor
             this.button1.TabIndex = 5;
             this.button1.Text = "Прямоугольник по двум точкам";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.rectangle_Click);
+            this.button1.Click += new System.EventHandler(this.Rectangle_Click);
             // 
             // button2
             // 
@@ -142,7 +142,7 @@ namespace VectorGraphicsEditor
             this.button2.TabIndex = 6;
             this.button2.Text = "Hand";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.hand_Click);
+            this.button2.Click += new System.EventHandler(this.Hand_Click);
             // 
             // button4
             // 
@@ -152,7 +152,7 @@ namespace VectorGraphicsEditor
             this.button4.TabIndex = 7;
             this.button4.Text = "Окружность по двум точкам";
             this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.cycle_Click);
+            this.button4.Click += new System.EventHandler(this.Cycle_Click);
             // 
             // button5
             // 
@@ -162,7 +162,7 @@ namespace VectorGraphicsEditor
             this.button5.TabIndex = 8;
             this.button5.Text = "Эллипс по двум точкам";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.elipse_Click);
+            this.button5.Click += new System.EventHandler(this.Elipse_Click);
             // 
             // button6
             // 
@@ -172,7 +172,7 @@ namespace VectorGraphicsEditor
             this.button6.TabIndex = 9;
             this.button6.Text = "Треугольник по трем точкам";
             this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.triangle_Click);
+            this.button6.Click += new System.EventHandler(this.Triangle_Click);
             // 
             // button7
             // 
@@ -182,7 +182,7 @@ namespace VectorGraphicsEditor
             this.button7.TabIndex = 10;
             this.button7.Text = "Прямоугольный треугольник по двум точкам";
             this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.straightTriangle_Click);
+            this.button7.Click += new System.EventHandler(this.StraightTriangle_Click);
             // 
             // button8
             // 
@@ -192,7 +192,7 @@ namespace VectorGraphicsEditor
             this.button8.TabIndex = 11;
             this.button8.Text = "Равнобедренный (не равносторонний) треугольник по двум точкам";
             this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.isoscelesTriangle_Click);
+            this.button8.Click += new System.EventHandler(this.IsoscelesTriangle_Click);
             // 
             // button9
             // 
@@ -202,7 +202,7 @@ namespace VectorGraphicsEditor
             this.button9.TabIndex = 12;
             this.button9.Text = "N угольник по N точкам";
             this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.wrongPolygon_Click);
+            this.button9.Click += new System.EventHandler(this.WrongPolygon_Click);
             // 
             // button10
             // 
