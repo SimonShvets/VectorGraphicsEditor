@@ -9,7 +9,7 @@ namespace VectorGraphicsEditor.figurs
 {
     public class TriangleFigure : IFigure
     {
-        public Bitmap DrawFigure(Bitmap bitmap, PointF[] points)
+        public Bitmap DrawFigure(Graphics graphics, Bitmap bitmap, PointF[] points, Pen pen)
         {
             return bitmap;
         }

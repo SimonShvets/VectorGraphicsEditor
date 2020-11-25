@@ -114,7 +114,7 @@ namespace VectorGraphicsEditor
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.pictureBox1.BackColor = System.Drawing.Color.White;
             this.pictureBox1.Location = new System.Drawing.Point(91, 51);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(1034, 597);
@@ -231,11 +231,13 @@ namespace VectorGraphicsEditor
             this.textBox2.Size = new System.Drawing.Size(61, 20);
             this.textBox2.TabIndex = 15;
             this.textBox2.Visible = false;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // EditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Info;
             this.ClientSize = new System.Drawing.Size(1164, 687);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);

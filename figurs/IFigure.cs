@@ -9,7 +9,7 @@ namespace VectorGraphicsEditor.figurs
 {
     public interface IFigure
     {
-        Bitmap DrawFigure(Bitmap bitmap, PointF[] points);
+        Bitmap DrawFigure(Graphics graphics, Bitmap bitmap, PointF[] points, Pen pen);
 
         //PointF[] GetPoints(PointF[] points);
     }
