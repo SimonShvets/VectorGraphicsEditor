@@ -15,6 +15,7 @@ namespace VectorGraphicsEditor
     public partial class EditorForm : Form
     {
         Bitmap mainBitmap;
+        Bitmap tmpBitmap;
         Graphics graphics;
         Pen pen;
         List<Point> listOfPoints = new List<Point>();
@@ -63,34 +64,68 @@ namespace VectorGraphicsEditor
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
+            if (mouseDown)
+            {
+                tmpBitmap = (Bitmap)mainBitmap.Clone();
+                graphics = Graphics.FromImage(tmpBitmap);
+
+                points = new PointF[] {point, e.Location};
+
+                pictureBox1.Image = figure.DrawFigure(tmpBitmap, points);
+                GC.Collect();
 
                 //switch (chooseButton)
                 //{
-                //    case (0):
-                //        break;
-                //    case (1):
-                //        graphics.DrawLine(pen, point, e.Location);
-                //        pictureBox1.Image = mainBitmap;
-                //        point = e.Location;
-                //        break;
-                //    case (2):
-                //        break;
-                //    case (3):
-                //        graphics.Clear(Color.White);
-                //        PointF[] points = new PointF[4] { point, new Point(point.X, e.Y), e.Location, new Point(e.X, point.Y) };
+                //    //case (0):
+                //    //    break;
+                //    //case (1):
+                //    //    graphics.DrawLine(pen, point, e.Location);
+                //    //    pictureBox1.Image = mainBitmap;
+                //    //    point = e.Location;
+                //    //    break;
+                //    //case (2):
+                //    //    graphics.Clear(Color.White);
+                //    //    graphics.DrawLine(pen, point, e.Location);
+                //    //    pictureBox1.Image = mainBitmap;
+                //    //    break;
+                //    //case (3):
+                //    //    graphics.Clear(Color.White);
+                //    //    points = new PointF[4] { point, new Point(point.X, e.Y), e.Location, new Point(e.X, point.Y) };
+                //    //    graphics.DrawPolygon(pen, points);
+                //    //    pictureBox1.Image = mainBitmap;
+                //    //    break;
+                //    //case (5):
+                //    //    graphics.Clear(Color.White);
+                //    //    Rectangle rect = new Rectangle(x, y, e.X-x, e.Y-y);
+                //    //    graphics.DrawEllipse(pen, rect);
+                //    //    pictureBox1.Image = mainBitmap;
+                //    //    break;
+                //    //case (10):
+                //    //    graphics.Clear(Color.White);
+                //    //    int n = Convert.ToInt32(textBox2.Text);
+                //    //    if ( n > 2)
+                //    //    {
+                //    //        points = new PointF[n];
+                //    //        points[0] = new Point(x, e.Y);
+                //    //        int a = 360 / n;
+                //    //        int t;
+                //    //        for (int i = 1; i < n; i++)
+                //    //        {
+                //    //            t = a * i;
+                //    //            double rad = 3.14 / 180 * t;
+                //    //            int x1 = (int)((x - (points[0].Y - y) * Math.Sin(rad)));
+                //    //            int y1 = (int)((y + (points[0].Y - y) * Math.Cos(rad)));
+                //    //            points[i] = new Point(x1, y1); 
+                //    //        }
+                //    //    }
+
                 //        graphics.DrawPolygon(pen, points);
                 //        pictureBox1.Image = mainBitmap;
                 //        break;
-                //    case (5):
-                //        graphics.Clear(Color.White);
-                //        Rectangle rect = new Rectangle(x, y, e.X-x, e.Y-y);
-                //        graphics.DrawEllipse(pen, rect);
-                ////        pictureBox1.Image = mainBitmap;
-                ////        break;
                 //}
-                tmpBitmap = new Bitmap(mainBitmap);
-                graphics = Graphics.FromImage(tmpBitmap);
-                pictureBox1.Image = figure.DrawFigure(tmpBitmap, g);
+
+            }
+
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
@@ -98,62 +133,63 @@ namespace VectorGraphicsEditor
             mouseDown = false;
         }
 
-        private void hand_Click(object sender, EventArgs e)
+        private void Hand_Click(object sender, EventArgs e)
         {
             chooseButton = 0;
         }
-        private void brush_Click(object sender, EventArgs e)
+
+        private void Brush_Click(object sender, EventArgs e)
         {
-            chooseButton = 1;
+            figure = new BrushFigire();
         }
-        private void createLine_Click(object sender, EventArgs e)
+
+        private void CreateLine_Click(object sender, EventArgs e)
         {
             pictureBox1.Cursor = Cursors.Cross;
             figure = new CurveFigure();
             chooseButton = 2;
         }
 
-        private void rectangle_Click(object sender, EventArgs e)
+        private void Rectangle_Click(object sender, EventArgs e)
         {
-            
-            chooseButton = 3;
+            figure = new RectangleFigure();
         }
 
-        private void cycle_Click(object sender, EventArgs e)
+        private void Cycle_Click(object sender, EventArgs e)
         {
-            chooseButton = 4;
+            figure = new CycleFigure();
         }
 
-        private void elipse_Click(object sender, EventArgs e)
+        private void Elipse_Click(object sender, EventArgs e)
         {
-            chooseButton = 5;
+            figure = new ElipseFigure();
         }
 
-        private void triangle_Click(object sender, EventArgs e)
+        private void Triangle_Click(object sender, EventArgs e)
         {
-            chooseButton = 6;
+            figure = new TriangleFigure();
         }
 
-        private void straightTriangle_Click(object sender, EventArgs e)
+        private void StraightTriangle_Click(object sender, EventArgs e)
         {
-            chooseButton = 7;
+            figure = new StraightTriangleFigure();
         }
 
-        private void isoscelesTriangle_Click(object sender, EventArgs e)
+        private void IsoscelesTriangle_Click(object sender, EventArgs e)
         {
-            chooseButton = 8;
+            figure = new IsoscelesTriangleFigure();
         }
 
-        private void wrongPolygon_Click(object sender, EventArgs e)
+        private void WrongPolygon_Click(object sender, EventArgs e)
         {
-            chooseButton = 9;
+            figure = new WrongPolygonFigure();
         }
 
         private void Polygon_Click(object sender, EventArgs e)
         {
-            chooseButton = 10;
+            textBox1.Visible = true;
+            textBox2.Visible = true;
+            figure = new PolygonFigure();
         }
-
-
     }
 }
