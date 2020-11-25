@@ -15,13 +15,13 @@ namespace VectorGraphicsEditor
         Bitmap mainBitmap;
         Graphics graphics;
         Pen pen;
-        Image image;
+        Pen pen1;
         Point point;
         bool mouseDown;
-        bool needClear;
         int chooseButton;
         int x;
         int y;
+        PointF[] points;
 
 
         public EditorForm()
@@ -34,6 +34,7 @@ namespace VectorGraphicsEditor
             mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             graphics = Graphics.FromImage(mainBitmap);
             pen = new Pen(Color.Black, 10);
+            pen1 = new Pen(Color.Red, 5);
             pictureBox1.Image = mainBitmap;
             point = new Point(0, 0);
             mouseDown = false;
@@ -51,7 +52,6 @@ namespace VectorGraphicsEditor
         {
             if (mouseDown)
             {
-
                 switch (chooseButton)
                 {
                     case (0):
@@ -65,21 +65,40 @@ namespace VectorGraphicsEditor
                         graphics.Clear(Color.White);
                         graphics.DrawLine(pen, point, e.Location);
                         pictureBox1.Image = mainBitmap;
-                        needClear = true;
                         break;
                     case (3):
                         graphics.Clear(Color.White);
-                        PointF[] points = new PointF[4] { point, new Point(point.X, e.Y), e.Location, new Point(e.X, point.Y) };
+                        points = new PointF[4] { point, new Point(point.X, e.Y), e.Location, new Point(e.X, point.Y) };
                         graphics.DrawPolygon(pen, points);
                         pictureBox1.Image = mainBitmap;
-                        needClear = true;
                         break;
                     case (5):
                         graphics.Clear(Color.White);
                         Rectangle rect = new Rectangle(x, y, e.X-x, e.Y-y);
                         graphics.DrawEllipse(pen, rect);
                         pictureBox1.Image = mainBitmap;
-                        needClear = true;
+                        break;
+                    case (10):
+                        graphics.Clear(Color.White);
+                        int n = Convert.ToInt32(textBox2.Text);
+                        if ( n > 2)
+                        {
+                            points = new PointF[n];
+                            points[0] = new Point(x, e.Y);
+                            int a = 360 / n;
+                            int t;
+                            for (int i = 1; i < n; i++)
+                            {
+                                t = a * i;
+                                double rad = 3.14 / 180 * t;
+                                int x1 = (int)((x - (points[0].Y - y) * Math.Sin(rad)));
+                                int y1 = (int)((y + (points[0].Y - y) * Math.Cos(rad)));
+                                points[i] = new Point(x1, y1); 
+                            }
+                        }
+
+                        graphics.DrawPolygon(pen, points);
+                        pictureBox1.Image = mainBitmap;
                         break;
                 }
 
@@ -89,7 +108,6 @@ namespace VectorGraphicsEditor
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            needClear = false;
             mouseDown = false;
         }
 
@@ -105,12 +123,10 @@ namespace VectorGraphicsEditor
         {
             pictureBox1.Cursor = Cursors.Cross;
             chooseButton = 2;
-
         }
 
         private void rectangle_Click(object sender, EventArgs e)
         {
-            
             chooseButton = 3;
         }
 
@@ -146,9 +162,9 @@ namespace VectorGraphicsEditor
 
         private void Polygon_Click(object sender, EventArgs e)
         {
+            textBox1.Visible = true;
+            textBox2.Visible = true;
             chooseButton = 10;
         }
-
-
     }
 }

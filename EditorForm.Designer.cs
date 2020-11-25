@@ -46,6 +46,8 @@ namespace VectorGraphicsEditor
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -212,11 +214,31 @@ namespace VectorGraphicsEditor
             this.button10.UseVisualStyleBackColor = true;
             this.button10.Click += new System.EventHandler(this.Polygon_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(546, 51);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(143, 20);
+            this.textBox1.TabIndex = 14;
+            this.textBox1.Text = "Введите количество углов";
+            this.textBox1.Visible = false;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(589, 77);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(61, 20);
+            this.textBox2.TabIndex = 15;
+            this.textBox2.Visible = false;
+            // 
             // EditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1164, 687);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.button8);
@@ -259,6 +281,8 @@ namespace VectorGraphicsEditor
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }
 
