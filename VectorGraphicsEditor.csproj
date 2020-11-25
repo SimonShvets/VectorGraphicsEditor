@@ -52,6 +52,17 @@
     <Compile Include="EditorForm.Designer.cs">
       <DependentUpon>EditorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="figurs\BrushFigire.cs" />
+    <Compile Include="figurs\CreateLine.cs" />
+    <Compile Include="figurs\CycleFigure.cs" />
+    <Compile Include="figurs\ElipseFigure.cs" />
+    <Compile Include="figurs\IsoscelesTriangleFigure.cs" />
+    <Compile Include="figurs\IFigure.cs" />
+    <Compile Include="figurs\PoligonFigure.cs" />
+    <Compile Include="figurs\RectangleFigure.cs" />
+    <Compile Include="figurs\StraightTriangleFigure.cs" />
+    <Compile Include="figurs\TriangleFigure.cs" />
+    <Compile Include="figurs\WrongPolygonFigure.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="EditorForm.resx">
