@@ -9,14 +9,10 @@ namespace VectorGraphicsEditor.Figures
 {
     public class CurveFigure : IFigures
     {
-        public Bitmap DrawFigure(Bitmap tmpBitmap, Point[] points)
+        public Bitmap DrawFigure(Pen pen, Graphics graphics, Bitmap tmpBitmap, PointF[] points)
         {
+            graphics.DrawLines(pen, points);
             return tmpBitmap;
-        }
-
-        private Point[] GetPoints(Point[] points)
-        {
-            return points;
         }
     }
 }
