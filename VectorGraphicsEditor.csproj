@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Calculations\Rectangle.cs" />
+    <Compile Include="Calculations\ICalculations.cs" />
+    <Compile Include="PointList.cs" />
     <Compile Include="EditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +67,8 @@
     <Compile Include="figurs\StraightTriangleFigure.cs" />
     <Compile Include="figurs\TriangleFigure.cs" />
     <Compile Include="figurs\WrongPolygonFigure.cs" />
+    <Compile Include="Figures\CurveFigure.cs" />
+    <Compile Include="Figures\IFigures.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="EditorForm.resx">
@@ -91,5 +96,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
