@@ -9,6 +9,7 @@ namespace VectorGraphicsEditor.Figures
 {
     public interface IFigure
     {
+
         void DrawFigure(Pen pen, Graphics graphics, PointList pointList);
     }
 }

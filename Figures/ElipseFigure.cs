@@ -11,8 +11,8 @@ namespace VectorGraphicsEditor.Figures
     {
         public void DrawFigure(Pen pen, Graphics graphics, PointList pointList)
         {
-            //Rectangle rect = new Rectangle((int)points[0].X, (int)points[0].Y, (int)(points[1].X - points[0].X), (int)(points[1].Y - points[0].Y));
-            //graphics.DrawEllipse(pen, rect);
+            Rectangle rect = new Rectangle((int)pointList[0].X, (int)pointList[0].Y, (int)(pointList[1].X - pointList[0].X), (int)(pointList[1].Y - pointList[0].Y));
+            graphics.DrawEllipse(pen, rect);
         }
     }
 }

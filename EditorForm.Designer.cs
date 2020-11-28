@@ -47,9 +47,10 @@ namespace VectorGraphicsEditor
             this.WrongPolygon = new System.Windows.Forms.Button();
             this.Polygon = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.numericUpDown = new System.Windows.Forms.NumericUpDown();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // createLine
@@ -221,14 +222,24 @@ namespace VectorGraphicsEditor
             this.textBox1.Text = "Введите количество углов";
             this.textBox1.Visible = false;
             // 
-            // textBox2
+            // numericUpDown
             // 
-            this.textBox2.Location = new System.Drawing.Point(589, 77);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(61, 20);
-            this.textBox2.TabIndex = 15;
-            this.textBox2.Text = "3";
-            this.textBox2.Visible = false;
+            this.numericUpDown.Location = new System.Drawing.Point(576, 77);
+            this.numericUpDown.Minimum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.numericUpDown.Name = "numericUpDown";
+            this.numericUpDown.Size = new System.Drawing.Size(85, 20);
+            this.numericUpDown.TabIndex = 16;
+            this.numericUpDown.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.numericUpDown.Visible = false;
+            this.numericUpDown.ValueChanged += new System.EventHandler(this.numericUpDown_TextChanged);
             // 
             // EditorForm
             // 
@@ -236,7 +247,7 @@ namespace VectorGraphicsEditor
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
             this.ClientSize = new System.Drawing.Size(1164, 687);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.numericUpDown);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.Polygon);
             this.Controls.Add(this.WrongPolygon);
@@ -256,6 +267,7 @@ namespace VectorGraphicsEditor
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -280,7 +292,7 @@ namespace VectorGraphicsEditor
         private System.Windows.Forms.Button WrongPolygon;
         private System.Windows.Forms.Button Polygon;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.NumericUpDown numericUpDown;
     }
 }
 

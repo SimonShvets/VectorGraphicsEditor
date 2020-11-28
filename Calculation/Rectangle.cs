@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VectorGraphicsEditor.Calculations
+namespace VectorGraphicsEditor.Calculation
 {
-    public class Rectangle : ICalculations
+    public class Rectangle : ICalculation
     {
         public PointList FigureCalculation(PointList pointList)
         {

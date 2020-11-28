@@ -12,9 +12,10 @@ namespace VectorGraphicsEditor
         Graphics graphics;
         Pen pen;
         PointList pointList;
-        Point point;
         bool mouseDown;
+        PolygonFigure tmp;
         IFigure figure;
+
         public EditorForm()
         {
             InitializeComponent();
@@ -27,10 +28,7 @@ namespace VectorGraphicsEditor
 
         private void pictureBox_MouseDown(object sender, MouseEventArgs e)
         {
-            pointList = new PointList();
-            point = e.Location;
-            pointList.AddPoint(point);
-            pointList.AddPoint(e.Location);
+            pointList = new PointList(e.Location);
             mouseDown = true;
         }
 
@@ -74,7 +72,7 @@ namespace VectorGraphicsEditor
 
         private void Rectangle_Click(object sender, EventArgs e)
         {
-            //figure = new RectangleFigure();
+            figure = new RectangleFigure();
         }
 
         private void Cycle_Click(object sender, EventArgs e)
@@ -84,7 +82,7 @@ namespace VectorGraphicsEditor
 
         private void Elipse_Click(object sender, EventArgs e)
         {
-            //figure = new ElipseFigure();
+            figure = new ElipseFigure();
         }
 
         private void Triangle_Click(object sender, EventArgs e)
@@ -111,14 +109,15 @@ namespace VectorGraphicsEditor
         {
             
             textBox1.Visible = true;
-            textBox2.Visible = true;
-            figure = new PolygonFigure(Convert.ToInt32(textBox2.Text));
-            
+            numericUpDown.Visible = true;
+            tmp = new PolygonFigure((int)numericUpDown.Value);
+            figure = tmp;
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void numericUpDown_TextChanged(object sender, EventArgs e)
         {
-            
+            tmp.N = (int)numericUpDown.Value;
+            figure = tmp;
         }
     }
 }

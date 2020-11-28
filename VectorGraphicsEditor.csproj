@@ -46,8 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Calculations\Rectangle.cs" />
-    <Compile Include="Calculations\ICalculations.cs" />
+    <Compile Include="Calculation\Rectangle.cs" />
+    <Compile Include="Calculation\ICalculation.cs" />
     <Compile Include="PointList.cs" />
     <Compile Include="EditorForm.cs">
       <SubType>Form</SubType>

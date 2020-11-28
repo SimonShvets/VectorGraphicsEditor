@@ -12,8 +12,8 @@ namespace VectorGraphicsEditor.Figures
         public void DrawFigure(Pen pen, Graphics graphics, PointList pointList)
         {
 
-            //PointF[] points1 = new PointF[4] { points[0], new PointF(points[0].X, points[1].Y), points[1], new PointF(points[1].X, points[0].Y) };
-            //graphics.DrawPolygon(pen, points1);
+            PointF[] points1 = new PointF[4] { pointList[0], new PointF(pointList[0].X, pointList[1].Y), pointList[1], new PointF(pointList[1].X, pointList[0].Y) };
+            graphics.DrawPolygon(pen, points1);
         }
     }
 }

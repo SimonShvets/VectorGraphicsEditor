@@ -10,6 +10,7 @@ namespace VectorGraphicsEditor.Figures
     public class PolygonFigure : IFigure
     {
         public int N { get; set; }
+
         PointF[] points1;
 
         public PolygonFigure(int n)
