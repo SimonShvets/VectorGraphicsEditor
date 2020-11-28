@@ -30,19 +30,17 @@ namespace VectorGraphicsEditor
         {
             pointList.AddPoint(e.Location);
             mouseDown = true;
-            mouseUp = false;
         }
         private void pictureBox_MouseUp(object sender, MouseEventArgs e)
         {
-            /*pointList.AddPoint(e.Location);*///mainBitmap = (Bitmap)tmpBitmap.Clone();
             mouseDown = false;
-            mouseUp = true;
         }
         private void pictureBox_MouseMove(object sender, MouseEventArgs e)
         {
             if (mouseDown)
             {
-                if(pointList.Lenght != 1) { 
+                if(pointList.Lenght != 1) 
+                { 
                 tmpBitmap = (Bitmap)mainBitmap.Clone();
                 graphics = Graphics.FromImage(tmpBitmap);
                 figure.DrawFigure(pen, graphics, tmpBitmap, pointList);
