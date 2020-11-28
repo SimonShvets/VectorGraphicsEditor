@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace VectorGraphicsEditor.Figures
 {
-    public interface IFigures
+    public interface IFigure
     {
-        void DrawFigure(Pen pen, Graphics graphics, Bitmap tmpBitmap, PointList pointList);
+        void DrawFigure(Pen pen, Graphics graphics, PointList pointList);
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VectorGraphicsEditor.Calculations
 {
-    public class Rectangle : ICalculations
+    public class Rectangle : ICalculation
     {
         public PointList FigureCalculation(PointList pointList)
         {
