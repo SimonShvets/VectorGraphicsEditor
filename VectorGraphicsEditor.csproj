@@ -55,20 +55,19 @@
     <Compile Include="EditorForm.Designer.cs">
       <DependentUpon>EditorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="figurs\BrushFigire.cs" />
-    <Compile Include="figurs\CreateLine.cs" />
-    <Compile Include="figurs\CycleFigure.cs" />
-    <Compile Include="figurs\ElipseFigure.cs" />
-    <Compile Include="figurs\HandFigure.cs" />
-    <Compile Include="figurs\IsoscelesTriangleFigure.cs" />
-    <Compile Include="figurs\IFigure.cs" />
-    <Compile Include="figurs\PoligonFigure.cs" />
-    <Compile Include="figurs\RectangleFigure.cs" />
-    <Compile Include="figurs\StraightTriangleFigure.cs" />
-    <Compile Include="figurs\TriangleFigure.cs" />
-    <Compile Include="figurs\WrongPolygonFigure.cs" />
+    <Compile Include="Figures\BrushFigire.cs" />
+    <Compile Include="Figures\CreateLine.cs" />
+    <Compile Include="Figures\CycleFigure.cs" />
+    <Compile Include="Figures\ElipseFigure.cs" />
+    <Compile Include="Figures\HandFigure.cs" />
+    <Compile Include="Figures\IsoscelesTriangleFigure.cs" />
+    <Compile Include="Figures\IFigure.cs" />
+    <Compile Include="Figures\PoligonFigure.cs" />
+    <Compile Include="Figures\RectangleFigure.cs" />
+    <Compile Include="Figures\StraightTriangleFigure.cs" />
+    <Compile Include="Figures\TriangleFigure.cs" />
+    <Compile Include="Figures\WrongPolygonFigure.cs" />
     <Compile Include="Figures\CurveFigure.cs" />
-    <Compile Include="Figures\IFigures.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="EditorForm.resx">

@@ -5,13 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 
-namespace VectorGraphicsEditor.figurs
+namespace VectorGraphicsEditor.Figures
 {
-    public class WrongPolygonFigure : IFigure
+    public class CreateLineFigure : IFigure
     {
-        public Bitmap DrawFigure(Graphics graphics, Bitmap bitmap, PointF[] points, Pen pen)
+        public void DrawFigure(Pen pen, Graphics graphics, PointList pointList)
         {
-            return bitmap;
         }
 
         private PointF[] GetPoints(PointF[] points)

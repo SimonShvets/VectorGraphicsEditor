@@ -10,11 +10,30 @@ namespace VectorGraphicsEditor
     public class PointList
     {
         private List<PointF> _listOfPoints;
-        public int Lenght
+        public int Length
         {
             get
             {
                 return _listOfPoints.Count;
+            }
+        }
+        public PointF this[int index]
+        {
+            get
+            {
+                if (index >= Length || index < 0)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+                return _listOfPoints[index];
+            }
+            set
+            {
+                if (index >= Length || index < 0)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+                _listOfPoints[index] = value;
             }
         }
         public PointList()
