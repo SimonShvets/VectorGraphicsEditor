@@ -13,7 +13,6 @@ namespace VectorGraphicsEditor
         Pen pen;
         PointList pointList;
         bool mouseDown;
-        bool mouseUp;
         IFigures figure;
         public EditorForm()
         {
@@ -33,6 +32,7 @@ namespace VectorGraphicsEditor
         }
         private void pictureBox_MouseUp(object sender, MouseEventArgs e)
         {
+            mainBitmap = tmpBitmap;
             mouseDown = false;
         }
         private void pictureBox_MouseMove(object sender, MouseEventArgs e)
