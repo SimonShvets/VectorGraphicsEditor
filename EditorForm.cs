@@ -38,15 +38,12 @@ namespace VectorGraphicsEditor
         {
             if (mouseDown)
             {
-                if (pointList.Length != 1)
-                {
-                    tmpBitmap = (Bitmap)mainBitmap.Clone();
-                    graphics = Graphics.FromImage(tmpBitmap);
-                    figure.DrawFigure(pen, graphics, pointList);
-                    pictureBox.Image = tmpBitmap;
-                    GC.Collect();
-                }
-
+                pointList[1] = e.Location;
+                tmpBitmap = (Bitmap)mainBitmap.Clone();
+                graphics = Graphics.FromImage(tmpBitmap);
+                figure.DrawFigure(pen, graphics, pointList);
+                pictureBox.Image = tmpBitmap;
+                GC.Collect();
             }
         }
 
@@ -116,11 +113,12 @@ namespace VectorGraphicsEditor
             textBox1.Visible = true;
             textBox2.Visible = true;
             figure = new PolygonFigure(Convert.ToInt32(textBox2.Text));
+            
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            figure = new PolygonFigure(Convert.ToInt32(textBox2.Text));
+            
         }
     }
 }
