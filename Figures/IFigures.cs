@@ -9,6 +9,6 @@ namespace VectorGraphicsEditor.Figures
 {
     public interface IFigures
     {
-        Bitmap DrawFigure(Pen pen, Graphics graphics, Bitmap tmpBitmap, PointF[] points);
+        void DrawFigure(Pen pen, Graphics graphics, Bitmap tmpBitmap, PointList pointList);
     }
 }

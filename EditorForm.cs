@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using VectorGraphicsEditor.Figures;
@@ -13,77 +12,48 @@ namespace VectorGraphicsEditor
         Graphics graphics;
         Pen pen;
         PointList pointList;
-        PointF point;
         bool mouseDown;
+        bool mouseUp;
         IFigures figure;
         public EditorForm()
         {
             InitializeComponent();
-        }
-
-        private void EditorForm_Load(object sender, EventArgs e)
-        {
-            mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            mainBitmap = new Bitmap(pictureBox.Width, pictureBox.Height);
+            tmpBitmap = (Bitmap)mainBitmap.Clone();
             graphics = Graphics.FromImage(mainBitmap);
-            pen = new Pen(Color.Black, 2);
-            pictureBox1.Image = mainBitmap;
+            pen = new Pen(Color.Black,10);
+            pictureBox.Image = mainBitmap;
             mouseDown = false;
         }
 
-        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
+        private void pictureBox_MouseDown(object sender, MouseEventArgs e)
         {
-            point = e.Location;
             pointList.AddPoint(e.Location);
-            //point = e.Location;
-            //listOfPoints.Add(point);
-            //points = new Point[listOfPoints.Count];
-            //int k = 0;
-            //foreach (Point i in listOfPoints)
-            //{
-            //    points[k] = i;
-            //    k++;
-            //}
-            if (pointList.Lenght != 1)
+            mouseDown = true;
+            mouseUp = false;
+        }
+        private void pictureBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            /*pointList.AddPoint(e.Location);*///mainBitmap = (Bitmap)tmpBitmap.Clone();
+            mouseDown = false;
+            mouseUp = true;
+        }
+        private void pictureBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (mouseDown)
             {
+                if(pointList.Lenght != 1) { 
                 tmpBitmap = (Bitmap)mainBitmap.Clone();
                 graphics = Graphics.FromImage(tmpBitmap);
-                pictureBox1.Image = figure.DrawFigure(pen, graphics, tmpBitmap, pointList.ConvertToPointF());
+                figure.DrawFigure(pen, graphics, tmpBitmap, pointList);
+                pictureBox.Image = tmpBitmap;
                 GC.Collect();
+                }
             }
-            mouseDown = true;
-
         }
-        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
-        {
-            //if (mouseDown)
-            //{
-            //     = e.Location;
-            //    listOfPoints.Add(point);
-            //    points = new Point[listOfPoints.Count];
-            //    int k = 0;
-            //    foreach (Point i in listOfPoints)
-            //    {
-            //        points[k] = i;
-            //        k++;
-            //    }
-            //    if (listOfPoints.Count != 1)
-            //    {
-            //        tmpBitmap = (Bitmap)mainBitmap.Clone();
-            //        graphics = Graphics.FromImage(tmpBitmap);
-            //        pictureBox1.Image = figure.DrawFigure(pen, graphics, tmpBitmap, points);
-            //        GC.Collect();
-            //    }
-            //}
-
-        }
-
-        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
-        {
-            mouseDown = false;
-        }
-
         private void Hand_Click(object sender, EventArgs e)
         {
+
         }
 
         private void Brush_Click(object sender, EventArgs e)
@@ -93,7 +63,7 @@ namespace VectorGraphicsEditor
 
         private void CreateLine_Click(object sender, EventArgs e)
         {
-            pictureBox1.Cursor = Cursors.Cross;
+            pictureBox.Cursor = Cursors.Cross;
             figure = new CurveFigure();
             pointList = new PointList();
         }
@@ -139,5 +109,7 @@ namespace VectorGraphicsEditor
             //textBox2.Visible = true;
             //figure = new PolygonFigure();
         }
+
+   
     }
 }

@@ -10,7 +10,7 @@ namespace VectorGraphicsEditor
     public class PointList
     {
         private List<PointF> _listOfPoints;
-        public int Lenght { get; private set; } = 0;
+        public int Lenght { get ; private set; } = 0;
         public PointList()
         {
             _listOfPoints = new List<PointF>();
@@ -22,14 +22,7 @@ namespace VectorGraphicsEditor
         }
         public PointF [] ConvertToPointF()
         {
-            PointF[] points = new PointF[Lenght];
-            int k = 0;
-            foreach (PointF i in _listOfPoints)
-            {
-                points[k] = i;
-                k++;
-            }
-            return points;
+            return _listOfPoints.ToArray(); 
         }
     }
 }
