@@ -10,7 +10,13 @@ namespace VectorGraphicsEditor
     public class PointList
     {
         private List<PointF> _listOfPoints;
-        public int Lenght { get ; private set; } = 0;
+        public int Lenght
+        {
+            get
+            {
+                return _listOfPoints.Count;
+            }
+        }
         public PointList()
         {
             _listOfPoints = new List<PointF>();
@@ -18,7 +24,6 @@ namespace VectorGraphicsEditor
         public void AddPoint(PointF point)
         {
             _listOfPoints.Add(point);
-            Lenght++;
         }
         public PointF [] ConvertToPointF()
         {
