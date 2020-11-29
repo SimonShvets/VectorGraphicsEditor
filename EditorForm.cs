@@ -22,11 +22,14 @@ namespace VectorGraphicsEditor
         public EditorForm()
         {
             InitializeComponent();
+
+            figure = new HandFigure();
             mainBitmap = new Bitmap(pictureBox.Width, pictureBox.Height);
             tmpBitmap = (Bitmap)mainBitmap.Clone();
             graphics = Graphics.FromImage(tmpBitmap);
             pictureBox.Image = mainBitmap;
-            pen = new Pen(Color.Black,5);
+            pen = new Pen(Color.Black, (int)numericUpDown1.Value);
+
             pointListN = new PointList();
             pen.StartCap = LineCap.Round;
             pen.EndCap = LineCap.Round;
@@ -212,8 +215,7 @@ namespace VectorGraphicsEditor
             mouseUp = false;
         }
         private void Polygon_Click(object sender, EventArgs e)
-        {
-            
+        {   
             textBox1.Visible = true;
             numericUpDown.Visible = true;
             tmp = new PolygonFigure((int)numericUpDown.Value);
@@ -224,6 +226,11 @@ namespace VectorGraphicsEditor
         {
             tmp.N = (int)numericUpDown.Value;
             figure = tmp;
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            pen.Width = (int)numericUpDown1.Value;
         }
     }
 }
