@@ -50,6 +50,26 @@ namespace VectorGraphicsEditor
                 }
                 mainBitmap = tmpBitmap;
             }
+            else if (_selectedTool == "Triangle")
+            {
+                pointListN.AddPoint(e.Location);
+                if (pointListN.Length == 2)
+                {
+                    tmpBitmap = (Bitmap)mainBitmap.Clone();
+                    graphics = Graphics.FromImage(tmpBitmap);
+                    figure.DrawFigure(pen, graphics, pointListN);
+                    pictureBox.Image = tmpBitmap;
+                    GC.Collect();
+                }
+                else if (pointListN.Length == 3)
+                {
+                    graphics.DrawLine(pen, pointListN.ConvertToPointF()[0], pointListN.ConvertToPointF()[2]);
+                    pictureBox.Image = tmpBitmap;
+                    GC.Collect();
+                    pointListN = new PointList();
+                }
+                mainBitmap = tmpBitmap;
+            }
             else if(_selectedTool == "Brush")
             {
                 mouseDown = true;
@@ -76,6 +96,14 @@ namespace VectorGraphicsEditor
                     GC.Collect();
                 }
             }
+            if (mouseUp && _selectedTool == "Triangle" && pointListN.Length > 0)
+            {
+                tmpBitmap = (Bitmap)mainBitmap.Clone();
+                graphics = Graphics.FromImage(tmpBitmap);
+                graphics.DrawLine(pen, pointListN.ConvertToPointF()[pointListN.Length - 1], e.Location);
+                pictureBox.Image = tmpBitmap;
+                GC.Collect();
+            }
             if (mouseUp && (_selectedTool == "Curve" || _selectedTool == "WrongPolygon"))
             {
                 tmpBitmap = (Bitmap)mainBitmap.Clone();
@@ -84,7 +112,7 @@ namespace VectorGraphicsEditor
                 pictureBox.Image = tmpBitmap;
                 GC.Collect();
             }
-            if (mouseDown && _selectedTool != "Curve" && _selectedTool != "WrongPolygon" && _selectedTool != "" && _selectedTool != "Brush" && _selectedTool != "Hand" )
+            if (mouseDown && _selectedTool != "Curve" && _selectedTool != "WrongPolygon" && _selectedTool != "" && _selectedTool != "Brush" && _selectedTool != "Hand" && _selectedTool != "Triangle")
             {
                 pointList[1] = e.Location;
                 tmpBitmap = (Bitmap)mainBitmap.Clone();
@@ -105,14 +133,9 @@ namespace VectorGraphicsEditor
                     mainBitmap = tmpBitmap;
                 }
             }
-            if (_selectedTool != "Curve")
+            if (_selectedTool != "Curve" || _selectedTool != "WrongPolygon" || _selectedTool != "Triangle")
             {
                 
-                mainBitmap = tmpBitmap;
-            }
-            if (_selectedTool != "WrongPolygon")
-            {
-
                 mainBitmap = tmpBitmap;
             }
             pointList = new PointList();
@@ -146,7 +169,6 @@ namespace VectorGraphicsEditor
         }
         private void Brush_Click(object sender, EventArgs e)
         {
-            pictureBox.Cursor = Cursors.Cross;
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             figure = new BrushFigure();
@@ -155,7 +177,6 @@ namespace VectorGraphicsEditor
         }
         private void Curve_Click(object sender, EventArgs e)
         {
-            pictureBox.Cursor = Cursors.Cross;
             figure = new CurveFigure();
             pointListN = new PointList();
             textBox1.Visible = false;
@@ -188,8 +209,13 @@ namespace VectorGraphicsEditor
         }
         private void Triangle_Click(object sender, EventArgs e)
         {
-            //figure = new TriangleFigure();
+            figure = new TriangleFigure();
+            pointListN = new PointList();
             _selectedTool = "Triangle";
+            textBox1.Visible = false;
+            numericUpDown.Visible = false;
+            mouseDown = false;
+            mouseUp = false;
         }
         private void StraightTriangle_Click(object sender, EventArgs e)
         {
@@ -203,7 +229,6 @@ namespace VectorGraphicsEditor
         }
         private void WrongPolygon_Click(object sender, EventArgs e)
         {
-            pictureBox.Cursor = Cursors.Cross;
             figure = new WrongPolygonFigure();
             pointListN = new PointList();
             //graphics = Graphics.FromImage(mainBitmap);
