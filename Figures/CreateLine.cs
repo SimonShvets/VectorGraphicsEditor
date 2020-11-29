@@ -5,13 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 
-namespace VectorGraphicsEditor.figurs
+namespace VectorGraphicsEditor.Figures
 {
-    public class RectangleFigure : IFigure
+    public class CreateLineFigure : IFigure
     {
-        public Bitmap DrawFigure(Bitmap bitmap, PointF[] points)
+        public void DrawFigure(Pen pen, Graphics graphics, PointList pointList)
         {
-            return bitmap;
         }
 
         private PointF[] GetPoints(PointF[] points)

@@ -5,12 +5,11 @@ using System.Text;
 using System.Drawing;
 using System.Threading.Tasks;
 
-namespace VectorGraphicsEditor.figurs
+namespace VectorGraphicsEditor.Figures
 {
     public interface IFigure
     {
-        Bitmap DrawFigure(Bitmap bitmap, PointF[] points);
 
-        //PointF[] GetPoints(PointF[] points);
+        void DrawFigure(Pen pen, Graphics graphics, PointList pointList);
     }
 }
