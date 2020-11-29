@@ -104,13 +104,6 @@ namespace VectorGraphicsEditor
             curve = true;
         }
 
-        //private void CreateLine_Click(object sender, EventArgs e)
-        //{
-        //    pictureBox.Cursor = Cursors.Cross;
-        //    figure = new CurveFigure();
-        //    pointList = new PointList();
-        //}
-
         private void Rectangle_Click(object sender, EventArgs e)
         {
             figure = new RectangleFigure();
@@ -121,7 +114,10 @@ namespace VectorGraphicsEditor
 
         private void Cycle_Click(object sender, EventArgs e)
         {
-            //figure = new CycleFigure();
+            figure = new CycleFigure();
+            textBox1.Visible = false;
+            numericUpDown.Visible = false;
+            curve = false;
         }
 
         private void Elipse_Click(object sender, EventArgs e)
