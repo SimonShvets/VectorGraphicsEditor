@@ -48,7 +48,7 @@
   <ItemGroup>
     <Compile Include="Calculation\Rectangle.cs" />
     <Compile Include="Calculation\ICalculation.cs" />
-    <Compile Include="Figures\Interface1.cs" />
+    <Compile Include="Figures\IFigure.cs" />
     <Compile Include="PointList.cs" />
     <Compile Include="EditorForm.cs">
       <SubType>Form</SubType>
@@ -57,7 +57,6 @@
       <DependentUpon>EditorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Figures\BrushFigire.cs" />
-    <Compile Include="Figures\CreateLine.cs" />
     <Compile Include="Figures\CycleFigure.cs" />
     <Compile Include="Figures\ElipseFigure.cs" />
     <Compile Include="Figures\HandFigure.cs" />
