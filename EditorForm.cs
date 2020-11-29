@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using VectorGraphicsEditor.Figures;
 
@@ -13,6 +14,7 @@ namespace VectorGraphicsEditor
         Pen pen;
         PointList pointList;
         bool mouseDown;
+        bool mouseUp;
         PolygonFigure tmp;
         IFigure figure;
 
@@ -21,28 +23,47 @@ namespace VectorGraphicsEditor
             InitializeComponent();
             mainBitmap = new Bitmap(pictureBox.Width, pictureBox.Height);
             tmpBitmap = (Bitmap)mainBitmap.Clone();
-            pen = new Pen(Color.Black, 10);
             pictureBox.Image = mainBitmap;
+            pointList = new PointList();
+            pen = new Pen(Color.Black,10);
+            pen.StartCap = LineCap.Round;
+            pen.EndCap = LineCap.Round;
             mouseDown = false;
         }
 
         private void pictureBox_MouseDown(object sender, MouseEventArgs e)
         {
             pointList = new PointList(e.Location);
-            mouseDown = true;
-        }
-
-        private void pictureBox_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (mouseDown)
+            pointList.AddPoint(e.Location);
+            if (pointList.Length != 1)
             {
-                pointList[1] = e.Location;
                 tmpBitmap = (Bitmap)mainBitmap.Clone();
                 graphics = Graphics.FromImage(tmpBitmap);
                 figure.DrawFigure(pen, graphics, pointList);
                 pictureBox.Image = tmpBitmap;
                 GC.Collect();
             }
+            mainBitmap = tmpBitmap;
+            mouseDown = true;
+        }
+        private void pictureBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            mainBitmap = tmpBitmap;
+            mouseDown = false;
+        }
+        private void pictureBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (mouseUp)
+            {
+                pointList[1] = e.Location;
+                tmpBitmap = (Bitmap)mainBitmap.Clone();
+                graphics = Graphics.FromImage(tmpBitmap);
+                graphics.DrawLine(pen, pointList.ConvertToPointF()[pointList.Length - 1], e.Location);
+                figure.DrawFigure(pen, graphics, pointList);
+                pictureBox.Image = tmpBitmap;
+                GC.Collect();
+            }
+            
         }
 
         private void pictureBox_MouseUp(object sender, MouseEventArgs e)
@@ -58,10 +79,11 @@ namespace VectorGraphicsEditor
         //    //chooseButton = 0;
         //}
 
-        //private void Brush_Click(object sender, EventArgs e)
-        //{
-        //    //figure = new BrushFigure();
-        //}
+        private void Curve_Click(object sender, EventArgs e)
+        {
+            pictureBox.Cursor = Cursors.Cross;
+            figure = new CurveFigure();
+        }
 
         //private void CreateLine_Click(object sender, EventArgs e)
         //{
