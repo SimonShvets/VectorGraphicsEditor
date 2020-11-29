@@ -72,6 +72,7 @@ namespace VectorGraphicsEditor
             this.button3.TabIndex = 2;
             this.button3.Text = "кисть";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.Brush_Click);
             // 
             // toolStrip1
             // 
@@ -135,14 +136,15 @@ namespace VectorGraphicsEditor
             this.Rectangle.UseVisualStyleBackColor = true;
             this.Rectangle.Click += new System.EventHandler(this.Rectangle_Click);
             // 
-            // button2
+            // Hand
             // 
             this.button2.Location = new System.Drawing.Point(12, 64);
-            this.button2.Name = "button2";
+            this.button2.Name = "Hand";
             this.button2.Size = new System.Drawing.Size(73, 46);
             this.button2.TabIndex = 6;
             this.button2.Text = "Hand";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Hand_Click);
             // 
             // Cycle
             // 

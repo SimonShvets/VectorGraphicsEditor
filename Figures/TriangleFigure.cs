@@ -11,6 +11,7 @@ namespace VectorGraphicsEditor.Figures
     {
         public void DrawFigure(Pen pen, Graphics graphics, PointList pointList)
         {
+            graphics.DrawLines(pen, pointList.ConvertToPointF());
         }
     }
 }

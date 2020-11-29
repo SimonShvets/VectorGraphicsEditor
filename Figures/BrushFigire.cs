@@ -7,11 +7,11 @@ using System.Drawing;
 
 namespace VectorGraphicsEditor.Figures
 {
-    public class BrushFigire : IFigure
+    public class BrushFigure : IFigure
     {
         public void DrawFigure(Pen pen, Graphics graphics, PointList pointList)
         {
-            
+            graphics.DrawLine(pen, pointList.ConvertToPointF()[pointList.Length - 2 ], pointList.ConvertToPointF()[pointList.Length - 1]);
         }
     }
 }
