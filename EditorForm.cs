@@ -13,8 +13,10 @@ namespace VectorGraphicsEditor
         Graphics graphics;
         Pen pen;
         PointList pointList;
+        PointList pointListN;
         bool mouseDown;
         bool mouseUp;
+        bool curve;
         PolygonFigure tmp;
         IFigure figure;
 
@@ -24,8 +26,9 @@ namespace VectorGraphicsEditor
             mainBitmap = new Bitmap(pictureBox.Width, pictureBox.Height);
             tmpBitmap = (Bitmap)mainBitmap.Clone();
             pictureBox.Image = mainBitmap;
-            pointList = new PointList();
             pen = new Pen(Color.Black,10);
+
+            pointListN = new PointList();
             pen.StartCap = LineCap.Round;
             pen.EndCap = LineCap.Round;
             mouseDown = false;
@@ -33,27 +36,41 @@ namespace VectorGraphicsEditor
 
         private void pictureBox_MouseDown(object sender, MouseEventArgs e)
         {
-            pointList = new PointList(e.Location);
-            //pointList.AddPoint(e.Location);
-            //if (pointList.Length != 1)
-            //{
-            //    tmpBitmap = (Bitmap)mainBitmap.Clone();
-            //    graphics = Graphics.FromImage(tmpBitmap);
-            //    figure.DrawFigure(pen, graphics, pointList);
-            //    pictureBox.Image = tmpBitmap;
-            //    GC.Collect();
-            //}
-            mainBitmap = tmpBitmap;
+            if (curve)
+            {
+                pointListN.AddPoint(e.Location);
+                if (pointListN.Length != 1)
+                {
+                    tmpBitmap = (Bitmap)mainBitmap.Clone();
+                    graphics = Graphics.FromImage(tmpBitmap);
+                    figure.DrawFigure(pen, graphics, pointListN);
+                    pictureBox.Image = tmpBitmap;
+                    GC.Collect();
+                }
+                mainBitmap = tmpBitmap;
+            }
+            else
+            {
+                pointList = new PointList(e.Location);
+            }
             mouseDown = true;
+            mouseUp = false;
         }
         private void pictureBox_MouseMove(object sender, MouseEventArgs e)
         {
-            if (mouseUp)
+            if (mouseUp && curve)
+            {
+                tmpBitmap = (Bitmap)mainBitmap.Clone();
+                graphics = Graphics.FromImage(tmpBitmap);
+                graphics.DrawLine(pen, pointListN.ConvertToPointF()[pointListN.Length - 1], e.Location);
+                pictureBox.Image = tmpBitmap;
+                GC.Collect();
+            }
+            if (mouseDown && !curve)
             {
                 pointList[1] = e.Location;
                 tmpBitmap = (Bitmap)mainBitmap.Clone();
                 graphics = Graphics.FromImage(tmpBitmap);
-                graphics.DrawLine(pen, pointList.ConvertToPointF()[pointList.Length - 1], e.Location);
                 figure.DrawFigure(pen, graphics, pointList);
                 pictureBox.Image = tmpBitmap;
                 GC.Collect();
@@ -63,8 +80,12 @@ namespace VectorGraphicsEditor
 
         private void pictureBox_MouseUp(object sender, MouseEventArgs e)
         {
+            if (!curve)
+            {
+                
+                mainBitmap = tmpBitmap;
+            }
             pointList = new PointList();
-            mainBitmap = tmpBitmap;
             mouseDown = false;
             mouseUp = true;
         }
@@ -78,6 +99,9 @@ namespace VectorGraphicsEditor
         {
             pictureBox.Cursor = Cursors.Cross;
             figure = new CurveFigure();
+            textBox1.Visible = false;
+            numericUpDown.Visible = false;
+            curve = true;
         }
 
         //private void CreateLine_Click(object sender, EventArgs e)
@@ -90,6 +114,9 @@ namespace VectorGraphicsEditor
         private void Rectangle_Click(object sender, EventArgs e)
         {
             figure = new RectangleFigure();
+            textBox1.Visible = false;
+            numericUpDown.Visible = false;
+            curve = false;
         }
 
         private void Cycle_Click(object sender, EventArgs e)
@@ -99,7 +126,10 @@ namespace VectorGraphicsEditor
 
         private void Elipse_Click(object sender, EventArgs e)
         {
+            textBox1.Visible = false;
+            numericUpDown.Visible = false;
             figure = new ElipseFigure();
+            curve = false;
         }
 
         private void Triangle_Click(object sender, EventArgs e)
@@ -129,6 +159,7 @@ namespace VectorGraphicsEditor
             numericUpDown.Visible = true;
             tmp = new PolygonFigure((int)numericUpDown.Value);
             figure = tmp;
+            curve = false;
         }
 
         private void numericUpDown_TextChanged(object sender, EventArgs e)
