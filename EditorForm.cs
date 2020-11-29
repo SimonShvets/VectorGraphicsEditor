@@ -36,20 +36,7 @@ namespace VectorGraphicsEditor
 
         private void pictureBox_MouseDown(object sender, MouseEventArgs e)
         {
-            if (_selectedTool == "Curve")
-            {
-                pointListN.AddPoint(e.Location);
-                if (pointListN.Length != 1)
-                {
-                    tmpBitmap = (Bitmap)mainBitmap.Clone();
-                    graphics = Graphics.FromImage(tmpBitmap);
-                    figure.DrawFigure(pen, graphics, pointListN);
-                    pictureBox.Image = tmpBitmap;
-                    GC.Collect();
-                }
-                mainBitmap = tmpBitmap;
-            }
-            if (_selectedTool == "WrongPolygon")
+            if ((_selectedTool == "Curve" || _selectedTool == "WrongPolygon"))
             {
                 pointListN.AddPoint(e.Location);
                 if (pointListN.Length != 1)
@@ -71,15 +58,7 @@ namespace VectorGraphicsEditor
         }
         private void pictureBox_MouseMove(object sender, MouseEventArgs e)
         {
-            if (mouseUp && _selectedTool == "Curve")
-            {
-                tmpBitmap = (Bitmap)mainBitmap.Clone();
-                graphics = Graphics.FromImage(tmpBitmap);
-                graphics.DrawLine(pen, pointListN.ConvertToPointF()[pointListN.Length - 1], e.Location);
-                pictureBox.Image = tmpBitmap;
-                GC.Collect();
-            }
-            if (mouseUp && _selectedTool == "WrongPolygon")
+            if (mouseUp && (_selectedTool == "Curve" || _selectedTool == "WrongPolygon"))
             {
                 tmpBitmap = (Bitmap)mainBitmap.Clone();
                 graphics = Graphics.FromImage(tmpBitmap);
@@ -159,6 +138,7 @@ namespace VectorGraphicsEditor
             figure = new RectangleFigure();
             textBox1.Visible = false;
             numericUpDown.Visible = false;
+            _selectedTool = "Rectangle";
         }
 
         private void Cycle_Click(object sender, EventArgs e)
@@ -166,7 +146,7 @@ namespace VectorGraphicsEditor
             figure = new CycleFigure();
             textBox1.Visible = false;
             numericUpDown.Visible = false;
-            curve = false;
+            _selectedTool = "Cycle";
         }
 
         private void Elipse_Click(object sender, EventArgs e)
@@ -174,21 +154,25 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             figure = new ElipseFigure();
+            _selectedTool = "Elipse";
         }
 
         private void Triangle_Click(object sender, EventArgs e)
         {
             //figure = new TriangleFigure();
+            _selectedTool = "Triangle";
         }
 
         private void StraightTriangle_Click(object sender, EventArgs e)
         {
             //figure = new StraightTriangleFigure();
+            _selectedTool = "StraightTriangle";
         }
 
         private void IsoscelesTriangle_Click(object sender, EventArgs e)
         {
             //figure = new IsoscelesTriangleFigure();
+            _selectedTool = "IsoscelesTriangle";
         }
 
         private void WrongPolygon_Click(object sender, EventArgs e)
@@ -210,6 +194,7 @@ namespace VectorGraphicsEditor
             numericUpDown.Visible = true;
             tmp = new PolygonFigure((int)numericUpDown.Value);
             figure = tmp;
+            _selectedTool = "Polygon";
         }
 
         private void numericUpDown_TextChanged(object sender, EventArgs e)
