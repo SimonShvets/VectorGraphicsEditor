@@ -46,8 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Calculations\Rectangle.cs" />
-    <Compile Include="Calculations\ICalculation.cs" />
+    <Compile Include="Calculation\Rectangle.cs" />
+    <Compile Include="Calculation\ICalculation.cs" />
+    <Compile Include="Figures\Interface1.cs" />
     <Compile Include="PointList.cs" />
     <Compile Include="EditorForm.cs">
       <SubType>Form</SubType>
@@ -55,8 +56,18 @@
     <Compile Include="EditorForm.Designer.cs">
       <DependentUpon>EditorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Figures\BrushFigire.cs" />
+    <Compile Include="Figures\CreateLine.cs" />
+    <Compile Include="Figures\CycleFigure.cs" />
+    <Compile Include="Figures\ElipseFigure.cs" />
+    <Compile Include="Figures\HandFigure.cs" />
+    <Compile Include="Figures\IsoscelesTriangleFigure.cs" />
+    <Compile Include="Figures\PoligonFigure.cs" />
+    <Compile Include="Figures\RectangleFigure.cs" />
+    <Compile Include="Figures\StraightTriangleFigure.cs" />
+    <Compile Include="Figures\TriangleFigure.cs" />
+    <Compile Include="Figures\WrongPolygonFigure.cs" />
     <Compile Include="Figures\CurveFigure.cs" />
-    <Compile Include="Figures\IFigure.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="EditorForm.resx">

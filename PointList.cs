@@ -35,7 +35,6 @@ namespace VectorGraphicsEditor
                 }
                 _listOfPoints[index] = value;
             }
-
         }
         public PointList()
         {
