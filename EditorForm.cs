@@ -34,22 +34,17 @@ namespace VectorGraphicsEditor
         private void pictureBox_MouseDown(object sender, MouseEventArgs e)
         {
             pointList = new PointList(e.Location);
-            pointList.AddPoint(e.Location);
-            if (pointList.Length != 1)
-            {
-                tmpBitmap = (Bitmap)mainBitmap.Clone();
-                graphics = Graphics.FromImage(tmpBitmap);
-                figure.DrawFigure(pen, graphics, pointList);
-                pictureBox.Image = tmpBitmap;
-                GC.Collect();
-            }
+            //pointList.AddPoint(e.Location);
+            //if (pointList.Length != 1)
+            //{
+            //    tmpBitmap = (Bitmap)mainBitmap.Clone();
+            //    graphics = Graphics.FromImage(tmpBitmap);
+            //    figure.DrawFigure(pen, graphics, pointList);
+            //    pictureBox.Image = tmpBitmap;
+            //    GC.Collect();
+            //}
             mainBitmap = tmpBitmap;
             mouseDown = true;
-        }
-        private void pictureBox_MouseUp(object sender, MouseEventArgs e)
-        {
-            mainBitmap = tmpBitmap;
-            mouseDown = false;
         }
         private void pictureBox_MouseMove(object sender, MouseEventArgs e)
         {
@@ -71,7 +66,7 @@ namespace VectorGraphicsEditor
             pointList = new PointList();
             mainBitmap = tmpBitmap;
             mouseDown = false;
-
+            mouseUp = true;
         }
 
         //private void Hand_Click(object sender, EventArgs e)
