@@ -36,6 +36,7 @@ namespace VectorGraphicsEditor
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.Rectangle = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -50,6 +51,10 @@ namespace VectorGraphicsEditor
             this.numericUpDown = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.square = new System.Windows.Forms.Button();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.colorDialog2 = new System.Windows.Forms.ColorDialog();
+            this.ChColor = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).BeginInit();
@@ -79,10 +84,12 @@ namespace VectorGraphicsEditor
             // 
             // toolStrip1
             // 
+            this.toolStrip1.BackColor = System.Drawing.Color.Ivory;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
             this.toolStripButton2,
-            this.toolStripButton3});
+            this.toolStripButton3,
+            this.toolStripButton4});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1164, 25);
@@ -116,6 +123,15 @@ namespace VectorGraphicsEditor
             this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton3.Text = "toolStripButton3";
             // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton4.Text = "toolStripButton4";
+            // 
             // pictureBox
             // 
             this.pictureBox.BackColor = System.Drawing.SystemColors.AppWorkspace;
@@ -139,10 +155,10 @@ namespace VectorGraphicsEditor
             this.Rectangle.UseVisualStyleBackColor = true;
             this.Rectangle.Click += new System.EventHandler(this.Rectangle_Click);
             // 
-            // Hand
+            // button2
             // 
             this.button2.Location = new System.Drawing.Point(12, 64);
-            this.button2.Name = "Hand";
+            this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(73, 46);
             this.button2.TabIndex = 6;
             this.button2.Text = "Hand";
@@ -279,12 +295,34 @@ namespace VectorGraphicsEditor
             this.textBox2.TabIndex = 18;
             this.textBox2.Text = "Толщина кисти";
             // 
+            // square
+            // 
+            this.square.Location = new System.Drawing.Point(12, 28);
+            this.square.Name = "square";
+            this.square.Size = new System.Drawing.Size(46, 31);
+            this.square.TabIndex = 19;
+            this.square.Text = "квадрат";
+            this.square.UseVisualStyleBackColor = true;
+            this.square.Click += new System.EventHandler(this.square_Click);
+            // 
+            // ChColor
+            // 
+            this.ChColor.Location = new System.Drawing.Point(793, 28);
+            this.ChColor.Name = "ChColor";
+            this.ChColor.Size = new System.Drawing.Size(124, 20);
+            this.ChColor.TabIndex = 20;
+            this.ChColor.Text = "Цвет";
+            this.ChColor.UseVisualStyleBackColor = true;
+            this.ChColor.Click += new System.EventHandler(this.ChColor_Click);
+            // 
             // EditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
             this.ClientSize = new System.Drawing.Size(1164, 687);
+            this.Controls.Add(this.ChColor);
+            this.Controls.Add(this.square);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.numericUpDown);
@@ -302,8 +340,10 @@ namespace VectorGraphicsEditor
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.createLine);
+            this.KeyPreview = true;
             this.Name = "EditorForm";
             this.Text = "Form1";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EditorForm_KeyDown);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
@@ -336,6 +376,11 @@ namespace VectorGraphicsEditor
         private System.Windows.Forms.NumericUpDown numericUpDown;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button square;
+        private System.Windows.Forms.ToolStripButton toolStripButton4;
+        private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.ColorDialog colorDialog2;
+        private System.Windows.Forms.Button ChColor;
     }
 }
 

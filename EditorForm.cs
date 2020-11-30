@@ -16,7 +16,7 @@ namespace VectorGraphicsEditor
         PointList pointList;
         PointList pointListN;
         bool mouseDown;
-        bool mouseUp;
+        bool mouseUp;       
         PolygonFigure tmp;
         IFigure figure;
         public EditorForm()
@@ -28,8 +28,7 @@ namespace VectorGraphicsEditor
             tmpBitmap = (Bitmap)mainBitmap.Clone();
             graphics = Graphics.FromImage(tmpBitmap);
             pictureBox.Image = mainBitmap;
-            pen = new Pen(Color.Black, (int)numericUpDown1.Value);
-
+            pen = new Pen(Color.Red, (int)numericUpDown1.Value);            
             pointListN = new PointList();
             pen.StartCap = LineCap.Round;
             pen.EndCap = LineCap.Round;
@@ -184,15 +183,7 @@ namespace VectorGraphicsEditor
             _selectedTool = "Curve";
             mouseDown = false;
             mouseUp = false;
-        }
-        private void Rectangle_Click(object sender, EventArgs e)
-        {
-            figure = new RectangleFigure();
-            textBox1.Visible = false;
-            numericUpDown.Visible = false;
-            _selectedTool = "Rectangle";
-        }
-
+        }   
         private void Cycle_Click(object sender, EventArgs e)
         {
             figure = new CycleFigure();
@@ -219,12 +210,14 @@ namespace VectorGraphicsEditor
         }
         private void StraightTriangle_Click(object sender, EventArgs e)
         {
-            //figure = new StraightTriangleFigure();
+            figure = new StraightTriangleFigure();
             _selectedTool = "StraightTriangle";
         }
         private void IsoscelesTriangle_Click(object sender, EventArgs e)
         {
-            //figure = new IsoscelesTriangleFigure();
+            textBox1.Visible = false;
+            numericUpDown.Visible = false;
+            figure = new IsoscelesTriangleFigure();
             _selectedTool = "IsoscelesTriangle";
         }
         private void WrongPolygon_Click(object sender, EventArgs e)
@@ -256,6 +249,38 @@ namespace VectorGraphicsEditor
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             pen.Width = (int)numericUpDown1.Value;
+        }
+        private void Rectangle_Click(object sender, EventArgs e)
+        {
+            figure = new RectangleFigure();
+            textBox1.Visible = false;
+            numericUpDown.Visible = false;
+            _selectedTool = "Rectangle";
+
+        }
+
+        private void square_Click(object sender, EventArgs e)
+        {
+            textBox1.Visible = false;
+            numericUpDown.Visible = false;
+            figure = new SquareFigure();            
+            _selectedTool = "Square";            
+        }
+
+        private void EditorForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == (char)Keys.NumPad0)
+            {
+                square.PerformClick();
+            }
+        }
+
+        private void ChColor_Click(object sender, EventArgs e)
+        {
+            colorDialog1.ShowDialog();
+            SolidBrush solidBrush = new SolidBrush(Color.Red);
+            ColorDialog colors = new ColorDialog();
+            solidBrush.Color = colors.Color;
         }
     }
 }
