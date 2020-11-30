@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Calculation\Rectangle.cs" />
     <Compile Include="Calculation\ICalculation.cs" />
+    <Compile Include="Figures\SquareFigure.cs" />
     <Compile Include="Figures\IFigure.cs" />
     <Compile Include="PointList.cs" />
     <Compile Include="EditorForm.cs">
