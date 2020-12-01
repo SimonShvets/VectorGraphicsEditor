@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 
-namespace VectorGraphicsEditor.Figures
+namespace VectorGraphicsEditor.Painter
 {
-    public class SquareFigure : IFigure
+    public class SquarePainter/* : IPainter*/
     {
         public void DrawFigure(Pen pen, Graphics graphics, PointList pointList)
         {
@@ -28,6 +28,26 @@ namespace VectorGraphicsEditor.Figures
             points[3] = new PointF(x + a, y);
             graphics.DrawPolygon(pen, points);
             
+        }
+
+        public void StateFixed()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void StateOff()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void StateOn()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update()
+        {
+            throw new NotImplementedException();
         }
     }
 }

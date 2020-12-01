@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 
-namespace VectorGraphicsEditor.Figures
+namespace VectorGraphicsEditor.Painter
 {
-    public class IsoscelesTriangleFigure : IFigure
+    public class IsoscelesTrianglePainter/* : *//*IPainter*/
     {
         public void DrawFigure(Pen pen, Graphics graphics, PointList pointList)
         {
@@ -27,6 +27,26 @@ namespace VectorGraphicsEditor.Figures
             
             graphics.DrawPolygon(pen, points);            
 
+        }
+
+        public void StateFixed()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void StateOff()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void StateOn()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update()
+        {
+            throw new NotImplementedException();
         }
     }
 }
