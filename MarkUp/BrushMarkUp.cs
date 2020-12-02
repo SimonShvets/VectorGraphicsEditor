@@ -1,23 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VectorGraphicsEditor.MarkUp
 {
-    public class BrushMarkUp
+    public class BrushMarkUp:IMarkUp
     {
-        private List<PointF> _pointList;
-
+        public List<PointF> PointList 
+        { 
+            get
+            {
+                return PointList; 
+            }
+            private set
+            {
+                PointList = value;
+            }
+        }
         public BrushMarkUp()
         {
-            _pointList = new List<PointF>();
+            PointList = new List<PointF>();
         }
         public void AddPoint(PointF point)
         {
-            _pointList.Add(point);
+            PointList.Add(point);
         }
         public PointF[] Calculate()
         {
@@ -25,7 +30,7 @@ namespace VectorGraphicsEditor.MarkUp
             //point[0] = _pointList[_pointList.Count - 2];
             ////point[1] = _pointList[_pointList.Count - 1];
             //return point;
-            return _pointList.ToArray();
+            return PointList.ToArray();
         }
     }
 }

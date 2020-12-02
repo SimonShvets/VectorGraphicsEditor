@@ -9,24 +9,29 @@ namespace VectorGraphicsEditor.MarkUp
 {
     public class RectangleMarkUp : IMarkUp
     {
-        public PointList Marks
-        { 
+        public List<PointF> PointList
+        {
             get
             {
-                return Marks;
+                return PointList;
             }
-            set
+            private set
             {
-
+                PointList = value;
             }
         }
         public RectangleMarkUp()
         {
+            PointList = new List<PointF>();
         }
-
-        public PointList Calculate(PointList pointList)
+        public void AddPoint(PointF point)
         {
-            return pointList;
+            PointList.Add(point);
+        }
+        public PointF[] Calculate()
+        {
+            //Some calculations
+            return PointList.ToArray();
         }
     }
 }

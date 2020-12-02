@@ -1,30 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Drawing;
 
 namespace VectorGraphicsEditor.MarkUp
 {
-    public class CircleMarkUp : IMarkUp
+    public class CircleMarkUp:IMarkUp
     {
-        public PointList Marks
+        public List<PointF> PointList
         {
             get
             {
-                return Marks;
+                return PointList;
             }
-            set
+            private set
             {
-
+                PointList = value;
             }
         }
         public CircleMarkUp()
         {
+            PointList = new List<PointF>();
         }
-        public PointList Calculate(PointList pointList)
+        public void AddPoint(PointF point)
         {
-            throw new NotImplementedException();
+            PointList.Add(point);
+        }
+        public PointF[] Calculate()
+        {
+            //Some calculations
+            return PointList.ToArray();
         }
     }
 }

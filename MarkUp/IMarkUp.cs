@@ -1,10 +1,12 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 
 namespace VectorGraphicsEditor.MarkUp
 {
     public interface IMarkUp
     {
-        PointList Marks { get; set; }
-        PointList Calculate(PointList pointList);
+        List<PointF> PointList { get; }
+        void AddPoint(PointF point);
+        PointF[] Calculate();
     }
 }

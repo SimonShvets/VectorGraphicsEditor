@@ -46,19 +46,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MarkUp\BrushMarkUp.cs" />
-    <Compile Include="MarkUp\CurveMarkUp.cs" />
-    <Compile Include="MarkUp\CircleMarkUp.cs" />
-    <Compile Include="MarkUp\ElipseMarkUp.cs" />
-    <Compile Include="MarkUp\HandMarkUp.cs" />
-    <Compile Include="MarkUp\IsoscelesTriangleMarkUp.cs" />
-    <Compile Include="MarkUp\PolygonMarkUp.cs" />
-    <Compile Include="MarkUp\SquareMarkUp.cs" />
-    <Compile Include="MarkUp\TriangleMark.cs" />
-    <Compile Include="MarkUp\RightTriangleMarkUp.cs" />
-    <Compile Include="MarkUp\IrregularPolygonMarkUp.cs" />
-    <Compile Include="MarkUp\RectangleMarkUp.cs" />
-    <Compile Include="MarkUp\IMarkUp.cs" />
+    <Compile Include="Markup\BrushMarkUp.cs" />
+    <Compile Include="Markup\CurveMarkUp.cs" />
+    <Compile Include="Markup\CircleMarkUp.cs" />
+    <Compile Include="Markup\ElipseMarkUp.cs" />
+    <Compile Include="Markup\HandMarkUp.cs" />
+    <Compile Include="Markup\IsoscelesTriangleMarkUp.cs" />
+    <Compile Include="Markup\PolygonMarkUp.cs" />
+    <Compile Include="Markup\SquareMarkUp.cs" />
+    <Compile Include="Markup\TriangleMark.cs" />
+    <Compile Include="Markup\RightTriangleMarkUp.cs" />
+    <Compile Include="Markup\IrregularPolygonMarkUp.cs" />
+    <Compile Include="Markup\RectangleMarkUp.cs" />
+    <Compile Include="Markup\IMarkUp.cs" />
     <Compile Include="Canvas.cs" />
     <Compile Include="Painter\SquarePainter.cs" />
     <Compile Include="Painter\IPainter.cs" />
