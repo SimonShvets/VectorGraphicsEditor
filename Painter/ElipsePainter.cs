@@ -7,9 +7,9 @@ using System.Drawing;
 
 namespace VectorGraphicsEditor.Painter
 {
-    public class ElipsePainter /*: IPainter*/
+    public class ElipsePainter : IPainter
     {
-        public void DrawFigure(Pen pen, Graphics graphics, PointList pointList)
+        public void DrawFigure(Pen pen, Graphics graphics, PointF[] points)
         {
             Rectangle rect = new Rectangle((int)pointList[0].X, (int)pointList[0].Y, (int)(pointList[1].X - pointList[0].X), (int)(pointList[1].Y - pointList[0].Y));
             graphics.DrawEllipse(pen, rect);

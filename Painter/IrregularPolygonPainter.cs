@@ -7,9 +7,9 @@ using System.Drawing;
 
 namespace VectorGraphicsEditor.Painter
 {
-    public class IrregularPolygonPainter /*: IPainter*/
+    public class IrregularPolygonPainter : IPainter
     {
-        public void DrawFigure(Pen pen, Graphics graphics, PointList pointList)
+        public void DrawFigure(Pen pen, Graphics graphics, PointF[] points)
         {
             graphics.DrawLines(pen, pointList.ConvertToPointF());
         }

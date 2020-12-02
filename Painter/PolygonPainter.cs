@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace VectorGraphicsEditor.Painter
 {
-    public class PolygonPainter/* : IPainter*/
+    public class PolygonPainter : IPainter
     {
         public int N { get; set; }
 
@@ -18,9 +18,8 @@ namespace VectorGraphicsEditor.Painter
             N = n;
         }
 
-        public void DrawFigure(Pen pen, Graphics graphics, PointList pointList)
+        public void DrawFigure(Pen pen, Graphics graphics, PointF[] points)
         {
-            
             if (N > 2)
             {
                 points1 = new PointF[N];
