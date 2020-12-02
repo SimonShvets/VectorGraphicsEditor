@@ -5,19 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 
-namespace VectorGraphicsEditor.Figures
+namespace VectorGraphicsEditor.Painter
 {
-    public class SquareFigure : IFigure
+    public class SquarePainter : IPainter
     {
-        public void DrawFigure(Pen pen, Graphics graphics, PointList pointList)
+        public void DrawFigure(Pen pen, Graphics graphics, PointF[] points)
         {
             PointF[] points = new PointF[4];
             int x = (int)pointList[0].X;
             int y = (int)pointList[0].Y;
             int x2 = (int)pointList[1].X;
-           // int y2 = (int)pointList[1].Y;
+            // int y2 = (int)pointList[1].Y;
             int a = Math.Abs(x2 - x);
-           // int b = Math.Abs(y2 - y);
+            // int b = Math.Abs(y2 - y);
             //int c = a + b;
             points[0] = pointList[0];
             //points[1] = new PointF(pointList[0].X, pointList[1].Y + a);
@@ -27,7 +27,26 @@ namespace VectorGraphicsEditor.Figures
             points[2] = new PointF(x + a, y + a);
             points[3] = new PointF(x + a, y);
             graphics.DrawPolygon(pen, points);
-            
+        }
+
+        public void StateFixed()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void StateOff()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void StateOn()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update()
+        {
+            throw new NotImplementedException();
         }
     }
 }

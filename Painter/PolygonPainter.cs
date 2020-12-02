@@ -5,22 +5,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 
-namespace VectorGraphicsEditor.Figures
+namespace VectorGraphicsEditor.Painter
 {
-    public class PolygonFigure : IFigure
+    public class PolygonPainter : IPainter
     {
         public int N { get; set; }
 
         PointF[] points1;
 
-        public PolygonFigure(int n)
+        public PolygonPainter(int n)
         {
             N = n;
         }
 
-        public void DrawFigure(Pen pen, Graphics graphics, PointList pointList)
+        public void DrawFigure(Pen pen, Graphics graphics, PointF[] points)
         {
-            
             if (N > 2)
             {
                 points1 = new PointF[N];
@@ -37,6 +36,26 @@ namespace VectorGraphicsEditor.Figures
                 }
             }
             graphics.DrawPolygon(pen, points1);
+        }
+
+        public void StateOn()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void StateOff()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void StateFixed()
+        {
+            throw new NotImplementedException();
         }
     }
 }

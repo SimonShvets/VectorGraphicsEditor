@@ -46,10 +46,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Calculation\Rectangle.cs" />
-    <Compile Include="Calculation\ICalculation.cs" />
-    <Compile Include="Figures\SquareFigure.cs" />
-    <Compile Include="Figures\IFigure.cs" />
+    <Compile Include="Markup\BrushMarkUp.cs" />
+    <Compile Include="Markup\CurveMarkUp.cs" />
+    <Compile Include="Markup\CircleMarkUp.cs" />
+    <Compile Include="Markup\ElipseMarkUp.cs" />
+    <Compile Include="Markup\HandMarkUp.cs" />
+    <Compile Include="Markup\IsoscelesTriangleMarkUp.cs" />
+    <Compile Include="Markup\PolygonMarkUp.cs" />
+    <Compile Include="Markup\SquareMarkUp.cs" />
+    <Compile Include="Markup\TriangleMark.cs" />
+    <Compile Include="Markup\RightTriangleMarkUp.cs" />
+    <Compile Include="Markup\IrregularPolygonMarkUp.cs" />
+    <Compile Include="Markup\RectangleMarkUp.cs" />
+    <Compile Include="Markup\IMarkUp.cs" />
+    <Compile Include="Canvas.cs" />
+    <Compile Include="Painter\SquarePainter.cs" />
+    <Compile Include="Painter\IPainter.cs" />
     <Compile Include="PointList.cs" />
     <Compile Include="EditorForm.cs">
       <SubType>Form</SubType>
@@ -57,17 +69,17 @@
     <Compile Include="EditorForm.Designer.cs">
       <DependentUpon>EditorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Figures\BrushFigire.cs" />
-    <Compile Include="Figures\CycleFigure.cs" />
-    <Compile Include="Figures\ElipseFigure.cs" />
-    <Compile Include="Figures\HandFigure.cs" />
-    <Compile Include="Figures\IsoscelesTriangleFigure.cs" />
-    <Compile Include="Figures\PoligonFigure.cs" />
-    <Compile Include="Figures\RectangleFigure.cs" />
-    <Compile Include="Figures\StraightTriangleFigure.cs" />
-    <Compile Include="Figures\TriangleFigure.cs" />
-    <Compile Include="Figures\WrongPolygonFigure.cs" />
-    <Compile Include="Figures\CurveFigure.cs" />
+    <Compile Include="Painter\BrushPainter.cs" />
+    <Compile Include="Painter\CirclePainter.cs" />
+    <Compile Include="Painter\ElipsePainter.cs" />
+    <Compile Include="Painter\HandPainter.cs" />
+    <Compile Include="Painter\IsoscelesTrianglePainter.cs" />
+    <Compile Include="Painter\PolygonPainter.cs" />
+    <Compile Include="Painter\RectanglePainter.cs" />
+    <Compile Include="Painter\RightTrianglePainter.cs" />
+    <Compile Include="Painter\TrianglePainter.cs" />
+    <Compile Include="Painter\IrregularPolygonPainter.cs" />
+    <Compile Include="Painter\CurvePainter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="EditorForm.resx">

@@ -40,11 +40,10 @@ namespace VectorGraphicsEditor
         {
             _listOfPoints = new List<PointF>();
         }
-        public PointList(PointF point)
+        public PointList(int length)
         {
-            _listOfPoints = new List<PointF>();
-            _listOfPoints.Add(point);
-            _listOfPoints.Add(point);
+            PointF[] points = new PointF[length];
+            Array.Copy(points, _listOfPoints.ToArray(), length);
         }
         public void AddPoint(PointF point)
         {
