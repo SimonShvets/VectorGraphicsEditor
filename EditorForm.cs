@@ -23,7 +23,7 @@ namespace VectorGraphicsEditor
         {
             InitializeComponent();
 
-            figure = new HandFigure();
+            figure = new HandFigure(); 
             mainBitmap = new Bitmap(pictureBox.Width, pictureBox.Height);
             tmpBitmap = (Bitmap)mainBitmap.Clone();
             graphics = Graphics.FromImage(tmpBitmap);
@@ -38,7 +38,7 @@ namespace VectorGraphicsEditor
         {
             if ((_selectedTool == "Curve" || _selectedTool == "WrongPolygon"))
             {
-                pointListN.AddPoint(e.Location);
+                pointListN.AddPoint(e.Location);//----------------
                 if (pointListN.Length != 1)
                 {
                     tmpBitmap = (Bitmap)mainBitmap.Clone();
@@ -51,7 +51,7 @@ namespace VectorGraphicsEditor
             }
             else if (_selectedTool == "Triangle")
             {
-                pointListN.AddPoint(e.Location);
+                pointListN.AddPoint(e.Location);//------------------
                 if (pointListN.Length == 2)
                 {
                     tmpBitmap = (Bitmap)mainBitmap.Clone();
@@ -71,8 +71,8 @@ namespace VectorGraphicsEditor
             }
             else if(_selectedTool == "Brush")
             {
-                mouseDown = true;
-                pointListN.AddPoint(e.Location);
+                //mouseDown = true;
+                pointListN.AddPoint(e.Location);//--------------------------
                 tmpBitmap = (Bitmap)mainBitmap.Clone();
                 graphics = Graphics.FromImage(tmpBitmap);
             }
