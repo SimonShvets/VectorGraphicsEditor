@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace VectorGraphicsEditor.Painter
 {
-    public class CirclePainter : IPainter
+    public class CirclePainter /*: /*IPainter*/
     {
         public void DrawFigure(Pen pen, Graphics graphics, PointF[] points)
         {

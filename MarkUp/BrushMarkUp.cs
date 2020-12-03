@@ -5,17 +5,7 @@ namespace VectorGraphicsEditor.MarkUp
 {
     public class BrushMarkUp:IMarkUp
     {
-        public List<PointF> PointList 
-        { 
-            get
-            {
-                return PointList; 
-            }
-            private set
-            {
-                PointList = value;
-            }
-        }
+        public List<PointF> PointList { get; set; }
         public BrushMarkUp()
         {
             PointList = new List<PointF>();

@@ -15,9 +15,8 @@ namespace VectorGraphicsEditor
         bool mouseUp;
         //PolygonFigure tmp;
         IPainter painter;
-        IMarkUp markUp;
         Canvas canvas;
-        BrushMarkUp mark;
+        IMarkUp markup;
 
         public EditorForm()
         {
@@ -28,10 +27,13 @@ namespace VectorGraphicsEditor
             pen = new Pen(Color.Red, (int)numericUpDown1.Value);            
             pen.StartCap = LineCap.Round;
             pen.EndCap = LineCap.Round;
-            mouseDown = false;
+            painter = new BrushPainter();
+            markup = new BrushMarkUp();
         }
         private void pictureBox_MouseDown(object sender, MouseEventArgs e)
         {
+            painter.MouseDownHandle(e, pen, markup, canvas);
+            pictureBox.Image = canvas.TmpBitmap;
             //if ((_selectedTool == "Curve" || _selectedTool == "WrongPolygon"))
             //{
             //    pointListN.AddPoint(e.Location);
@@ -65,10 +67,9 @@ namespace VectorGraphicsEditor
             //    }
             //    mainBitmap = tmpBitmap;
             //}
-
-                mouseDown = true;
-                mark.AddPoint(e.Location);
-                canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
+            //canvas.Paint(sender, e, pen, markup, painter);
+            //pictureBox.Image = canvas.TmpBitmap;
+            //canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
             //tmpBitmap = (Bitmap)mainBitmap.Clone();
             //graphics = Graphics.FromImage(tmpBitmap);
             //else
@@ -76,21 +77,15 @@ namespace VectorGraphicsEditor
             //    pointList = new PointList(e.Location);
             //}
             //mouseDown = true;
-            mouseUp = false;
+            //mouseUp = false;
         }
-        // StateOn
         private void pictureBox_MouseMove(object sender, MouseEventArgs e)
         {
-            //if (_selectedTool == "Brush")
-            //{
-                if (mouseDown)
-                {
-                    mark.AddPoint(e.Location);
-                    canvas.Paint(pen, mark, painter);
-                    pictureBox.Image = canvas.TmpBitmap;
-                    GC.Collect();
-                }
-            //}
+            painter.MouseMoveHandle(e, pen, markup, canvas);
+            pictureBox.Image = canvas.TmpBitmap;
+            //canvas.Paint(sender, e, pen, markup, painter);
+            //pictureBox.Image = canvas.TmpBitmap;
+            //GC.Collect();
             //if (mouseUp && _selectedTool == "Triangle" && pointListN.Length > 0)
             //{
             //    tmpBitmap = (Bitmap)mainBitmap.Clone();
@@ -116,24 +111,11 @@ namespace VectorGraphicsEditor
             //    pictureBox.Image = tmpBitmap;
             //    GC.Collect();
             //}
-
         }
-        // Update
         private void pictureBox_MouseUp(object sender, MouseEventArgs e)
         {
-            //if (_selectedTool == "Brush")
-            //{
-                if (mouseDown)
-                {
-                    canvas.Save();
-                }
-            //}
-            canvas.Save();
-            //pointList = new PointList();
-            //mouseDown = false;
-            //mouseUp = true;
+            painter.MouseUpHandle(e, pen, markup, canvas);
         }
-        // StateOff
         private void pictureBox_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             //if (_selectedTool == "Curve")
@@ -155,7 +137,6 @@ namespace VectorGraphicsEditor
             //_selectedTool = "";
             //}
         }
-        // StateFixed
         private void Hand_Click(object sender, EventArgs e)
         {
             _selectedTool = "Hand";
@@ -165,7 +146,7 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             painter = new BrushPainter();
-            mark = new BrushMarkUp();
+            markup = new BrushMarkUp();
 
         }
         private void Curve_Click(object sender, EventArgs e)

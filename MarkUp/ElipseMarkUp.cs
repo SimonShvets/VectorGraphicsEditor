@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace VectorGraphicsEditor.MarkUp
 {
-    public class ElipseMarkUp : IMarkUp
+    public class ElipseMarkUp /*: IMarkUp*/
     {
         public List<PointF> PointList
         {

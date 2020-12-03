@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace VectorGraphicsEditor.MarkUp
 {
-    public class CircleMarkUp:IMarkUp
+    public class CircleMarkUp/*:IMarkUp*/
     {
         public List<PointF> PointList
         {
