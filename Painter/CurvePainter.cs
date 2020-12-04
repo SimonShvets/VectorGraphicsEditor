@@ -5,34 +5,60 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VectorGraphicsEditor.MarkUp;
 
 namespace VectorGraphicsEditor.Painter
 {
-    public class CurvePainter /* IPainter*/
+    public class CurvePainter: IPainter
     {
-        public void DrawFigure(Pen pen, Graphics graphics, PointF[] points)
+        private bool _mouseDown = false;
+        private void DrawFigure(Pen pen, Graphics graphics, PointF[] points)
         {
-            //graphics.DrawLines(pen, pointList.ConvertToPointF());
+            graphics.DrawLine(pen, points[points.Length - 2], points[points.Length - 1]);
         }
 
-        public void StateFixed()
+        public void KeyDown()
         {
             throw new NotImplementedException();
         }
 
-        public void StateOff()
+        public void KeyUp()
         {
             throw new NotImplementedException();
         }
-
-        public void StateOn()
+        public void MouseDownHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
         {
-            throw new NotImplementedException();
+            _mouseDown = true;
+            markUp.AddPoint(point);
+            if (markUp.Length != 1)
+            {
+                canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
+                canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
+                DrawFigure(pen, canvas.Graphics, markUp.Calculate());
+            }
+            canvas.Save();
+            GC.Collect();
         }
 
-        public void Update()
+        public void MouseMoveHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
         {
-            throw new NotImplementedException();
+            if (_mouseDown)
+            {
+                markUp.AddPoint(point);
+                DrawFigure(pen, canvas.Graphics, markUp.Calculate());
+                GC.Collect();
+            }
+        }
+
+        public void MouseUpHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
+        {
+            _mouseDown = false;
+            canvas.Save();
+        }
+
+        public void MouseDoubleHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
+        {
+            //_mouseDown = false;
         }
     }
 }
