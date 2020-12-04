@@ -32,7 +32,7 @@ namespace VectorGraphicsEditor
         }
         private void pictureBox_MouseDown(object sender, MouseEventArgs e)
         {
-            painter.MouseDownHandle(e, pen, markup, canvas);
+            painter.MouseDownHandle(e.Location, pen, markup, canvas);
             pictureBox.Image = canvas.TmpBitmap;
             //if ((_selectedTool == "Curve" || _selectedTool == "WrongPolygon"))
             //{
@@ -81,10 +81,9 @@ namespace VectorGraphicsEditor
         }
         private void pictureBox_MouseMove(object sender, MouseEventArgs e)
         {
-            painter.MouseMoveHandle(e, pen, markup, canvas);
+            painter.MouseMoveHandle(e.Location, pen, markup, canvas);
             pictureBox.Image = canvas.TmpBitmap;
-            //canvas.Paint(sender, e, pen, markup, painter);
-            //pictureBox.Image = canvas.TmpBitmap;
+
             //GC.Collect();
             //if (mouseUp && _selectedTool == "Triangle" && pointListN.Length > 0)
             //{
@@ -114,10 +113,11 @@ namespace VectorGraphicsEditor
         }
         private void pictureBox_MouseUp(object sender, MouseEventArgs e)
         {
-            painter.MouseUpHandle(e, pen, markup, canvas);
+            painter.MouseUpHandle(e.Location, pen, markup, canvas);
         }
         private void pictureBox_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            painter.MouseUpHandle(e.Location, pen, markup, canvas);
             //if (_selectedTool == "Curve")
             //{
             //mouseDown = false;
