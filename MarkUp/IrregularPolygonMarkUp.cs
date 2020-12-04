@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace VectorGraphicsEditor.MarkUp
 {
-    public class IrregularPolygonMarkUp : IMarkUp
+    public class IrregularPolygonMarkUp /*: IMarkUp*/
     {
         public List<PointF> PointList
         {

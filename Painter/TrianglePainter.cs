@@ -7,11 +7,11 @@ using System.Drawing;
 
 namespace VectorGraphicsEditor.Painter
 {
-    public class TrianglePainter : IPainter
+    public class TrianglePainter/* : IPainter*/
     {
         public void DrawFigure(Pen pen, Graphics graphics, PointF[] points)
         {
-            graphics.DrawLines(pen, pointList.ConvertToPointF());
+            //graphics.DrawLines(pen, pointList.ConvertToPointF());
         }
 
         public void StateFixed()

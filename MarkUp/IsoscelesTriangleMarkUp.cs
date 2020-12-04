@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace VectorGraphicsEditor.MarkUp
 {
-    public class IsoscelesTriangleMarkUp : IMarkUp
+    public class IsoscelesTriangleMarkUp /*: IMarkUp*/
     {
         public List<PointF> PointList
         {

@@ -7,12 +7,12 @@ using System.Drawing;
 
 namespace VectorGraphicsEditor.Painter
 {
-    public class RightTrianglePainter: IPainter
+    public class RightTrianglePainter/*: IPainter*/
     {
         public void DrawFigure(Pen pen, Graphics graphics, PointF[] points)
         {
-            PointF[] points1 = new PointF[3] { pointList[0], pointList[1], new PointF(pointList[0].X, pointList[1].Y) };
-            graphics.DrawPolygon(pen, points1);
+            //PointF[] points1 = new PointF[3] { pointList[0], pointList[1], new PointF(pointList[0].X, pointList[1].Y) };
+            //graphics.DrawPolygon(pen, points1);
         }
 
         public void StateFixed()

@@ -62,7 +62,6 @@
     <Compile Include="Canvas.cs" />
     <Compile Include="Painter\SquarePainter.cs" />
     <Compile Include="Painter\IPainter.cs" />
-    <Compile Include="PointList.cs" />
     <Compile Include="EditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +81,7 @@
     <Compile Include="Painter\CurvePainter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tool\ITool.cs" />
     <EmbeddedResource Include="EditorForm.resx">
       <DependentUpon>EditorForm.cs</DependentUpon>
     </EmbeddedResource>
