@@ -114,10 +114,12 @@ namespace VectorGraphicsEditor
         private void pictureBox_MouseUp(object sender, MouseEventArgs e)
         {
             painter.MouseUpHandle(e.Location, pen, markup, canvas);
+            pictureBox.Image = canvas.TmpBitmap;
         }
         private void pictureBox_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             painter.MouseUpHandle(e.Location, pen, markup, canvas);
+            //pictureBox.Image = canvas.TmpBitmap;
             //if (_selectedTool == "Curve")
             //{
             //mouseDown = false;
