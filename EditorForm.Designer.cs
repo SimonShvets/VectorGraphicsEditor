@@ -135,7 +135,7 @@ namespace VectorGraphicsEditor
             // pictureBox
             // 
             this.pictureBox.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.pictureBox.Location = new System.Drawing.Point(107, 51);
+            this.pictureBox.Location = new System.Drawing.Point(91, 53);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(1034, 597);
             this.pictureBox.TabIndex = 4;
