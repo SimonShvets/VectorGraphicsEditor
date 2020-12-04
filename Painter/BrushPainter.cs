@@ -14,7 +14,7 @@ namespace VectorGraphicsEditor.Painter
         private bool _mouseDown = false;
         private void DrawFigure(Pen pen, Graphics graphics, PointF[] points)
         {
-            graphics.DrawLines(pen, points);
+            graphics.DrawLine(pen, points[points.Length-2], points[points.Length - 1]);
         }
 
         public void KeyDown()
@@ -26,33 +26,34 @@ namespace VectorGraphicsEditor.Painter
         {
             throw new NotImplementedException();
         }
-
-        public void MouseDoubleHandle(MouseEventArgs e, Pen pen, IMarkUp markUp, Canvas canvas)
-        {
-        }
-
-        public void MouseDownHandle(MouseEventArgs e, Pen pen, IMarkUp markUp, Canvas canvas)
+        public void MouseDownHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
         {
             _mouseDown = true;
             canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
             canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
-            markUp.AddPoint(e.Location);
+            markUp.AddPoint(point);
+            GC.Collect();
         }
 
-        public void MouseMoveHandle(MouseEventArgs e, Pen pen, IMarkUp markUp, Canvas canvas)
+        public void MouseMoveHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
         {
             if (_mouseDown)
             {
-                markUp.AddPoint(e.Location);
-                canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
-                canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
+                markUp.AddPoint(point);
                 DrawFigure(pen, canvas.Graphics, markUp.Calculate());
+                GC.Collect();
             }
         }
 
-        public void MouseUpHandle(MouseEventArgs e, Pen pen, IMarkUp markUp, Canvas canvas)
+        public void MouseUpHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
         {
             _mouseDown = false;
+            canvas.Save();
+        }
+
+        public void MouseDoubleHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
+        {
+            //_mouseDown = false;
         }
     }
 }
