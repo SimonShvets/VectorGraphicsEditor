@@ -254,5 +254,7 @@ namespace VectorGraphicsEditor
             ColorDialog colors = new ColorDialog();
             solidBrush.Color = colors.Color;
         }
+
+
     }
 }
