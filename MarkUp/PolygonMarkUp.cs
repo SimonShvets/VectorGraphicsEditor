@@ -22,10 +22,9 @@ namespace VectorGraphicsEditor.MarkUp
             {
             }
         }
-        public PolygonMarkUp(int n)
+        public PolygonMarkUp()
         {
             PointList = new List<PointF>();
-            N = n;
         }
         public void AddPoint(PointF point)
         {

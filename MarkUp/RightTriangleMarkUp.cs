@@ -22,7 +22,12 @@ namespace VectorGraphicsEditor.MarkUp
         }
         public PointF[] Calculate()
         {
-            PointF[] points = new PointF[3] { PointList[0], PointList[1], new PointF(PointList[0].X, PointList[1].Y) };
+            PointF[] points = new PointF[3] 
+            { 
+                PointList[0], 
+                PointList[1], 
+                new PointF(PointList[0].X, PointList[1].Y) 
+            };
             return points;
         }
     }

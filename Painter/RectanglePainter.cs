@@ -11,9 +11,7 @@ namespace VectorGraphicsEditor.Painter
     public class RectanglePainter : IPainter
     {
         private bool _mouseDown = false;
-
-
-
+        public PointF[] res;
 
         public void DrawFigure(Pen pen, Graphics graphics, PointF[] points)
         {
@@ -22,6 +20,7 @@ namespace VectorGraphicsEditor.Painter
 
         public void MouseDownHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
         {
+            
             _mouseDown = true;
             canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
             canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
@@ -41,6 +40,7 @@ namespace VectorGraphicsEditor.Painter
                 canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
                 canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
                 DrawFigure(pen, canvas.Graphics, markUp.Calculate());
+                res = markUp.Calculate();
                 GC.Collect();
             }
         }

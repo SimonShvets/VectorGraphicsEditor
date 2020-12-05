@@ -11,6 +11,7 @@ namespace VectorGraphicsEditor.Painter
     public class ElipsePainter : IPainter
     {
         private bool _mouseDown = false;
+        public PointF[] res;
         public void DrawFigure(Pen pen, Graphics graphics, PointF[] points)
         {
             Rectangle rect = new Rectangle((int)points[0].X, (int)points[1].X, (int)points[2].X, (int)points[3].X);
@@ -52,6 +53,7 @@ namespace VectorGraphicsEditor.Painter
                 canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
                 canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
                 DrawFigure(pen, canvas.Graphics, markUp.Calculate());
+                res = markUp.Calculate();
                 GC.Collect();
             }
         }
