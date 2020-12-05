@@ -36,6 +36,8 @@ namespace VectorGraphicsEditor.Painter
             else if (markUp.Length == 3)
             {
                 canvas.Graphics.DrawLine(pen, markUp.Calculate()[0], markUp.Calculate()[2]);
+                res = markUp.Calculate();
+                markUp.PointList.Clear();
             }
             _mouseDown = true;
             canvas.Save();
@@ -61,7 +63,6 @@ namespace VectorGraphicsEditor.Painter
 
         public void MouseDoubleHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
         {
-            res = markUp.Calculate();
             _mouseDown = false;
             canvas.Save();
         }

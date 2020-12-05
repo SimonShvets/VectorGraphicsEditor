@@ -66,6 +66,7 @@ namespace VectorGraphicsEditor.Painter
         public void MouseDoubleHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
         {
             res = markUp.Calculate();
+            markUp.PointList.Clear();
             _mouseDown = false;
             _mouseDoubleDown = true;
             canvas.Save();

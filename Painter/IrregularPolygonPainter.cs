@@ -68,6 +68,7 @@ namespace VectorGraphicsEditor.Painter
             _mouseDoubleDown = true;
             canvas.Graphics.DrawLine(pen, markUp.Calculate()[0], markUp.Calculate()[markUp.Length - 1]);
             res = markUp.Calculate();
+            markUp.PointList.Clear();
             canvas.Save();
         }
     }

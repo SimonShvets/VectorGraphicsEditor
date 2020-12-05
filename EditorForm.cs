@@ -37,8 +37,11 @@ namespace VectorGraphicsEditor
         }
         private void pictureBox_MouseDown(object sender, MouseEventArgs e)
         {
+            if(markup.Length == 0)
+            {
             markup = fictory.CreateMarkUp();
             painter = fictory.CreatePainter();
+            }
             if (markup is PolygonMarkUp)
             {
                 PolygonMarkUp tmp = (PolygonMarkUp)markup;
