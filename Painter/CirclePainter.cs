@@ -4,43 +4,67 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using VectorGraphicsEditor.MarkUp;
 
 namespace VectorGraphicsEditor.Painter
 {
-    public class CirclePainter /*: /*IPainter*/
+    public class CirclePainter: IPainter
     {
+        private bool _mouseDown = false;
+        public PointF[] res;
         public void DrawFigure(Pen pen, Graphics graphics, PointF[] points)
         {
-            //int x = (int)pointList[0].X;
-            //int y = (int)pointList[0].Y;
-            ////int x2 = (int)pointList[1].X;
-            ////int y2 = (int)pointList[1].Y;
-            //int x1 =  (x2 - x);
-            //int y1 =  (y2 - y);
-            //Rectangle rect = new Rectangle(x-x1,y-x1,x1*2,x1*2);
-            ////rect = new Rectangle(10,20,100,200);
+            graphics.DrawPolygon(pen, points);
+            //Rectangle rect = new Rectangle((int)points[0].X, (int)points[1].X, (int)points[2].X, (int)points[3].X);
             //graphics.DrawEllipse(pen, rect);
+        }
+
+        public void KeyDown()
+        {
             
         }
 
-        public void StateFixed()
+        public void KeyUp()
         {
-            throw new NotImplementedException();
+            
         }
 
-        public void StateOff()
+        public void MouseDoubleHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
         {
-            throw new NotImplementedException();
+
         }
 
-        public void StateOn()
+        public void MouseDownHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
         {
-            throw new NotImplementedException();
+            _mouseDown = true;
+            canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
+            canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
+            markUp.AddPoint(point);
+            GC.Collect();
         }
 
-        public void Update()
+        public void MouseMoveHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
         {
-            throw new NotImplementedException();
+            if (_mouseDown)
+            {
+                if(markUp.PointList.Count == 1)
+                {
+                    markUp.AddPoint(point);
+                }
+                markUp.PointList[1] = point;
+                canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
+                canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
+                DrawFigure(pen, canvas.Graphics, markUp.Calculate());
+                res = markUp.Calculate();
+                GC.Collect();
+            }
+        }
+
+        public void MouseUpHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
+        {
+            markUp.PointList.Clear();
+            _mouseDown = false;
+            canvas.Save();
         }
     }
 }

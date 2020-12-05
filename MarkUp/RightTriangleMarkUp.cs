@@ -10,18 +10,8 @@ namespace VectorGraphicsEditor.MarkUp
     public class RightTriangleMarkUp: IMarkUp
     {
         public List<PointF> PointList { get; set; }
-        public int Length
-        {
-            get
-            {
-                return PointList.Count;
-            }
-            set
-            {
-                //??? Уточнить у макса, т к set нужно делать приватным, 
-                //но интервейс не позволяет этого сделать
-            }
-        }
+        public int Length { get; set; }
+
         public RightTriangleMarkUp()
         {
             PointList = new List<PointF>();
@@ -32,8 +22,13 @@ namespace VectorGraphicsEditor.MarkUp
         }
         public PointF[] Calculate()
         {
-            //Some calculations
-            return PointList.ToArray();
+            PointF[] points = new PointF[3] 
+            { 
+                PointList[0], 
+                PointList[1], 
+                new PointF(PointList[0].X, PointList[1].Y) 
+            };
+            return points;
         }
     }
 }

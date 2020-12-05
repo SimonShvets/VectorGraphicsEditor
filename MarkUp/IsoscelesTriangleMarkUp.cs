@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace VectorGraphicsEditor.MarkUp
 {
-    public class IsoscelesTriangleMarkUp /*: IMarkUp*/
+    public class IsoscelesTriangleMarkUp : IMarkUp
     {
-        public List<PointF> PointList
+        public List<PointF> PointList { get; set; }
+        public int Length
         {
             get
             {
-                return PointList;
+                return PointList.Count;
             }
-            private set
+            set
             {
-                PointList = value;
             }
         }
         public IsoscelesTriangleMarkUp()
@@ -30,8 +30,16 @@ namespace VectorGraphicsEditor.MarkUp
         }
         public PointF[] Calculate()
         {
-            //Some calculations
-            return PointList.ToArray();
+            int x = (int)PointList[0].X;
+            int y = (int)PointList[0].Y;
+            int x2 = (int)PointList[1].X;
+            int y2 = (int)PointList[1].Y;
+            PointF[] points = new PointF[3];
+            points[0] = PointList[0];
+            points[1] = PointList[1];
+            points[2] = new Point((x2 - (x2 - x) * 2), y2);
+
+            return points;
         }
     }
 }
