@@ -69,12 +69,12 @@ namespace VectorGraphicsEditor
             painter = new CurvePainter();
             markup = new CurveMarkUp();
         }   
-        private void Cycle_Click(object sender, EventArgs e)
+        private void Circle_Click(object sender, EventArgs e)
         {
-            //figure = new CycleFigure();
             textBox1.Visible = false;
             numericUpDown.Visible = false;
-            _selectedTool = "Cycle";
+            painter = new CirclePainter();
+            markup = new CircleMarkUp();
         }
         private void Elipse_Click(object sender, EventArgs e)
         {

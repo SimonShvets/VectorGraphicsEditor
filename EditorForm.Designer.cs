@@ -165,15 +165,15 @@ namespace VectorGraphicsEditor
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.Hand_Click);
             // 
-            // Cycle
+            // Circle
             // 
             this.Cycle.Location = new System.Drawing.Point(12, 272);
-            this.Cycle.Name = "Cycle";
+            this.Cycle.Name = "Circle";
             this.Cycle.Size = new System.Drawing.Size(73, 46);
             this.Cycle.TabIndex = 7;
             this.Cycle.Text = "Окружность по двум точкам";
             this.Cycle.UseVisualStyleBackColor = true;
-            this.Cycle.Click += new System.EventHandler(this.Cycle_Click);
+            this.Cycle.Click += new System.EventHandler(this.Circle_Click);
             // 
             // Elipse
             // 
