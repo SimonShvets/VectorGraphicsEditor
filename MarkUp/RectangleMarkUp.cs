@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace VectorGraphicsEditor.MarkUp
 {
-    public class RectangleMarkUp /*: IMarkUp*/
+    public class RectangleMarkUp : IMarkUp
     {
-        public List<PointF> PointList
+        public List<PointF> PointList { get; set; }
+        public int Length
         {
             get
             {
-                return PointList;
+                return PointList.Count;
             }
-            private set
+            set
             {
-                PointList = value;
             }
         }
         public RectangleMarkUp()
@@ -30,8 +30,14 @@ namespace VectorGraphicsEditor.MarkUp
         }
         public PointF[] Calculate()
         {
-            //Some calculations
-            return PointList.ToArray();
+            PointF[] points1 = new PointF[4]
+            { 
+                PointList[0], 
+                new PointF(PointList[0].X, PointList[1].Y), 
+                PointList[1], 
+                new PointF(PointList[1].X, PointList[0].Y) 
+            };
+            return points1;
         }
     }
 }

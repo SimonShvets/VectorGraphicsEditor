@@ -76,12 +76,12 @@ namespace VectorGraphicsEditor
             painter = new CirclePainter();
             markup = new CircleMarkUp();
         }
-        private void Elipse_Click(object sender, EventArgs e)
+        private void Ellipse_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
             numericUpDown.Visible = false;
-            //figure = new ElipseFigure();
-            _selectedTool = "Elipse";
+            painter = new ElipsePainter();
+            markup = new ElipseMarkUp();
         }
         private void Triangle_Click(object sender, EventArgs e)
         {
@@ -113,14 +113,15 @@ namespace VectorGraphicsEditor
         {   
             textBox1.Visible = true;
             numericUpDown.Visible = true;
-            //tmp = new PolygonFigure((int)numericUpDown.Value);
-            //figure = tmp;
-            _selectedTool = "Polygon";
+            painter = new PolygonPainter();
+            markup = new PolygonMarkUp((int)numericUpDown.Value);
+
         }
         private void numericUpDown_TextChanged(object sender, EventArgs e)
         {
-            //tmp.N = (int)numericUpDown.Value;
-            ////figure = tmp;
+            PolygonMarkUp tmp = (PolygonMarkUp)markup;
+            tmp.N = (int)numericUpDown.Value;
+            markup = tmp;
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
@@ -129,10 +130,10 @@ namespace VectorGraphicsEditor
         }
         private void Rectangle_Click(object sender, EventArgs e)
         {
-            //figure = new RectangleFigure();
             textBox1.Visible = false;
             numericUpDown.Visible = false;
-            _selectedTool = "Rectangle";
+            markup = new RectangleMarkUp();
+            painter = new RectanglePainter();
 
         }
 
