@@ -36,6 +36,8 @@ namespace VectorGraphicsEditor.MarkUp
             {
                 points1 = new PointF[N];
                 points1[0] = new PointF(PointList[0].X, PointList[1].Y);
+                PointF delta = new PointF( (PointList[1].X - PointList[0].X) / 2, (PointList[1].Y - PointList[0].Y) / 2);
+                double phase = Math.PI + Math.Atan2(delta.Y, delta.X);
                 int a = 360 / N;
                 float t;
                 for (int i = 1; i < N; i++)

@@ -30,13 +30,14 @@ namespace VectorGraphicsEditor
             pen = new Pen(Color.Red, (int)numericUpDown1.Value);            
             pen.StartCap = LineCap.Round;
             pen.EndCap = LineCap.Round;
-            painter = new BrushPainter();
-            markup = new BrushMarkUp();
-            fictory = new BrushFictory();
+            painter = new CurvePainter();
+            markup = new CurveMarkUp();
+            fictory = new CurveFictory();
             painters = new List<IPainter>();
         }
         private void pictureBox_MouseDown(object sender, MouseEventArgs e)
         {
+
             markup = fictory.CreateMarkUp();
             painter = fictory.CreatePainter();
             if (markup is PolygonMarkUp)
@@ -66,8 +67,6 @@ namespace VectorGraphicsEditor
         {
             painter.MouseDoubleHandle(e.Location, pen, markup, canvas);
             pictureBox.Image = canvas.TmpBitmap;
-
-            painter.MouseUpHandle(e.Location, pen, markup, canvas);
             painters.Add(painter);
 
         }

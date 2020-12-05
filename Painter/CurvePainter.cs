@@ -59,6 +59,7 @@ namespace VectorGraphicsEditor.Painter
 
         public void MouseUpHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
         {
+            res = markUp.Calculate();
             _mouseDown = false;
             canvas.Save();
         }
