@@ -35,19 +35,16 @@ namespace VectorGraphicsEditor
         {
             painter.MouseDownHandle(e.Location, pen, markup, canvas);
             pictureBox.Image = canvas.TmpBitmap;
-<<<<<<< HEAD
-=======
-            
->>>>>>> forMerge
+
         }
         private void pictureBox_MouseMove(object sender, MouseEventArgs e)
         {
             painter.MouseMoveHandle(e.Location, pen, markup, canvas);
-<<<<<<< HEAD
+
             pictureBox.Image = canvas.TmpBitmap;
-=======
+
             pictureBox.Image = canvas.TmpBitmap;            
->>>>>>> forMerge
+
         }
         private void pictureBox_MouseUp(object sender, MouseEventArgs e)
         {
@@ -56,13 +53,13 @@ namespace VectorGraphicsEditor
         }
         private void pictureBox_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-<<<<<<< HEAD
+
             painter.MouseDoubleHandle(e.Location, pen, markup, canvas);
             pictureBox.Image = canvas.TmpBitmap;
-=======
+
             painter.MouseUpHandle(e.Location, pen, markup, canvas);
             
->>>>>>> forMerge
+
         }
         private void Hand_Click(object sender, EventArgs e)
         {
@@ -105,13 +102,18 @@ namespace VectorGraphicsEditor
         }
         private void StraightTriangle_Click(object sender, EventArgs e)
         {
-            //figure = new StraightTriangleFigure();
+            textBox1.Visible = false;
+            numericUpDown.Visible = false;
+            painter = new RightTrianglePainter();
+            markup = new RightTriangleMarkUp();
             _selectedTool = "StraightTriangle";
         }
         private void IsoscelesTriangle_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
             numericUpDown.Visible = false;
+            painter = new IsoscelesTrianglePainter();
+            markup = new IsoscelesTriangleMarkUp();
             //figure = new IsoscelesTriangleFigure();
             _selectedTool = "IsoscelesTriangle";
         }

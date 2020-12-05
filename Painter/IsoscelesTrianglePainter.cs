@@ -4,48 +4,61 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using VectorGraphicsEditor.MarkUp;
 
 namespace VectorGraphicsEditor.Painter
 {
-    public class IsoscelesTrianglePainter /*: *//*IPainter*/
+    public class IsoscelesTrianglePainter : IPainter
     {
+        private bool _mouseDown = false;
         public void DrawFigure(Pen pen, Graphics graphics, PointF[] points)
         {
-            //PointF[] points = new PointF[3];
-
-            //points[0] = new PointF(pointList[0].X, pointList[1].Y);
-            //int a = 360 / 3;
-            //float t;
-            //for (int i = 1; i < 3; i++)
-            //{
-            //    t = a * i;
-            //    float rad = (float)(Math.PI / 180.0 * t);
-            //    float x1 = (float)((pointList[0].X - (points[0].Y - pointList[0].Y) * Math.Sin(rad)));
-            //    float y1 = (float)((pointList[0].Y + (points[0].Y - pointList[0].Y) * Math.Cos(rad)));
-            ////    points[i] = new PointF(x1, y1);
-            //}
-
-            //graphics.DrawPolygon(pen, points);
+            graphics.DrawPolygon(pen, points);
         }
 
-        public void StateFixed()
+        public void KeyDown()
         {
             throw new NotImplementedException();
         }
 
-        public void StateOff()
+        public void KeyUp()
         {
             throw new NotImplementedException();
         }
 
-        public void StateOn()
+        public void MouseDoubleHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
         {
             throw new NotImplementedException();
         }
 
-        public void Update()
+        public void MouseDownHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
         {
-            throw new NotImplementedException();
+            _mouseDown = true;
+            canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
+            canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
+            markUp.AddPoint(point);
+            GC.Collect();
         }
+
+        public void MouseMoveHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
+        {
+            if (_mouseDown)
+            {
+                markUp.AddPoint(point);
+                markUp.PointList[0] = point;
+                canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
+                canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
+                DrawFigure(pen, canvas.Graphics, markUp.Calculate());
+                GC.Collect();
+            }
+        }
+
+        public void MouseUpHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
+        {
+            markUp.PointList.Clear();
+            _mouseDown = false;
+            canvas.Save();
+        }
+
     }
 }
