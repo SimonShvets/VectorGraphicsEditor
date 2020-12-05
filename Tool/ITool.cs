@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VectorGraphicsEditor.Calculation
+namespace VectorGraphicsEditor.Tool
 {
-    public interface ICalculation
+    public interface ITool
     {
-        PointList FigureCalculation(PointList pointList);
+
     }
 }

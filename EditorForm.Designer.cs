@@ -36,6 +36,7 @@ namespace VectorGraphicsEditor
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.Rectangle = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -48,9 +49,16 @@ namespace VectorGraphicsEditor
             this.Polygon = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.numericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.square = new System.Windows.Forms.Button();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.colorDialog2 = new System.Windows.Forms.ColorDialog();
+            this.ChColor = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // createLine
@@ -72,13 +80,16 @@ namespace VectorGraphicsEditor
             this.button3.TabIndex = 2;
             this.button3.Text = "кисть";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.Brush_Click);
             // 
             // toolStrip1
             // 
+            this.toolStrip1.BackColor = System.Drawing.Color.Ivory;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
             this.toolStripButton2,
-            this.toolStripButton3});
+            this.toolStripButton3,
+            this.toolStripButton4});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1164, 25);
@@ -112,14 +123,24 @@ namespace VectorGraphicsEditor
             this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton3.Text = "toolStripButton3";
             // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton4.Text = "toolStripButton4";
+            // 
             // pictureBox
             // 
             this.pictureBox.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.pictureBox.Location = new System.Drawing.Point(91, 51);
+            this.pictureBox.Location = new System.Drawing.Point(91, 53);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(1034, 597);
             this.pictureBox.TabIndex = 4;
             this.pictureBox.TabStop = false;
+            this.pictureBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDoubleClick);
             this.pictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
             this.pictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
             this.pictureBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
@@ -142,26 +163,27 @@ namespace VectorGraphicsEditor
             this.button2.TabIndex = 6;
             this.button2.Text = "Hand";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Hand_Click);
             // 
-            // Cycle
+            // Circle
             // 
             this.Cycle.Location = new System.Drawing.Point(12, 272);
-            this.Cycle.Name = "Cycle";
+            this.Cycle.Name = "Circle";
             this.Cycle.Size = new System.Drawing.Size(73, 46);
             this.Cycle.TabIndex = 7;
             this.Cycle.Text = "Окружность по двум точкам";
             this.Cycle.UseVisualStyleBackColor = true;
-            this.Cycle.Click += new System.EventHandler(this.Cycle_Click);
+            this.Cycle.Click += new System.EventHandler(this.Circle_Click);
             // 
-            // Elipse
+            // Ellipse
             // 
             this.Elipse.Location = new System.Drawing.Point(12, 324);
-            this.Elipse.Name = "Elipse";
+            this.Elipse.Name = "Ellipse";
             this.Elipse.Size = new System.Drawing.Size(73, 46);
             this.Elipse.TabIndex = 8;
             this.Elipse.Text = "Эллипс по двум точкам";
             this.Elipse.UseVisualStyleBackColor = true;
-            this.Elipse.Click += new System.EventHandler(this.Elipse_Click);
+            this.Elipse.Click += new System.EventHandler(this.Ellipse_Click);
             // 
             // Triangle
             // 
@@ -193,15 +215,15 @@ namespace VectorGraphicsEditor
             this.IsoscelesTriangle.UseVisualStyleBackColor = true;
             this.IsoscelesTriangle.Click += new System.EventHandler(this.IsoscelesTriangle_Click);
             // 
-            // WrongPolygon
+            // IrregularPolygonPolygon
             // 
             this.WrongPolygon.Location = new System.Drawing.Point(12, 550);
-            this.WrongPolygon.Name = "WrongPolygon";
+            this.WrongPolygon.Name = "IrregularPolygonPolygon";
             this.WrongPolygon.Size = new System.Drawing.Size(73, 46);
             this.WrongPolygon.TabIndex = 12;
             this.WrongPolygon.Text = "N угольник по N точкам";
             this.WrongPolygon.UseVisualStyleBackColor = true;
-            this.WrongPolygon.Click += new System.EventHandler(this.WrongPolygon_Click);
+            this.WrongPolygon.Click += new System.EventHandler(this.IrregularPolygon_Click);
             // 
             // Polygon
             // 
@@ -242,12 +264,67 @@ namespace VectorGraphicsEditor
             this.numericUpDown.Visible = false;
             this.numericUpDown.ValueChanged += new System.EventHandler(this.numericUpDown_TextChanged);
             // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(1077, 28);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(46, 20);
+            this.numericUpDown1.TabIndex = 17;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(983, 27);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(90, 20);
+            this.textBox2.TabIndex = 18;
+            this.textBox2.Text = "Толщина кисти";
+            // 
+            // square
+            // 
+            this.square.Location = new System.Drawing.Point(12, 28);
+            this.square.Name = "square";
+            this.square.Size = new System.Drawing.Size(46, 31);
+            this.square.TabIndex = 19;
+            this.square.Text = "квадрат";
+            this.square.UseVisualStyleBackColor = true;
+            this.square.Click += new System.EventHandler(this.square_Click);
+            // 
+            // ChColor
+            // 
+            this.ChColor.Location = new System.Drawing.Point(793, 28);
+            this.ChColor.Name = "ChColor";
+            this.ChColor.Size = new System.Drawing.Size(124, 20);
+            this.ChColor.TabIndex = 20;
+            this.ChColor.Text = "Цвет";
+            this.ChColor.UseVisualStyleBackColor = true;
+            this.ChColor.Click += new System.EventHandler(this.ChColor_Click);
+            // 
             // EditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
             this.ClientSize = new System.Drawing.Size(1164, 687);
+            this.Controls.Add(this.ChColor);
+            this.Controls.Add(this.square);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.numericUpDown);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.Polygon);
@@ -263,12 +340,15 @@ namespace VectorGraphicsEditor
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.createLine);
+            this.KeyPreview = true;
             this.Name = "EditorForm";
             this.Text = "Form1";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EditorForm_KeyDown);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -294,6 +374,13 @@ namespace VectorGraphicsEditor
         private System.Windows.Forms.Button Polygon;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.NumericUpDown numericUpDown;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button square;
+        private System.Windows.Forms.ToolStripButton toolStripButton4;
+        private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.ColorDialog colorDialog2;
+        private System.Windows.Forms.Button ChColor;
     }
 }
 

@@ -2,170 +2,183 @@
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-using VectorGraphicsEditor.Figures;
+using VectorGraphicsEditor.Painter;
+using VectorGraphicsEditor.MarkUp;
 
 namespace VectorGraphicsEditor
 {
     public partial class EditorForm : Form
     {
-        Bitmap mainBitmap;
-        Bitmap tmpBitmap;
-        Graphics graphics;
+        private string _selectedTool;
         Pen pen;
-        PointList pointList;
-        PointList pointListN;
         bool mouseDown;
         bool mouseUp;
-        bool curve;
-        PolygonFigure tmp;
-        IFigure figure;
+        //PolygonFigure tmp;
+        IPainter painter;
+        Canvas canvas;
+        IMarkUp markup;
 
         public EditorForm()
         {
             InitializeComponent();
-            mainBitmap = new Bitmap(pictureBox.Width, pictureBox.Height);
-            tmpBitmap = (Bitmap)mainBitmap.Clone();
-            pictureBox.Image = mainBitmap;
-            pen = new Pen(Color.Black,10);
-
-            pointListN = new PointList();
+            canvas = new Canvas(pictureBox.Width, pictureBox.Height);
+            canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
+            canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
+            pictureBox.Image = canvas.MainBitmap;
+            pen = new Pen(Color.Red, (int)numericUpDown1.Value);            
             pen.StartCap = LineCap.Round;
             pen.EndCap = LineCap.Round;
-            mouseDown = false;
+            painter = new BrushPainter();
+            markup = new BrushMarkUp();
         }
-
         private void pictureBox_MouseDown(object sender, MouseEventArgs e)
         {
-            if (curve)
-            {
-                pointListN.AddPoint(e.Location);
-                if (pointListN.Length != 1)
-                {
-                    tmpBitmap = (Bitmap)mainBitmap.Clone();
-                    graphics = Graphics.FromImage(tmpBitmap);
-                    figure.DrawFigure(pen, graphics, pointListN);
-                    pictureBox.Image = tmpBitmap;
-                    GC.Collect();
-                }
-                mainBitmap = tmpBitmap;
-            }
-            else
-            {
-                pointList = new PointList(e.Location);
-            }
-            mouseDown = true;
-            mouseUp = false;
+            painter.MouseDownHandle(e.Location, pen, markup, canvas);
+            pictureBox.Image = canvas.TmpBitmap;
+
         }
         private void pictureBox_MouseMove(object sender, MouseEventArgs e)
         {
-            if (mouseUp && curve)
-            {
-                tmpBitmap = (Bitmap)mainBitmap.Clone();
-                graphics = Graphics.FromImage(tmpBitmap);
-                graphics.DrawLine(pen, pointListN.ConvertToPointF()[pointListN.Length - 1], e.Location);
-                pictureBox.Image = tmpBitmap;
-                GC.Collect();
-            }
-            if (mouseDown && !curve)
-            {
-                pointList[1] = e.Location;
-                tmpBitmap = (Bitmap)mainBitmap.Clone();
-                graphics = Graphics.FromImage(tmpBitmap);
-                figure.DrawFigure(pen, graphics, pointList);
-                pictureBox.Image = tmpBitmap;
-                GC.Collect();
-            }
-            
-        }
+            painter.MouseMoveHandle(e.Location, pen, markup, canvas);
 
+            pictureBox.Image = canvas.TmpBitmap;
+
+            pictureBox.Image = canvas.TmpBitmap;            
+
+        }
         private void pictureBox_MouseUp(object sender, MouseEventArgs e)
         {
-            if (!curve)
-            {
-                
-                mainBitmap = tmpBitmap;
-            }
-            pointList = new PointList();
-            mouseDown = false;
-            mouseUp = true;
+            painter.MouseUpHandle(e.Location, pen, markup, canvas);
+            pictureBox.Image = canvas.TmpBitmap;
         }
+        private void pictureBox_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
 
-        //private void Hand_Click(object sender, EventArgs e)
-        //{
-        //    //chooseButton = 0;
-        //}
+            painter.MouseDoubleHandle(e.Location, pen, markup, canvas);
+            pictureBox.Image = canvas.TmpBitmap;
 
+            painter.MouseUpHandle(e.Location, pen, markup, canvas);
+            
+
+        }
+        private void Hand_Click(object sender, EventArgs e)
+        {
+            _selectedTool = "Hand";
+        }
+        private void Brush_Click(object sender, EventArgs e)
+        {
+            textBox1.Visible = false;
+            numericUpDown.Visible = false;
+            painter = new BrushPainter();
+            markup = new BrushMarkUp();
+        }
         private void Curve_Click(object sender, EventArgs e)
         {
-            pictureBox.Cursor = Cursors.Cross;
-            figure = new CurveFigure();
             textBox1.Visible = false;
             numericUpDown.Visible = false;
-            curve = true;
-        }
-
-        //private void CreateLine_Click(object sender, EventArgs e)
-        //{
-        //    pictureBox.Cursor = Cursors.Cross;
-        //    figure = new CurveFigure();
-        //    pointList = new PointList();
-        //}
-
-        private void Rectangle_Click(object sender, EventArgs e)
-        {
-            figure = new RectangleFigure();
-            textBox1.Visible = false;
-            numericUpDown.Visible = false;
-            curve = false;
-        }
-
-        private void Cycle_Click(object sender, EventArgs e)
-        {
-            //figure = new CycleFigure();
-        }
-
-        private void Elipse_Click(object sender, EventArgs e)
+            painter = new CurvePainter();
+            markup = new CurveMarkUp();
+        }   
+        private void Circle_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
             numericUpDown.Visible = false;
-            figure = new ElipseFigure();
-            curve = false;
+            painter = new CirclePainter();
+            markup = new CircleMarkUp();
         }
-
+        private void Ellipse_Click(object sender, EventArgs e)
+        {
+            textBox1.Visible = false;
+            numericUpDown.Visible = false;
+            painter = new ElipsePainter();
+            markup = new ElipseMarkUp();
+        }
         private void Triangle_Click(object sender, EventArgs e)
         {
-            //figure = new TriangleFigure();
+            textBox1.Visible = false;
+            numericUpDown.Visible = false;
+            painter = new TrianglePainter();
+            markup = new TriangleMarkUp();
         }
-
         private void StraightTriangle_Click(object sender, EventArgs e)
         {
-            //figure = new StraightTriangleFigure();
+            textBox1.Visible = false;
+            numericUpDown.Visible = false;
+            painter = new RightTrianglePainter();
+            markup = new RightTriangleMarkUp();
+            _selectedTool = "StraightTriangle";
         }
-
         private void IsoscelesTriangle_Click(object sender, EventArgs e)
         {
+            textBox1.Visible = false;
+            numericUpDown.Visible = false;
+            painter = new IsoscelesTrianglePainter();
+            markup = new IsoscelesTriangleMarkUp();
             //figure = new IsoscelesTriangleFigure();
+            _selectedTool = "IsoscelesTriangle";
         }
-
-        private void WrongPolygon_Click(object sender, EventArgs e)
+        private void IrregularPolygon_Click(object sender, EventArgs e)
         {
-            //figure = new WrongPolygonFigure();
+            textBox1.Visible = false;
+            numericUpDown.Visible = false;
+            painter = new IrregularPolygonPainter();
+            markup = new IrregularPolygonMarkUp();
         }
-
         private void Polygon_Click(object sender, EventArgs e)
-        {
-            
+        {   
             textBox1.Visible = true;
             numericUpDown.Visible = true;
-            tmp = new PolygonFigure((int)numericUpDown.Value);
-            figure = tmp;
-            curve = false;
-        }
+            painter = new PolygonPainter();
+            markup = new PolygonMarkUp((int)numericUpDown.Value);
 
+        }
         private void numericUpDown_TextChanged(object sender, EventArgs e)
         {
+            PolygonMarkUp tmp = (PolygonMarkUp)markup;
             tmp.N = (int)numericUpDown.Value;
-            figure = tmp;
+            markup = tmp;
         }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            pen.Width = (int)numericUpDown1.Value;
+        }
+        private void Rectangle_Click(object sender, EventArgs e)
+        {
+            textBox1.Visible = false;
+            numericUpDown.Visible = false;
+            markup = new RectangleMarkUp();
+            painter = new RectanglePainter();
+
+        }
+
+        private void square_Click(object sender, EventArgs e)
+        {
+            textBox1.Visible = false;
+            numericUpDown.Visible = false;
+            painter = new SquarePainter();
+            markup = new SquareMarkUp();
+            _selectedTool = "Square";            
+        }
+
+        private void EditorForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == (char)Keys.NumPad0)
+            {
+                square.PerformClick();
+            }
+        }
+
+        private void ChColor_Click(object sender, EventArgs e)
+        {
+            ColorDialog MyDialog = new ColorDialog();
+            MyDialog.AllowFullOpen = false;
+            if (MyDialog.ShowDialog() == DialogResult.OK)
+            {
+                pen.Color = MyDialog.Color;
+            }
+        }
+
+
     }
 }
