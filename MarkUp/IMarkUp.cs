@@ -6,6 +6,7 @@ namespace VectorGraphicsEditor.MarkUp
     public interface IMarkUp
     {
         List<PointF> PointList { get; set; }
+        int Length { get; set; }
         void AddPoint(PointF point);
         PointF[] Calculate();
     }

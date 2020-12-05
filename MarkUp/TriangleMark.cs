@@ -7,17 +7,19 @@ using System.Threading.Tasks;
 
 namespace VectorGraphicsEditor.MarkUp
 {
-    public class TriangleMarkUp /*: IMarkUp*/
+    public class TriangleMarkUp: IMarkUp
     {
-        public List<PointF> PointList
+        public List<PointF> PointList { get; set; }
+        public int Length
         {
             get
             {
-                return PointList;
+                return PointList.Count;
             }
-            private set
+            set
             {
-                PointList = value;
+                //??? Уточнить у макса, т к set нужно делать приватным, 
+                //но интервейс не позволяет этого сделать
             }
         }
         public TriangleMarkUp()
