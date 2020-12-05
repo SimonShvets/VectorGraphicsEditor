@@ -4,49 +4,65 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using VectorGraphicsEditor.MarkUp;
 
 namespace VectorGraphicsEditor.Painter
 {
-    public class SquarePainter /*: IPainter*/
+    public class SquarePainter : IPainter
     {
+        private bool _mouseDown = false;
         public void DrawFigure(Pen pen, Graphics graphics, PointF[] points)
-        {
-            //PointF[] points = new PointF[4];
-            //int x = (int)pointList[0].X;
-            //int y = (int)pointList[0].Y;
-            //int x2 = (int)pointList[1].X;
-            //// int y2 = (int)pointList[1].Y;
-            //int a = Math.Abs(x2 - x);
-            //// int b = Math.Abs(y2 - y);
-            ////int c = a + b;
-            //points[0] = pointList[0];
-            ////points[1] = new PointF(pointList[0].X, pointList[1].Y + a);
-            ////points[2] = pointList[1];
-            ////points[3] = new PointF(pointList[1].X + a, pointList[0].Y);
-            //points[1] = new PointF(x, y + a);
-            //points[2] = new PointF(x + a, y + a);
-            //points[3] = new PointF(x + a, y);
-            //graphics.DrawPolygon(pen, points);
+        {           
+            graphics.DrawPolygon(pen, points);
         }
 
-        public void StateFixed()
+        public void KeyDown()
         {
             throw new NotImplementedException();
         }
 
-        public void StateOff()
+        public void KeyUp()
         {
             throw new NotImplementedException();
         }
 
-        public void StateOn()
+        public void MouseDoubleHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
         {
             throw new NotImplementedException();
         }
 
-        public void Update()
+        public void MouseDownHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
         {
-            throw new NotImplementedException();
+            _mouseDown = true;            
+            canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
+            canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
+            markUp.AddPoint(point);            
+            GC.Collect();
         }
+
+        public void MouseMoveHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
+        {            
+            if (_mouseDown)
+            {
+                if (markUp.PointList.Count == 1)
+                {
+                    markUp.AddPoint(point);
+                }
+                markUp.AddPoint(point);
+                markUp.PointList[1] = point;
+                canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
+                canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
+                DrawFigure(pen, canvas.Graphics, markUp.Calculate());
+                GC.Collect();
+            }
+        }
+
+        public void MouseUpHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
+        {
+            markUp.PointList.Clear();
+            _mouseDown = false;
+            canvas.Save();
+        }
+        
     }
 }

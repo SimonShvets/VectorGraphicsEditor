@@ -35,11 +35,16 @@ namespace VectorGraphicsEditor
         {
             painter.MouseDownHandle(e.Location, pen, markup, canvas);
             pictureBox.Image = canvas.TmpBitmap;
+
         }
         private void pictureBox_MouseMove(object sender, MouseEventArgs e)
         {
             painter.MouseMoveHandle(e.Location, pen, markup, canvas);
+
             pictureBox.Image = canvas.TmpBitmap;
+
+            pictureBox.Image = canvas.TmpBitmap;            
+
         }
         private void pictureBox_MouseUp(object sender, MouseEventArgs e)
         {
@@ -48,8 +53,13 @@ namespace VectorGraphicsEditor
         }
         private void pictureBox_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+
             painter.MouseDoubleHandle(e.Location, pen, markup, canvas);
             pictureBox.Image = canvas.TmpBitmap;
+
+            painter.MouseUpHandle(e.Location, pen, markup, canvas);
+            
+
         }
         private void Hand_Click(object sender, EventArgs e)
         {
@@ -92,13 +102,18 @@ namespace VectorGraphicsEditor
         }
         private void StraightTriangle_Click(object sender, EventArgs e)
         {
-            //figure = new StraightTriangleFigure();
+            textBox1.Visible = false;
+            numericUpDown.Visible = false;
+            painter = new RightTrianglePainter();
+            markup = new RightTriangleMarkUp();
             _selectedTool = "StraightTriangle";
         }
         private void IsoscelesTriangle_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
             numericUpDown.Visible = false;
+            painter = new IsoscelesTrianglePainter();
+            markup = new IsoscelesTriangleMarkUp();
             //figure = new IsoscelesTriangleFigure();
             _selectedTool = "IsoscelesTriangle";
         }
@@ -141,7 +156,8 @@ namespace VectorGraphicsEditor
         {
             textBox1.Visible = false;
             numericUpDown.Visible = false;
-            //figure = new SquareFigure();            
+            painter = new SquarePainter();
+            markup = new SquareMarkUp();
             _selectedTool = "Square";            
         }
 
@@ -155,10 +171,12 @@ namespace VectorGraphicsEditor
 
         private void ChColor_Click(object sender, EventArgs e)
         {
-            colorDialog1.ShowDialog();
-            SolidBrush solidBrush = new SolidBrush(Color.Red);
-            ColorDialog colors = new ColorDialog();
-            solidBrush.Color = colors.Color;
+            ColorDialog MyDialog = new ColorDialog();
+            MyDialog.AllowFullOpen = false;
+            if (MyDialog.ShowDialog() == DialogResult.OK)
+            {
+                pen.Color = MyDialog.Color;
+            }
         }
 
 

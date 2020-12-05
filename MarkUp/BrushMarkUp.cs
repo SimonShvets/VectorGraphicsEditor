@@ -28,11 +28,7 @@ namespace VectorGraphicsEditor.MarkUp
             PointList.Add(point);
         }
         public PointF[] Calculate()
-        {
-            //PointF[] point = new PointF[2];
-            //point[0] = _pointList[_pointList.Count - 2];
-            ////point[1] = _pointList[_pointList.Count - 1];
-            //return point;
+        {            
             return PointList.ToArray();
         }
     }
