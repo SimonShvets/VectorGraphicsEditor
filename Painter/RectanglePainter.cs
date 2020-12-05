@@ -4,35 +4,68 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using VectorGraphicsEditor.MarkUp;
 
 namespace VectorGraphicsEditor.Painter
 {
-    public class RectanglePainter/* : IPainter*/
+    public class RectanglePainter : IPainter
     {
+        private bool _mouseDown = false;
+
+
+
+
         public void DrawFigure(Pen pen, Graphics graphics, PointF[] points)
         {
-            //PointF[] points1 = new PointF[4] { pointList[0], new PointF(pointList[0].X, pointList[1].Y), pointList[1], new PointF(pointList[1].X, pointList[0].Y) };
-            //graphics.DrawPolygon(pen, points1);
+            graphics.DrawPolygon(pen, points);
         }
 
-        public void StateFixed()
+        public void MouseDownHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
+        {
+            _mouseDown = true;
+            canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
+            canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
+            markUp.AddPoint(point);
+            GC.Collect();
+        }
+
+        public void MouseMoveHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
+        {
+            if (_mouseDown)
+            {
+                if (markUp.PointList.Count == 1)
+                {
+                    markUp.AddPoint(point);
+                }
+                markUp.PointList[1] = point;
+                canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
+                canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
+                DrawFigure(pen, canvas.Graphics, markUp.Calculate());
+                GC.Collect();
+            }
+        }
+
+        public void MouseUpHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
+        {
+            markUp.PointList.Clear();
+            _mouseDown = false;
+            canvas.Save();
+        }
+
+        public void MouseDoubleHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
+        {
+
+        }
+
+        public void KeyDown()
         {
             throw new NotImplementedException();
         }
 
-        public void StateOff()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void StateOn()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update()
+        public void KeyUp()
         {
             throw new NotImplementedException();
         }
     }
 }
+

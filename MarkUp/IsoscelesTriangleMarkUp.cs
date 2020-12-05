@@ -10,10 +10,16 @@ namespace VectorGraphicsEditor.MarkUp
     public class IsoscelesTriangleMarkUp : IMarkUp
     {
         public List<PointF> PointList { get; set; }
-
-        // List<PointF> IMarkUp.PointList { get; set ; }
-        public int Length { get; set; }
-
+        public int Length
+        {
+            get
+            {
+                return PointList.Count;
+            }
+            set
+            {
+            }
+        }
         public IsoscelesTriangleMarkUp()
         {
             PointList = new List<PointF>();

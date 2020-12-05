@@ -175,15 +175,15 @@ namespace VectorGraphicsEditor
             this.Cycle.UseVisualStyleBackColor = true;
             this.Cycle.Click += new System.EventHandler(this.Circle_Click);
             // 
-            // Elipse
+            // Ellipse
             // 
             this.Elipse.Location = new System.Drawing.Point(12, 324);
-            this.Elipse.Name = "Elipse";
+            this.Elipse.Name = "Ellipse";
             this.Elipse.Size = new System.Drawing.Size(73, 46);
             this.Elipse.TabIndex = 8;
             this.Elipse.Text = "Эллипс по двум точкам";
             this.Elipse.UseVisualStyleBackColor = true;
-            this.Elipse.Click += new System.EventHandler(this.Elipse_Click);
+            this.Elipse.Click += new System.EventHandler(this.Ellipse_Click);
             // 
             // Triangle
             // 

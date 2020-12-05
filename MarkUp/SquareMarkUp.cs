@@ -10,10 +10,16 @@ namespace VectorGraphicsEditor.MarkUp
     public class SquareMarkUp : IMarkUp
     {
         public List<PointF> PointList { get; set; }
-
-       // List<PointF> IMarkUp.PointList { get; set ; }
-        public int Length { get; set; }
-
+        public int Length
+        {
+            get
+            {
+                return PointList.Count;
+            }
+            set
+            {
+            }
+        }
         public SquareMarkUp()
         {
             PointList = new List<PointF>();
