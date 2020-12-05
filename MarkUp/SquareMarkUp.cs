@@ -7,19 +7,13 @@ using System.Threading.Tasks;
 
 namespace VectorGraphicsEditor.MarkUp
 {
-    public class SquareMarkUp/* : IMarkUp*/
+    public class SquareMarkUp : IMarkUp
     {
-        public List<PointF> PointList
-        {
-            get
-            {
-                return PointList;
-            }
-            private set
-            {
-                PointList = value;
-            }
-        }
+        public List<PointF> PointList { get; set; }
+
+       // List<PointF> IMarkUp.PointList { get; set ; }
+        public int Length { get; set; }
+
         public SquareMarkUp()
         {
             PointList = new List<PointF>();
@@ -30,7 +24,17 @@ namespace VectorGraphicsEditor.MarkUp
         }
         public PointF[] Calculate()
         {
-            //Some calculations
+            PointF[] points = new PointF[4];
+            int x = (int)PointList[0].X;
+            int y = (int)PointList[0].Y;
+            int x2 = (int)PointList[1].X;
+            int y2 = (int)PointList[1].Y;
+            int a = Math.Abs(x2 - x);
+            int b = Math.Abs(y2 - y);
+            points[0] = PointList[0];
+            points[1] = new PointF(x, y2 + a);
+            points[2] = new PointF(x2 + b, y2 + a);
+            points[3] = new PointF(x2 + b, y);
             return PointList.ToArray();
         }
     }

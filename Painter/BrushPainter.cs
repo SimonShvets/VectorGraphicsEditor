@@ -17,15 +17,7 @@ namespace VectorGraphicsEditor.Painter
             graphics.DrawLine(pen, points[points.Length-2], points[points.Length - 1]);
         }
 
-        public void KeyDown()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void KeyUp()
-        {
-            throw new NotImplementedException();
-        }
+        
         public void MouseDownHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
         {
             _mouseDown = true;
@@ -54,6 +46,16 @@ namespace VectorGraphicsEditor.Painter
         public void MouseDoubleHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
         {
             _mouseDown = false;
+        }
+
+        public void KeyDown()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void KeyUp()
+        {
+            throw new NotImplementedException();
         }
     }
 }
