@@ -215,15 +215,15 @@ namespace VectorGraphicsEditor
             this.IsoscelesTriangle.UseVisualStyleBackColor = true;
             this.IsoscelesTriangle.Click += new System.EventHandler(this.IsoscelesTriangle_Click);
             // 
-            // WrongPolygon
+            // IrregularPolygonPolygon
             // 
             this.WrongPolygon.Location = new System.Drawing.Point(12, 550);
-            this.WrongPolygon.Name = "WrongPolygon";
+            this.WrongPolygon.Name = "IrregularPolygonPolygon";
             this.WrongPolygon.Size = new System.Drawing.Size(73, 46);
             this.WrongPolygon.TabIndex = 12;
             this.WrongPolygon.Text = "N угольник по N точкам";
             this.WrongPolygon.UseVisualStyleBackColor = true;
-            this.WrongPolygon.Click += new System.EventHandler(this.WrongPolygon_Click);
+            this.WrongPolygon.Click += new System.EventHandler(this.IrregularPolygon_Click);
             // 
             // Polygon
             // 

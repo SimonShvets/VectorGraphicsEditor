@@ -53,7 +53,7 @@ namespace VectorGraphicsEditor.Painter
 
         public void MouseDoubleHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
         {
-            //_mouseDown = false;
+            _mouseDown = false;
         }
     }
 }

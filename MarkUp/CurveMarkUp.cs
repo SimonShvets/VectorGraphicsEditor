@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace VectorGraphicsEditor.MarkUp
 {
-    public class CurveMarkUp /*: IMarkUp*/
+    public class CurveMarkUp: IMarkUp
     {
         public List<PointF> PointList { get; set; }
         public int Length

@@ -11,7 +11,8 @@ namespace VectorGraphicsEditor.Painter
 {
     public class CurvePainter: IPainter
     {
-        private bool _mouseDown = false;
+        private bool _mouseDown = true;
+        private bool _mouseDoubleDown = false;
         private void DrawFigure(Pen pen, Graphics graphics, PointF[] points)
         {
             graphics.DrawLine(pen, points[points.Length - 2], points[points.Length - 1]);
@@ -28,24 +29,29 @@ namespace VectorGraphicsEditor.Painter
         }
         public void MouseDownHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
         {
-            _mouseDown = true;
+            if (_mouseDoubleDown == false)
+            {
             markUp.AddPoint(point);
+            canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
+            canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
             if (markUp.Length != 1)
             {
-                canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
-                canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
                 DrawFigure(pen, canvas.Graphics, markUp.Calculate());
             }
             canvas.Save();
             GC.Collect();
+            }
+            _mouseDown = true;
         }
 
         public void MouseMoveHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
         {
-            if (_mouseDown)
+
+            if (_mouseDown == false && _mouseDoubleDown == false)
             {
-                markUp.AddPoint(point);
-                DrawFigure(pen, canvas.Graphics, markUp.Calculate());
+                canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
+                canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
+                canvas.Graphics.DrawLine(pen, markUp.Calculate()[markUp.Length - 1], point);
                 GC.Collect();
             }
         }
@@ -58,7 +64,9 @@ namespace VectorGraphicsEditor.Painter
 
         public void MouseDoubleHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
         {
-            //_mouseDown = false;
+            _mouseDown = false;
+            _mouseDoubleDown = true;
+            canvas.Save();
         }
     }
 }
