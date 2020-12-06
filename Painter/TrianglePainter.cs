@@ -11,6 +11,7 @@ namespace VectorGraphicsEditor.Painter
     public class TrianglePainter: IPainter
     {
         private bool _mouseDown = true;
+        public PointF[] res;
         private void DrawFigure(Pen pen, Graphics graphics, PointF[] points)
         {
             graphics.DrawLine(pen, points[points.Length - 2], points[points.Length - 1]);
@@ -35,6 +36,8 @@ namespace VectorGraphicsEditor.Painter
             else if (markUp.Length == 3)
             {
                 canvas.Graphics.DrawLine(pen, markUp.Calculate()[0], markUp.Calculate()[2]);
+                res = markUp.Calculate();
+                markUp.PointList.Clear();
             }
             _mouseDown = true;
             canvas.Save();

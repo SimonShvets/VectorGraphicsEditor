@@ -46,6 +46,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fictory\BrushFictory.cs" />
+    <Compile Include="Fictory\CircleFictory.cs" />
+    <Compile Include="Fictory\IrregularPolygonFictory.cs" />
+    <Compile Include="Fictory\IsoscelesTriangleFictory.cs" />
+    <Compile Include="Fictory\PolygonFictory.cs" />
+    <Compile Include="Fictory\RectangleFictory.cs" />
+    <Compile Include="Fictory\RightTriangleFictory.cs" />
+    <Compile Include="Fictory\SquareFictory.cs" />
+    <Compile Include="Fictory\TriangleFictory.cs" />
+    <Compile Include="Fictory\CurveFictory.cs" />
+    <Compile Include="Fictory\ElipseFictory.cs" />
+    <Compile Include="Fictory\HandFictory.cs" />
+    <Compile Include="Fictory\IFictory.cs" />
     <Compile Include="Markup\BrushMarkUp.cs" />
     <Compile Include="Markup\CurveMarkUp.cs" />
     <Compile Include="Markup\CircleMarkUp.cs" />

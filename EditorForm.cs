@@ -4,20 +4,21 @@ using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using VectorGraphicsEditor.Painter;
 using VectorGraphicsEditor.MarkUp;
+using VectorGraphicsEditor.Fictory;
+using System.Collections.Generic;
 
 namespace VectorGraphicsEditor
 {
     public partial class EditorForm : Form
     {
-        private string _selectedTool;
+
         Pen pen;
-        bool mouseDown;
-        bool mouseUp;        
-        //PolygonFigure tmp;
         IPainter painter;
         Canvas canvas;
         IMarkUp markup;
-        
+        IFictory fictory;
+        List<IPainter> painters;
+        IMarkUp currentMarkUp;
 
         public EditorForm()
         {
@@ -31,9 +32,22 @@ namespace VectorGraphicsEditor
             pen.EndCap = LineCap.Round;
             painter = new BrushPainter();
             markup = new BrushMarkUp();
+            fictory = new BrushFictory();
+            painters = new List<IPainter>();
         }
         private void pictureBox_MouseDown(object sender, MouseEventArgs e)
         {
+            if(markup.Length == 0)
+            {
+            markup = fictory.CreateMarkUp();
+            painter = fictory.CreatePainter();
+            }
+            if (markup is PolygonMarkUp)
+            {
+                PolygonMarkUp tmp = (PolygonMarkUp)markup;
+                tmp.N = (int)numericUpDown.Value;
+                markup = tmp;
+            }
             painter.MouseDownHandle(e.Location, pen, markup, canvas);
             pictureBox.Image = canvas.TmpBitmap;
 
@@ -42,95 +56,85 @@ namespace VectorGraphicsEditor
         {
             painter.MouseMoveHandle(e.Location, pen, markup, canvas);
 
-            pictureBox.Image = canvas.TmpBitmap;
-
-            pictureBox.Image = canvas.TmpBitmap;            
+            pictureBox.Image = canvas.TmpBitmap;     
 
         }
         private void pictureBox_MouseUp(object sender, MouseEventArgs e)
         {
             painter.MouseUpHandle(e.Location, pen, markup, canvas);
             pictureBox.Image = canvas.TmpBitmap;
+            painters.Add(painter);
         }
         private void pictureBox_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-
             painter.MouseDoubleHandle(e.Location, pen, markup, canvas);
             pictureBox.Image = canvas.TmpBitmap;
 
             painter.MouseUpHandle(e.Location, pen, markup, canvas);
-            
+            painters.Add(painter);
 
         }
         private void Hand_Click(object sender, EventArgs e)
         {
-            _selectedTool = "Hand";
+            textBox1.Visible = false;
+            numericUpDown.Visible = false;
+            fictory = new HandFictory();
         }
+
         private void Brush_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
             numericUpDown.Visible = false;
-            painter = new BrushPainter();
-            markup = new BrushMarkUp();
+            fictory = new BrushFictory();
         }
+
         private void Curve_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
             numericUpDown.Visible = false;
-            painter = new CurvePainter();
-            markup = new CurveMarkUp();
+            fictory = new CurveFictory();
         }   
+
         private void Circle_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
             numericUpDown.Visible = false;
-            painter = new CirclePainter();
-            markup = new CircleMarkUp();
+            fictory = new CircleFictory();
         }
+
         private void Ellipse_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
             numericUpDown.Visible = false;
-            painter = new ElipsePainter();
-            markup = new ElipseMarkUp();
+            fictory = new ElipseFictory();
         }
+
         private void Triangle_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
             numericUpDown.Visible = false;
-            painter = new TrianglePainter();
-            markup = new TriangleMarkUp();
+            fictory = new TriangleFictory();
         }
-        private void StraightTriangle_Click(object sender, EventArgs e)
-        {
-            textBox1.Visible = false;
-            numericUpDown.Visible = false;
-            painter = new RightTrianglePainter();
-            markup = new RightTriangleMarkUp();
-            _selectedTool = "StraightTriangle";
-        }
+
         private void IsoscelesTriangle_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
             numericUpDown.Visible = false;
-            painter = new IsoscelesTrianglePainter();
-            markup = new IsoscelesTriangleMarkUp();
-            //figure = new IsoscelesTriangleFigure();
-            _selectedTool = "IsoscelesTriangle";
+            fictory = new IsoscelesTriangleFictory();
         }
+
         private void IrregularPolygon_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
             numericUpDown.Visible = false;
-            painter = new IrregularPolygonPainter();
-            markup = new IrregularPolygonMarkUp();
+            fictory = new IrregularPolygonFictory();
         }
+
         private void Polygon_Click(object sender, EventArgs e)
         {   
             textBox1.Visible = true;
             numericUpDown.Visible = true;
-            painter = new PolygonPainter();
-            markup = new PolygonMarkUp((int)numericUpDown.Value);
+            fictory = new PolygonFictory();
 
         }
         private void numericUpDown_TextChanged(object sender, EventArgs e)
@@ -144,22 +148,19 @@ namespace VectorGraphicsEditor
         {
             pen.Width = (int)numericUpDown1.Value;
         }
+
         private void Rectangle_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
             numericUpDown.Visible = false;
-            markup = new RectangleMarkUp();
-            painter = new RectanglePainter();
-
+            fictory = new RectangleFictory();
         }
 
         private void square_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
             numericUpDown.Visible = false;
-            painter = new SquarePainter();
-            markup = new SquareMarkUp();
-            _selectedTool = "Square";            
+            fictory = new SquareFictory();
         }
 
         private void EditorForm_KeyDown(object sender, KeyEventArgs e)
@@ -180,6 +181,12 @@ namespace VectorGraphicsEditor
             }
         }
 
+        private void RightTriangle_Click(object sender, EventArgs e)
+        {
+            textBox1.Visible = false;
+            numericUpDown.Visible = false;
+            fictory = new RightTriangleFictory();
+        }
         private void clear_Click(object sender, EventArgs e)
         {
             canvas.Graphics.Clear(Color.White);

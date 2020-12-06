@@ -39,5 +39,6 @@ namespace VectorGraphicsEditor.MarkUp
             };
             return points1;
         }
+
     }
 }

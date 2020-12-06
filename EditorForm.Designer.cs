@@ -43,7 +43,7 @@ namespace VectorGraphicsEditor
             this.Cycle = new System.Windows.Forms.Button();
             this.Elipse = new System.Windows.Forms.Button();
             this.Triangle = new System.Windows.Forms.Button();
-            this.StraightTriangle = new System.Windows.Forms.Button();
+            this.RightTriangle = new System.Windows.Forms.Button();
             this.IsoscelesTriangle = new System.Windows.Forms.Button();
             this.WrongPolygon = new System.Windows.Forms.Button();
             this.Polygon = new System.Windows.Forms.Button();
@@ -199,15 +199,15 @@ namespace VectorGraphicsEditor
             this.Triangle.UseVisualStyleBackColor = true;
             this.Triangle.Click += new System.EventHandler(this.Triangle_Click);
             // 
-            // StraightTriangle
+            // RightTriangle
             // 
-            this.StraightTriangle.Location = new System.Drawing.Point(12, 428);
-            this.StraightTriangle.Name = "StraightTriangle";
-            this.StraightTriangle.Size = new System.Drawing.Size(73, 64);
-            this.StraightTriangle.TabIndex = 10;
-            this.StraightTriangle.Text = "Прямоугольный треугольник по двум точкам";
-            this.StraightTriangle.UseVisualStyleBackColor = true;
-            this.StraightTriangle.Click += new System.EventHandler(this.StraightTriangle_Click);
+            this.RightTriangle.Location = new System.Drawing.Point(12, 428);
+            this.RightTriangle.Name = "RightTriangle";
+            this.RightTriangle.Size = new System.Drawing.Size(73, 64);
+            this.RightTriangle.TabIndex = 10;
+            this.RightTriangle.Text = "Прямоугольный треугольник по двум точкам";
+            this.RightTriangle.UseVisualStyleBackColor = true;
+            this.RightTriangle.Click += new System.EventHandler(this.RightTriangle_Click);
             // 
             // IsoscelesTriangle
             // 
@@ -365,7 +365,7 @@ namespace VectorGraphicsEditor
             this.Controls.Add(this.Polygon);
             this.Controls.Add(this.WrongPolygon);
             this.Controls.Add(this.IsoscelesTriangle);
-            this.Controls.Add(this.StraightTriangle);
+            this.Controls.Add(this.RightTriangle);
             this.Controls.Add(this.Triangle);
             this.Controls.Add(this.Elipse);
             this.Controls.Add(this.Cycle);
@@ -403,7 +403,7 @@ namespace VectorGraphicsEditor
         private System.Windows.Forms.Button Cycle;
         private System.Windows.Forms.Button Elipse;
         private System.Windows.Forms.Button Triangle;
-        private System.Windows.Forms.Button StraightTriangle;
+        private System.Windows.Forms.Button RightTriangle;
         private System.Windows.Forms.Button IsoscelesTriangle;
         private System.Windows.Forms.Button WrongPolygon;
         private System.Windows.Forms.Button Polygon;

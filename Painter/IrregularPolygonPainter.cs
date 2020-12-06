@@ -12,6 +12,7 @@ namespace VectorGraphicsEditor.Painter
     {
         private bool _mouseDown = true;
         private bool _mouseDoubleDown = false;
+        public PointF[] res;
         private void DrawFigure(Pen pen, Graphics graphics, PointF[] points)
         {
             graphics.DrawLine(pen, points[points.Length - 2], points[points.Length - 1]);
@@ -66,6 +67,8 @@ namespace VectorGraphicsEditor.Painter
             _mouseDown = false;
             _mouseDoubleDown = true;
             canvas.Graphics.DrawLine(pen, markUp.Calculate()[0], markUp.Calculate()[markUp.Length - 1]);
+            res = markUp.Calculate();
+            markUp.PointList.Clear();
             canvas.Save();
         }
     }
