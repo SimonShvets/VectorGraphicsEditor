@@ -55,6 +55,9 @@ namespace VectorGraphicsEditor
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.colorDialog2 = new System.Windows.Forms.ColorDialog();
             this.ChColor = new System.Windows.Forms.Button();
+            this.clear = new System.Windows.Forms.Button();
+            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
+            this.pipette = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).BeginInit();
@@ -84,12 +87,13 @@ namespace VectorGraphicsEditor
             // 
             // toolStrip1
             // 
-            this.toolStrip1.BackColor = System.Drawing.Color.Ivory;
+            this.toolStrip1.BackColor = System.Drawing.SystemColors.Menu;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
             this.toolStripButton2,
             this.toolStripButton3,
-            this.toolStripButton4});
+            this.toolStripButton4,
+            this.toolStripButton5});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1164, 25);
@@ -134,7 +138,7 @@ namespace VectorGraphicsEditor
             // 
             // pictureBox
             // 
-            this.pictureBox.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.pictureBox.BackColor = System.Drawing.Color.White;
             this.pictureBox.Location = new System.Drawing.Point(91, 53);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(1034, 597);
@@ -165,20 +169,20 @@ namespace VectorGraphicsEditor
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.Hand_Click);
             // 
-            // Circle
+            // Cycle
             // 
             this.Cycle.Location = new System.Drawing.Point(12, 272);
-            this.Cycle.Name = "Circle";
+            this.Cycle.Name = "Cycle";
             this.Cycle.Size = new System.Drawing.Size(73, 46);
             this.Cycle.TabIndex = 7;
             this.Cycle.Text = "Окружность по двум точкам";
             this.Cycle.UseVisualStyleBackColor = true;
             this.Cycle.Click += new System.EventHandler(this.Circle_Click);
             // 
-            // Ellipse
+            // Elipse
             // 
             this.Elipse.Location = new System.Drawing.Point(12, 324);
-            this.Elipse.Name = "Ellipse";
+            this.Elipse.Name = "Elipse";
             this.Elipse.Size = new System.Drawing.Size(73, 46);
             this.Elipse.TabIndex = 8;
             this.Elipse.Text = "Эллипс по двум точкам";
@@ -215,10 +219,10 @@ namespace VectorGraphicsEditor
             this.IsoscelesTriangle.UseVisualStyleBackColor = true;
             this.IsoscelesTriangle.Click += new System.EventHandler(this.IsoscelesTriangle_Click);
             // 
-            // IrregularPolygonPolygon
+            // WrongPolygon
             // 
             this.WrongPolygon.Location = new System.Drawing.Point(12, 550);
-            this.WrongPolygon.Name = "IrregularPolygonPolygon";
+            this.WrongPolygon.Name = "WrongPolygon";
             this.WrongPolygon.Size = new System.Drawing.Size(73, 46);
             this.WrongPolygon.TabIndex = 12;
             this.WrongPolygon.Text = "N угольник по N точкам";
@@ -315,12 +319,43 @@ namespace VectorGraphicsEditor
             this.ChColor.UseVisualStyleBackColor = true;
             this.ChColor.Click += new System.EventHandler(this.ChColor_Click);
             // 
+            // clear
+            // 
+            this.clear.Location = new System.Drawing.Point(586, 28);
+            this.clear.Name = "clear";
+            this.clear.Size = new System.Drawing.Size(124, 20);
+            this.clear.TabIndex = 21;
+            this.clear.Text = "Clear";
+            this.clear.UseVisualStyleBackColor = true;
+            this.clear.Click += new System.EventHandler(this.clear_Click);
+            // 
+            // toolStripButton5
+            // 
+            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
+            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton5.Name = "toolStripButton5";
+            this.toolStripButton5.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton5.Text = "toolStripButton5";
+            // 
+            // pipette
+            // 
+            this.pipette.Location = new System.Drawing.Point(413, 28);
+            this.pipette.Name = "pipette";
+            this.pipette.Size = new System.Drawing.Size(124, 20);
+            this.pipette.TabIndex = 22;
+            this.pipette.Text = "Пипетка";
+            this.pipette.UseVisualStyleBackColor = true;
+            this.pipette.Click += new System.EventHandler(this.pipette_Click);
+            // 
             // EditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Info;
+            this.BackColor = System.Drawing.SystemColors.Menu;
             this.ClientSize = new System.Drawing.Size(1164, 687);
+            this.Controls.Add(this.pipette);
+            this.Controls.Add(this.clear);
             this.Controls.Add(this.ChColor);
             this.Controls.Add(this.square);
             this.Controls.Add(this.textBox2);
@@ -381,6 +416,9 @@ namespace VectorGraphicsEditor
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.ColorDialog colorDialog2;
         private System.Windows.Forms.Button ChColor;
+        private System.Windows.Forms.Button clear;
+        private System.Windows.Forms.ToolStripButton toolStripButton5;
+        private System.Windows.Forms.Button pipette;
     }
 }
 

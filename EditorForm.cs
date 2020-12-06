@@ -12,11 +12,12 @@ namespace VectorGraphicsEditor
         private string _selectedTool;
         Pen pen;
         bool mouseDown;
-        bool mouseUp;
+        bool mouseUp;        
         //PolygonFigure tmp;
         IPainter painter;
         Canvas canvas;
         IMarkUp markup;
+        
 
         public EditorForm()
         {
@@ -25,7 +26,7 @@ namespace VectorGraphicsEditor
             canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
             canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
             pictureBox.Image = canvas.MainBitmap;
-            pen = new Pen(Color.Red, (int)numericUpDown1.Value);            
+            pen = new Pen(Color.Black, (int)numericUpDown1.Value);            
             pen.StartCap = LineCap.Round;
             pen.EndCap = LineCap.Round;
             painter = new BrushPainter();
@@ -179,6 +180,19 @@ namespace VectorGraphicsEditor
             }
         }
 
+        private void clear_Click(object sender, EventArgs e)
+        {
+            canvas.Graphics.Clear(Color.White);
+        }
 
+        private void pipette_Click(object sender, EventArgs e, MouseEventArgs eM)
+        {
+            int x = eM.X;
+            int y = eM.Y;
+            PointF point;            
+            Color color;
+            ((Bitmap)pictureBox.Image).GetPixel(x, y);
+
+        }
     }
 }
