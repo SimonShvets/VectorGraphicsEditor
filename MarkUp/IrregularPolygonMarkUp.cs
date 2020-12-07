@@ -10,6 +10,7 @@ namespace VectorGraphicsEditor.MarkUp
     public class IrregularPolygonMarkUp: IMarkUp
     {
         public List<PointF> PointList { get; set; }
+        public PointF StartPoint { get; set; }
         public int Length
         {
             get
@@ -22,19 +23,19 @@ namespace VectorGraphicsEditor.MarkUp
                 //но интервейс не позволяет этого сделать
             }
         }
-
         public IrregularPolygonMarkUp()
         {
             PointList = new List<PointF>();
         }
-        public void AddPoint(PointF point)
-        {
-            PointList.Add(point);
-        }
         public PointF[] Calculate()
         {
-            //Some calculations
             return PointList.ToArray();
+        }
+
+        public void Update(PointF endPoint)
+        {
+            StartPoint = endPoint;
+            PointList.Add(endPoint);
         }
     }
 }

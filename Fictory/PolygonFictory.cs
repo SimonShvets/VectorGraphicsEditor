@@ -1,10 +1,16 @@
-﻿using VectorGraphicsEditor.MarkUp;
+﻿using VectorGraphicsEditor.Controllers;
+using VectorGraphicsEditor.MarkUp;
 using VectorGraphicsEditor.Painter;
 
 namespace VectorGraphicsEditor.Fictory
 {
     public class PolygonFictory : IFictory
     {
+        public IController CreateController()
+        {
+            return new PolygonController();
+        }
+
         public IMarkUp CreateMarkUp()
         {
             return new PolygonMarkUp();

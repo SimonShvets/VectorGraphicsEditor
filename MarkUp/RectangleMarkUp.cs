@@ -10,6 +10,7 @@ namespace VectorGraphicsEditor.MarkUp
     public class RectangleMarkUp : IMarkUp
     {
         public List<PointF> PointList { get; set; }
+        public PointF StartPoint { get; set; }
         public int Length
         {
             get
@@ -20,25 +21,24 @@ namespace VectorGraphicsEditor.MarkUp
             {
             }
         }
+
         public RectangleMarkUp()
         {
             PointList = new List<PointF>();
         }
-        public void AddPoint(PointF point)
-        {
-            PointList.Add(point);
-        }
         public PointF[] Calculate()
         {
-            PointF[] points1 = new PointF[4]
-            { 
-                PointList[0], 
-                new PointF(PointList[0].X, PointList[1].Y), 
-                PointList[1], 
-                new PointF(PointList[1].X, PointList[0].Y) 
-            };
-            return points1;
+            return PointList.ToArray();
         }
-
+        public void Update(PointF endPoint)
+        {
+            PointList = new List<PointF>
+            {
+                StartPoint,
+                new PointF(StartPoint.X, endPoint.Y),
+                endPoint,
+                new PointF(endPoint.X, StartPoint.Y)
+            };
+        }
     }
 }

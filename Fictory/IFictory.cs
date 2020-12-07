@@ -1,5 +1,6 @@
 ﻿using VectorGraphicsEditor.Painter;
 using VectorGraphicsEditor.MarkUp;
+using VectorGraphicsEditor.Controllers;
 
 namespace VectorGraphicsEditor.Fictory
 {
@@ -7,5 +8,7 @@ namespace VectorGraphicsEditor.Fictory
     {
         IMarkUp CreateMarkUp();
         IPainter CreatePainter();
+        IController CreateController();
+
     }
 }

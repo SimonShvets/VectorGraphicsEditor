@@ -1,4 +1,5 @@
-﻿using VectorGraphicsEditor.MarkUp;
+﻿using VectorGraphicsEditor.Controllers;
+using VectorGraphicsEditor.MarkUp;
 using VectorGraphicsEditor.Painter;
 
 namespace VectorGraphicsEditor.Fictory
@@ -13,6 +14,10 @@ namespace VectorGraphicsEditor.Fictory
         public IPainter CreatePainter()
         {
             return new CirclePainter();
+        }
+        public IController CreateController()
+        {
+            return new CircleController();
         }
     }
 }

@@ -10,6 +10,7 @@ namespace VectorGraphicsEditor.MarkUp
     public class ElipseMarkUp : IMarkUp
     {
         public List<PointF> PointList { get; set; }
+        public PointF StartPoint { get; set; }
         public int Length
         {
             get
@@ -24,18 +25,21 @@ namespace VectorGraphicsEditor.MarkUp
         {
             PointList = new List<PointF>();
         }
-        public void AddPoint(PointF point)
-        {
-            PointList.Add(point);
-        }
         public PointF[] Calculate()
         {
-            PointF[] result = new PointF[4];
-            result[0].X = PointList[0].X;
-            result[1].X = PointList[0].Y;
-            result[2].X = PointList[1].X - PointList[0].X;
-            result[3].X = PointList[1].Y - PointList[0].Y;
-            return result;
+            
+            return PointList.ToArray();
+        }
+
+        public void Update(PointF endPoint)
+        {
+            PointList = new List<PointF>
+            {
+                new PointF(StartPoint.X, endPoint.Y),
+                new PointF(StartPoint.Y, endPoint.Y),
+                new PointF(endPoint.X - StartPoint.X , endPoint.Y),
+                new PointF(endPoint.Y - StartPoint.Y, endPoint.Y)
+            };
         }
     }
 }

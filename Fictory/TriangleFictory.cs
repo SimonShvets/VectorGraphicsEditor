@@ -1,10 +1,16 @@
-﻿using VectorGraphicsEditor.MarkUp;
+﻿using VectorGraphicsEditor.Controllers;
+using VectorGraphicsEditor.MarkUp;
 using VectorGraphicsEditor.Painter;
 
 namespace VectorGraphicsEditor.Fictory
 {
     public class TriangleFictory : IFictory
     {
+        public IController CreateController()
+        {
+            return new TriangleController();
+        }
+
         public IMarkUp CreateMarkUp()
         {
             return new TriangleMarkUp();

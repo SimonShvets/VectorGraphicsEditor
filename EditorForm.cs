@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using VectorGraphicsEditor.Painter;
 using VectorGraphicsEditor.MarkUp;
 using VectorGraphicsEditor.Fictory;
+using VectorGraphicsEditor.Controllers;
 using System.Collections.Generic;
 
 namespace VectorGraphicsEditor
@@ -13,12 +14,14 @@ namespace VectorGraphicsEditor
     {
 
         Pen pen;
-        IPainter painter;
         Canvas canvas;
         IMarkUp markup;
+        IPainter painter;
+        IController controller;
         IFictory fictory;
         List<IPainter> painters;
-        IMarkUp currentMarkUp;
+        List<IMarkUp> markups;
+
 
         public EditorForm()
         {
@@ -30,44 +33,54 @@ namespace VectorGraphicsEditor
             pen = new Pen(Color.Red, (int)numericUpDown1.Value);            
             pen.StartCap = LineCap.Round;
             pen.EndCap = LineCap.Round;
-            painter = new CurvePainter();
-            markup = new CurveMarkUp();
-            fictory = new CurveFictory();
+            painter = new BrushPainter();
+            markup = new BrushMarkUp();
+            controller = new BrushController();
+            fictory = new BrushFictory();
             painters = new List<IPainter>();
+            markups = new List<IMarkUp>();
         }
         private void pictureBox_MouseDown(object sender, MouseEventArgs e)
         {
-
+            if(markup.Length == 0 || painter is BrushPainter)
+            {
             markup = fictory.CreateMarkUp();
             painter = fictory.CreatePainter();
+            controller = fictory.CreateController();
+            }
             if (markup is PolygonMarkUp)
             {
                 PolygonMarkUp tmp = (PolygonMarkUp)markup;
                 tmp.N = (int)numericUpDown.Value;
                 markup = tmp;
             }
-            painter.MouseDownHandle(e.Location, pen, markup, canvas);
+            controller.MouseDownHandle(e.Location, pen, markup, painter, canvas);
             pictureBox.Image = canvas.TmpBitmap;
 
         }
         private void pictureBox_MouseMove(object sender, MouseEventArgs e)
         {
-            painter.MouseMoveHandle(e.Location, pen, markup, canvas);
+            controller.MouseMoveHandle(e.Location, pen, markup, painter, canvas);
 
             pictureBox.Image = canvas.TmpBitmap;     
 
         }
         private void pictureBox_MouseUp(object sender, MouseEventArgs e)
         {
-            painter.MouseUpHandle(e.Location, pen, markup, canvas);
+            controller.MouseUpHandle(e.Location, pen, markup, painter, canvas);
             pictureBox.Image = canvas.TmpBitmap;
             painters.Add(painter);
+            markups.Add(markup);
+            //markup.PointList.Clear();
         }
         private void pictureBox_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            painter.MouseDoubleHandle(e.Location, pen, markup, canvas);
+            controller.MouseDoubleHandle(e.Location, pen, markup, painter, canvas);
             pictureBox.Image = canvas.TmpBitmap;
             painters.Add(painter);
+            markups.Add(markup);
+            markup.PointList.Clear();
+
 
         }
         private void Hand_Click(object sender, EventArgs e)

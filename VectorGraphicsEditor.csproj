@@ -46,6 +46,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\BrushController.cs" />
+    <Compile Include="Controllers\CircleController.cs" />
+    <Compile Include="Controllers\TriangleController.cs" />
+    <Compile Include="Controllers\RightTriangleController.cs" />
+    <Compile Include="Controllers\RectangleController.cs" />
+    <Compile Include="Controllers\PolygonController.cs" />
+    <Compile Include="Controllers\IsoscelesTriangleController.cs" />
+    <Compile Include="Controllers\IrregularPolygonController.cs" />
+    <Compile Include="Controllers\HandController.cs" />
+    <Compile Include="Controllers\ElipseController.cs" />
+    <Compile Include="Controllers\SquareController.cs" />
+    <Compile Include="Controllers\CurveController.cs" />
+    <Compile Include="Controllers\IController.cs" />
     <Compile Include="Fictory\BrushFictory.cs" />
     <Compile Include="Fictory\CircleFictory.cs" />
     <Compile Include="Fictory\IrregularPolygonFictory.cs" />

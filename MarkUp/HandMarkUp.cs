@@ -20,18 +20,22 @@ namespace VectorGraphicsEditor.MarkUp
             {
             }
         }
+
+        public PointF StartPoint { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
         public HandMarkUp()
         {
             PointList = new List<PointF>();
-        }
-        public void AddPoint(PointF point)
-        {
-            PointList.Add(point);
         }
         public PointF[] Calculate()
         {
             //Some calculations
             return PointList.ToArray();
+        }
+
+        public void Update(PointF endPoint)
+        {
+            throw new NotImplementedException();
         }
     }
 }
