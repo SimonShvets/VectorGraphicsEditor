@@ -14,14 +14,13 @@ namespace VectorGraphicsEditor
     {
 
         Pen pen;
-        IPainter painter;
         Canvas canvas;
         IMarkUp markup;
+        IPainter painter;
         IController controller;
         IFictory fictory;
         List<IPainter> painters;
         List<IMarkUp> markups;
-        IMarkUp currentMarkUp;
 
 
         public EditorForm()

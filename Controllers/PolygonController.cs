@@ -33,7 +33,7 @@ namespace VectorGraphicsEditor.Controllers
 
         public void MouseUpHandle(PointF point, Pen pen, IMarkUp markUp, IPainter painter, Canvas canvas)
         {
-            //markUp.PointList.Clear();
+            markUp.PointList.Clear();
             _mouseDown = false;
             canvas.Save();
         }
