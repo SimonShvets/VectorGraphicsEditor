@@ -10,6 +10,7 @@ namespace VectorGraphicsEditor.MarkUp
     public class SquareMarkUp : IMarkUp
     {
         public List<PointF> PointList { get; set; }
+        public PointF StartPoint { get; set; }
         public int Length
         {
             get
@@ -24,25 +25,26 @@ namespace VectorGraphicsEditor.MarkUp
         {
             PointList = new List<PointF>();
         }
-        public void AddPoint(PointF point)
-        {
-            PointList.Add(point);
-        }
         public PointF[] Calculate()
         {
+            return PointList.ToArray();
+        }
 
-            int x = (int)PointList[0].X;
-            int y = (int)PointList[0].Y;
-            int x2 = (int)PointList[1].X;
-            int y2 = (int)PointList[1].Y;
+        public void Update(PointF endPoint)
+        {
+            int x = (int)StartPoint.X;
+            int y = (int)StartPoint.Y;
+            int x2 = (int)endPoint.X;
+            int y2 = (int)endPoint.Y;
             int a = Math.Abs(x2 - x);
             int b = Math.Abs(y2 - y);
-            PointF[] points = new PointF[4];
-            points[0] = new PointF(x, y);
-            points[1] = new PointF(x, y2 + a);
-            points[2] = new PointF(x2 + b, y2 + a);
-            points[3] = new PointF(x2 + b, y);
-            return points;
+            PointList = new List<PointF>
+            {
+                 new PointF(x, y),
+                 new PointF(x, y2 + a),
+                 new PointF(x2 + b, y2 + a),
+                 new PointF(x2 + b, y),
+            };
         }
     }
 }

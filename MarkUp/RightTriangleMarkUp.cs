@@ -10,15 +10,20 @@ namespace VectorGraphicsEditor.MarkUp
     public class RightTriangleMarkUp: IMarkUp
     {
         public List<PointF> PointList { get; set; }
-        public int Length { get; set; }
-
+        public PointF StartPoint { get; set; }
+        public int Length
+        {
+            get
+            {
+                return PointList.Count;
+            }
+            set
+            {
+            }
+        }
         public RightTriangleMarkUp()
         {
             PointList = new List<PointF>();
-        }
-        public void AddPoint(PointF point)
-        {
-            PointList.Add(point);
         }
         public PointF[] Calculate()
         {
@@ -29,6 +34,16 @@ namespace VectorGraphicsEditor.MarkUp
                 new PointF(PointList[0].X, PointList[1].Y) 
             };
             return points;
+        }
+
+        public void Update(PointF endPoint)
+        {
+            PointList = new List<PointF>
+            {
+                StartPoint,
+                endPoint,
+                new PointF(StartPoint.X, endPoint.Y)
+            };
         }
     }
 }

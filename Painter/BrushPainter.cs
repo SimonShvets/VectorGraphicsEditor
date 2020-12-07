@@ -24,7 +24,7 @@ namespace VectorGraphicsEditor.Painter
             _mouseDown = true;
             canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
             canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
-            markUp.AddPoint(point);
+            markUp.Update(point);
             GC.Collect();
         }
 
@@ -32,7 +32,7 @@ namespace VectorGraphicsEditor.Painter
         {
             if (_mouseDown)
             {
-                markUp.AddPoint(point);
+                markUp.Update(point);
                 DrawFigure(pen, canvas.Graphics, markUp.Calculate());
                 GC.Collect();
             }

@@ -28,7 +28,7 @@ namespace VectorGraphicsEditor.Painter
         }
         public void MouseDownHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
         {
-            markUp.AddPoint(point);
+            markUp.Update(point);
             if (markUp.Length == 2)
             {
                 DrawFigure(pen, canvas.Graphics, markUp.Calculate());
@@ -51,7 +51,7 @@ namespace VectorGraphicsEditor.Painter
             {
                 canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
                 canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
-                canvas.Graphics.DrawLine(pen, markUp.Calculate()[markUp.Length - 1], point);
+                canvas.Graphics.DrawLine(pen, markUp.StartPoint, point);
             }
         }
 

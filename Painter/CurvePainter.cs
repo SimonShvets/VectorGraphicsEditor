@@ -32,7 +32,7 @@ namespace VectorGraphicsEditor.Painter
         {
             if (_mouseDoubleDown == false)
             {
-            markUp.AddPoint(point);
+            markUp.Update(point);
             canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
             canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
             if (markUp.Length != 1)
@@ -52,7 +52,7 @@ namespace VectorGraphicsEditor.Painter
             {
                 canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
                 canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
-                canvas.Graphics.DrawLine(pen, markUp.Calculate()[markUp.Length - 1], point);
+                canvas.Graphics.DrawLine(pen, markUp.StartPoint, point);
                 GC.Collect();
             }
         }

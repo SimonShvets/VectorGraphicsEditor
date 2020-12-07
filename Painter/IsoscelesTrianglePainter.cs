@@ -35,9 +35,9 @@ namespace VectorGraphicsEditor.Painter
         public void MouseDownHandle(PointF point, Pen pen, IMarkUp markUp, Canvas canvas)
         {
             _mouseDown = true;
+            markUp.StartPoint = point;
             canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
             canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
-            markUp.AddPoint(point);
             GC.Collect();
         }
 
@@ -45,8 +45,8 @@ namespace VectorGraphicsEditor.Painter
         {
             if (_mouseDown)
             {
-                markUp.AddPoint(point);
-                markUp.PointList[0] = point;
+
+                markUp.Update(point);
                 canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
                 canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
                 DrawFigure(pen, canvas.Graphics, markUp.Calculate());

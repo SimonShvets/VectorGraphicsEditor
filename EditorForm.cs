@@ -18,6 +18,7 @@ namespace VectorGraphicsEditor
         IMarkUp markup;
         IFictory fictory;
         List<IPainter> painters;
+        List<IMarkUp> markups;
         IMarkUp currentMarkUp;
 
         public EditorForm()
@@ -34,10 +35,11 @@ namespace VectorGraphicsEditor
             markup = new BrushMarkUp();
             fictory = new BrushFictory();
             painters = new List<IPainter>();
+            markups = new List<IMarkUp>();
         }
         private void pictureBox_MouseDown(object sender, MouseEventArgs e)
         {
-            if(markup.Length == 0)
+            if(markup.Length == 0 || painter is BrushPainter)
             {
             markup = fictory.CreateMarkUp();
             painter = fictory.CreatePainter();
@@ -64,14 +66,17 @@ namespace VectorGraphicsEditor
             painter.MouseUpHandle(e.Location, pen, markup, canvas);
             pictureBox.Image = canvas.TmpBitmap;
             painters.Add(painter);
+            markups.Add(markup);
+            //markup.PointList.Clear();
         }
         private void pictureBox_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             painter.MouseDoubleHandle(e.Location, pen, markup, canvas);
             pictureBox.Image = canvas.TmpBitmap;
-
-            painter.MouseUpHandle(e.Location, pen, markup, canvas);
             painters.Add(painter);
+            markups.Add(markup);
+            markup.PointList.Clear();
+
 
         }
         private void Hand_Click(object sender, EventArgs e)
