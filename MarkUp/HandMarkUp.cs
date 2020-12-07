@@ -16,9 +16,6 @@ namespace VectorGraphicsEditor.MarkUp
             {
                 return PointList.Count;
             }
-            set
-            {
-            }
         }
 
         public PointF StartPoint { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }

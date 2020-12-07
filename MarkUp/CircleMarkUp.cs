@@ -14,9 +14,6 @@ namespace VectorGraphicsEditor.MarkUp
             {
                 return PointList.Count;
             }
-            set
-            {
-            }
         }
         private int N = 90;
         public CircleMarkUp()

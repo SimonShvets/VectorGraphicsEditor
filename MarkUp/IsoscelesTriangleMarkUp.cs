@@ -17,9 +17,6 @@ namespace VectorGraphicsEditor.MarkUp
             {
                 return PointList.Count;
             }
-            set
-            {
-            }
         }
         public IsoscelesTriangleMarkUp()
         {

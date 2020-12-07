@@ -13,11 +13,6 @@ namespace VectorGraphicsEditor.MarkUp
             {
                 return PointList.Count;
             }
-            set
-            {
-                //??? Уточнить у макса, т к set нужно делать приватным, 
-                //но интервейс не позволяет этого сделать
-            }
         }
         public BrushMarkUp()
         {

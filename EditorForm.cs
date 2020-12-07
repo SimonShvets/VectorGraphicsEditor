@@ -12,17 +12,14 @@ namespace VectorGraphicsEditor
 {
     public partial class EditorForm : Form
     {
-
         Pen pen;
         Canvas canvas;
+        Conteiner figures;
+        List<PointF[]> lists = new List<PointF[]>();
         IMarkUp markup;
         IPainter painter;
         IController controller;
         IFictory fictory;
-        List<IPainter> painters;
-        List<IMarkUp> markups;
-
-
         public EditorForm()
         {
             InitializeComponent();
@@ -37,8 +34,7 @@ namespace VectorGraphicsEditor
             markup = new BrushMarkUp();
             controller = new BrushController();
             fictory = new BrushFictory();
-            painters = new List<IPainter>();
-            markups = new List<IMarkUp>();
+            figures = new Conteiner();
         }
         private void pictureBox_MouseDown(object sender, MouseEventArgs e)
         {
@@ -61,7 +57,6 @@ namespace VectorGraphicsEditor
         private void pictureBox_MouseMove(object sender, MouseEventArgs e)
         {
             controller.MouseMoveHandle(e.Location, pen, markup, painter, canvas);
-
             pictureBox.Image = canvas.TmpBitmap;     
 
         }
@@ -69,19 +64,30 @@ namespace VectorGraphicsEditor
         {
             controller.MouseUpHandle(e.Location, pen, markup, painter, canvas);
             pictureBox.Image = canvas.TmpBitmap;
-            painters.Add(painter);
-            markups.Add(markup);
-            //markup.PointList.Clear();
+            if  (!(markup is BrushMarkUp 
+                || markup is CurveMarkUp
+                || markup is TriangleMarkUp
+                || markup is IrregularPolygonMarkUp))
+            {
+                figures.Add(markup);
+                markup.PointList.Clear();
+            }
+            else if (markup is TriangleMarkUp)
+            {
+                if (markup.Length % 3 == 0)
+                {
+                    figures.Add(markup);
+                    markup.PointList.Clear();
+                }
+            }
         }
         private void pictureBox_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             controller.MouseDoubleHandle(e.Location, pen, markup, painter, canvas);
             pictureBox.Image = canvas.TmpBitmap;
-            painters.Add(painter);
-            markups.Add(markup);
+            figures.Add(markup);
+            lists.Add(markup.Calculate());
             markup.PointList.Clear();
-
-
         }
         private void Hand_Click(object sender, EventArgs e)
         {
@@ -89,14 +95,12 @@ namespace VectorGraphicsEditor
             numericUpDown.Visible = false;
             fictory = new HandFictory();
         }
-
         private void Brush_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             fictory = new BrushFictory();
         }
-
         private void Curve_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;

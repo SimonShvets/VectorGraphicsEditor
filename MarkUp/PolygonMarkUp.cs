@@ -10,7 +10,6 @@ namespace VectorGraphicsEditor.MarkUp
     public class PolygonMarkUp: IMarkUp
     {
         public int N { get; set; }
-        PointF[] points1;
         public List<PointF> PointList { get; set; }
         public PointF StartPoint { get; set; }
         public int Length
@@ -18,9 +17,6 @@ namespace VectorGraphicsEditor.MarkUp
             get
             {
                 return PointList.Count;
-            }
-            set
-            {
             }
         }
         public PolygonMarkUp()
@@ -37,10 +33,10 @@ namespace VectorGraphicsEditor.MarkUp
         {
             if (N > 2)
             {
-                PointF CircleStartPoint = new PointF(StartPoint.X, endPoint.Y);
+                PointF PolygonStartPoint = new PointF(StartPoint.X, endPoint.Y);
                 PointList = new List<PointF>
             {
-                CircleStartPoint
+                PolygonStartPoint
             };
                 int a = 360 / N;
                 float t;

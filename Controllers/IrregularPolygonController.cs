@@ -10,7 +10,6 @@ namespace VectorGraphicsEditor.Controllers
     {
         private bool _mouseDown = true;
         private bool _mouseDoubleDown = false;
-        public PointF[] res;
         public void KeyDown()
         {
             throw new NotImplementedException();
@@ -24,7 +23,15 @@ namespace VectorGraphicsEditor.Controllers
         {
             if (_mouseDoubleDown == false)
             {
-                markUp.Update(point);
+                if (markUp.Length == 0)
+                {
+                    markUp.StartPoint = point;
+                    markUp.PointList.Add(markUp.StartPoint);
+                }
+                else
+                {
+                    markUp.Update(point);
+                }
                 canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
                 canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
                 if (markUp.Length != 1)
@@ -44,7 +51,7 @@ namespace VectorGraphicsEditor.Controllers
             {
                 canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
                 canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
-                canvas.Graphics.DrawLine(pen, markUp.StartPoint, point);
+                canvas.Graphics.DrawLine(pen, markUp.PointList[markUp.Length - 1], point);
                 GC.Collect();
             }
         }
@@ -60,8 +67,6 @@ namespace VectorGraphicsEditor.Controllers
             _mouseDown = false;
             _mouseDoubleDown = true;
             canvas.Graphics.DrawLine(pen, markUp.Calculate()[0], markUp.Calculate()[markUp.Length - 1]);
-            res = markUp.Calculate();
-            markUp.PointList.Clear();
             canvas.Save();
         }
     }

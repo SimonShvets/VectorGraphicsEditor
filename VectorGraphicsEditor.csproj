@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Conteiner.cs" />
     <Compile Include="Controllers\BrushController.cs" />
     <Compile Include="Controllers\CircleController.cs" />
     <Compile Include="Controllers\TriangleController.cs" />
