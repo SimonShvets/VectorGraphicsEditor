@@ -1,10 +1,16 @@
-﻿using VectorGraphicsEditor.MarkUp;
+﻿using VectorGraphicsEditor.Controllers;
+using VectorGraphicsEditor.MarkUp;
 using VectorGraphicsEditor.Painter;
 
 namespace VectorGraphicsEditor.Fictory
 {
     public class ElipseFictory : IFictory
     {
+        public IController CreateController()
+        {
+            return new ElipseController();
+        }
+
         public IMarkUp CreateMarkUp()
         {
             return new ElipseMarkUp();

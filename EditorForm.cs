@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using VectorGraphicsEditor.Painter;
 using VectorGraphicsEditor.MarkUp;
 using VectorGraphicsEditor.Fictory;
+using VectorGraphicsEditor.Controllers;
 using System.Collections.Generic;
 
 namespace VectorGraphicsEditor
@@ -16,10 +17,12 @@ namespace VectorGraphicsEditor
         IPainter painter;
         Canvas canvas;
         IMarkUp markup;
+        IController controller;
         IFictory fictory;
         List<IPainter> painters;
         List<IMarkUp> markups;
         IMarkUp currentMarkUp;
+
 
         public EditorForm()
         {
@@ -33,6 +36,7 @@ namespace VectorGraphicsEditor
             pen.EndCap = LineCap.Round;
             painter = new BrushPainter();
             markup = new BrushMarkUp();
+            controller = new BrushController();
             fictory = new BrushFictory();
             painters = new List<IPainter>();
             markups = new List<IMarkUp>();
@@ -43,6 +47,7 @@ namespace VectorGraphicsEditor
             {
             markup = fictory.CreateMarkUp();
             painter = fictory.CreatePainter();
+            controller = fictory.CreateController();
             }
             if (markup is PolygonMarkUp)
             {
@@ -50,20 +55,20 @@ namespace VectorGraphicsEditor
                 tmp.N = (int)numericUpDown.Value;
                 markup = tmp;
             }
-            painter.MouseDownHandle(e.Location, pen, markup, canvas);
+            controller.MouseDownHandle(e.Location, pen, markup, painter, canvas);
             pictureBox.Image = canvas.TmpBitmap;
 
         }
         private void pictureBox_MouseMove(object sender, MouseEventArgs e)
         {
-            painter.MouseMoveHandle(e.Location, pen, markup, canvas);
+            controller.MouseMoveHandle(e.Location, pen, markup, painter, canvas);
 
             pictureBox.Image = canvas.TmpBitmap;     
 
         }
         private void pictureBox_MouseUp(object sender, MouseEventArgs e)
         {
-            painter.MouseUpHandle(e.Location, pen, markup, canvas);
+            controller.MouseUpHandle(e.Location, pen, markup, painter, canvas);
             pictureBox.Image = canvas.TmpBitmap;
             painters.Add(painter);
             markups.Add(markup);
@@ -71,7 +76,7 @@ namespace VectorGraphicsEditor
         }
         private void pictureBox_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            painter.MouseDoubleHandle(e.Location, pen, markup, canvas);
+            controller.MouseDoubleHandle(e.Location, pen, markup, painter, canvas);
             pictureBox.Image = canvas.TmpBitmap;
             painters.Add(painter);
             markups.Add(markup);

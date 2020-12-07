@@ -1,10 +1,16 @@
-﻿using VectorGraphicsEditor.MarkUp;
+﻿using VectorGraphicsEditor.Controllers;
+using VectorGraphicsEditor.MarkUp;
 using VectorGraphicsEditor.Painter;
 
 namespace VectorGraphicsEditor.Fictory
 {
     public class HandFictory : IFictory
     {
+        public IController CreateController()
+        {
+            return new HandController();
+        }
+
         public IMarkUp CreateMarkUp()
         {
             return new HandMarkUp();
