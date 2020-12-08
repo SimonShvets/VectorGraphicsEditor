@@ -15,7 +15,6 @@ namespace VectorGraphicsEditor
         Pen pen;
         Canvas canvas;
         Conteiner figures;
-        List<PointF[]> lists = new List<PointF[]>();
         IMarkUp markup;
         IPainter painter;
         IController controller;
@@ -69,14 +68,14 @@ namespace VectorGraphicsEditor
                 || markup is TriangleMarkUp
                 || markup is IrregularPolygonMarkUp))
             {
-                figures.Add(markup);
+                figures.Add(markup.Calculate());
                 markup.PointList.Clear();
             }
             else if (markup is TriangleMarkUp)
             {
                 if (markup.Length % 3 == 0)
                 {
-                    figures.Add(markup);
+                    figures.Add(markup.Calculate());
                     markup.PointList.Clear();
                 }
             }
@@ -85,8 +84,7 @@ namespace VectorGraphicsEditor
         {
             controller.MouseDoubleHandle(e.Location, pen, markup, painter, canvas);
             pictureBox.Image = canvas.TmpBitmap;
-            figures.Add(markup);
-            lists.Add(markup.Calculate());
+            figures.Add(markup.Calculate());
             markup.PointList.Clear();
         }
         private void Hand_Click(object sender, EventArgs e)
