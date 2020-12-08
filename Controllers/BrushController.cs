@@ -8,13 +8,12 @@ namespace VectorGraphicsEditor.Controllers
     public class BrushController: IController
     {
         private bool _mouseDown = false;
-        public PointF[] res;
         public void MouseDownHandle(PointF point, Pen pen, IMarkUp markUp, IPainter painter, Canvas canvas)
         {
             _mouseDown = true;
+            markUp.Update(point);
             canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
             canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
-            markUp.Update(point);
             GC.Collect();
         }
 
@@ -30,7 +29,6 @@ namespace VectorGraphicsEditor.Controllers
 
         public void MouseUpHandle(PointF point, Pen pen, IMarkUp markUp, IPainter painter, Canvas canvas)
         {
-            res = markUp.Calculate();
             _mouseDown = false;
             canvas.Save();
         }

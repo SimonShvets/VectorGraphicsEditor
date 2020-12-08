@@ -7,7 +7,7 @@ namespace VectorGraphicsEditor.MarkUp
     {
         List<PointF> PointList { get; set; }
         PointF StartPoint { get; set; }
-        int Length { get; set; }
+        int Length { get; }
         PointF[] Calculate();
         void Update(PointF endPoint);
     }

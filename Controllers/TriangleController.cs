@@ -8,7 +8,6 @@ namespace VectorGraphicsEditor.Controllers
     public class TriangleController: IController
     {
         private bool _mouseDown = true;
-        public PointF[] res;
         public void KeyDown()
         {
             throw new NotImplementedException();
@@ -20,16 +19,22 @@ namespace VectorGraphicsEditor.Controllers
         }
         public void MouseDownHandle(PointF point, Pen pen, IMarkUp markUp,IPainter painter, Canvas canvas)
         {
-            markUp.Update(point);
+            if (markUp.Length == 0)
+            {
+                markUp.StartPoint = point;
+                markUp.PointList.Add(markUp.StartPoint);
+            }
+            else
+            {
+                markUp.Update(point);
+            }
             if (markUp.Length == 2)
             {
                 painter.DrawFigure(pen, canvas.Graphics, markUp.Calculate());
             }
             else if (markUp.Length == 3)
             {
-                canvas.Graphics.DrawLine(pen, markUp.Calculate()[0], markUp.Calculate()[2]);
-                res = markUp.Calculate();
-                markUp.PointList.Clear();
+                canvas.Graphics.DrawLine(pen, markUp.StartPoint, markUp.Calculate()[2]);
             }
             _mouseDown = true;
             canvas.Save();
@@ -43,7 +48,7 @@ namespace VectorGraphicsEditor.Controllers
             {
                 canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
                 canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
-                canvas.Graphics.DrawLine(pen, markUp.StartPoint, point);
+                canvas.Graphics.DrawLine(pen, markUp.PointList[markUp.Length - 1], point);
             }
         }
 
