@@ -86,7 +86,7 @@ namespace VectorGraphicsEditor
             controller.MouseDoubleHandle(e.Location, pen, markup, painter, canvas);
             pictureBox.Image = canvas.TmpBitmap;
             figures.Add(markup);
-            lists.Add(markup.Calculate());
+            lists.Add(markup.Calculate()); 
             markup.PointList.Clear();
         }
         private void Hand_Click(object sender, EventArgs e)

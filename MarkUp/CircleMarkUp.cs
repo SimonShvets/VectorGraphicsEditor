@@ -44,14 +44,10 @@ namespace VectorGraphicsEditor.MarkUp
                 PointList.Add(point);
             }
         }
-        //int y = (int)PointList[0].Y;
-        //int x2 = (int)PointList[1].X;
-        //int x1 = (x2 - x);
-        //PointF[] result = new PointF[4];
-        //result[0].X = x - x1;
-        //result[1].X = y - x1;
-        //result[2].X = x1 * 2;
-        //result[3].X = x1 * 2;
-        //return result;
+
+        public void MarkUp()
+        {
+
+        }
     }
 }

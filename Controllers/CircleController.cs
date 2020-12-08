@@ -8,6 +8,7 @@ namespace VectorGraphicsEditor.Controllers
     public class CircleController: IController
     {
         private bool _mouseDown = false;
+        Pen pen1 = new Pen(Color.Blue, 1);
         public void KeyDown()
         {
 
@@ -36,10 +37,11 @@ namespace VectorGraphicsEditor.Controllers
         {
             if (_mouseDown)
             {
+                
                 markUp.Update(point);
                 canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
                 canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
-                painter.DrawFigure(pen, canvas.Graphics, markUp.Calculate());
+                painter.DrawFigure(pen1, canvas.Graphics, markUp.Calculate());
                 GC.Collect();
             }
         }
@@ -47,6 +49,10 @@ namespace VectorGraphicsEditor.Controllers
         public void MouseUpHandle(PointF point, Pen pen, IMarkUp markUp, IPainter painter, Canvas canvas)
         {
             _mouseDown = false;
+            canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
+            canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
+            painter.DrawFigure(pen, canvas.Graphics, markUp.Calculate());
+            GC.Collect();
             canvas.Save();
         }
     }
