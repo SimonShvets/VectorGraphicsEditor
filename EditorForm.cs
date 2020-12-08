@@ -7,7 +7,7 @@ using VectorGraphicsEditor.MarkUp;
 using VectorGraphicsEditor.Fictory;
 using VectorGraphicsEditor.Controllers;
 using System.Collections.Generic;
-using VectorGraphicsEditor.ToolsControllers
+using VectorGraphicsEditor.Controllers.ToolsControllers;
 
 namespace VectorGraphicsEditor
 {
@@ -19,7 +19,7 @@ namespace VectorGraphicsEditor
         IMarkUp markup;
         IPainter painter;
         IFigureController figureController;
-        IController toolController;
+        IToolController toolController;
         IFictory fictory;
         public EditorForm()
         {
@@ -52,14 +52,14 @@ namespace VectorGraphicsEditor
                 markup = tmp;
             }
             figureController.MouseDownHandle(e.Location, pen, markup, painter, canvas);
-            toolController.MouseDownHandle(e.Location, pen, markup, painter, canvas);
+            //toolController.MouseDownHandle(e.Location, pen, markup, painter, canvas);
             pictureBox.Image = canvas.TmpBitmap;
 
         }
         private void pictureBox_MouseMove(object sender, MouseEventArgs e)
         {
             figureController.MouseMoveHandle(e.Location, pen, markup, painter, canvas);
-            toolController.MouseDownHandle(e.Location, pen, markup, painter, canvas);
+            //toolController.MouseDownHandle(e.Location, pen, markup, painter, canvas);
             pictureBox.Image = canvas.TmpBitmap;     
 
         }
@@ -72,26 +72,31 @@ namespace VectorGraphicsEditor
                 || markup is TriangleMarkUp
                 || markup is IrregularPolygonMarkUp))
             {
-                figures.Add(markup);
+                figures.Add(markup.Calculate());
                 markup.PointList.Clear();
             }
             else if (markup is TriangleMarkUp)
             {
                 if (markup.Length % 3 == 0)
                 {
-                    figures.Add(markup);
+                    figures.Add(markup.Calculate());
                     markup.PointList.Clear();
                 }
             }
-            toolController.MouseDownHandle(e.Location, pen, markup, painter, canvas);
+            if (markup is BrushMarkUp)
+            {
+                figures.Add(markup.Calculate());
+                markup.PointList.Clear();
+            }
+            //toolController.MouseDownHandle(e.Location, pen, markup, painter, canvas);
         }
         private void pictureBox_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             figureController.MouseDoubleHandle(e.Location, pen, markup, painter, canvas);
             pictureBox.Image = canvas.TmpBitmap;
-            figures.Add(markup);
+            figures.Add(markup.Calculate());
             markup.PointList.Clear();
-            toolController.MouseDownHandle(e.Location, pen, markup, painter, canvas);
+            //toolController.MouseDownHandle(e.Location, pen, markup, painter, canvas);
         }
         private void Hand_Click(object sender, EventArgs e)
         {

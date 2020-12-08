@@ -11,7 +11,7 @@ namespace VectorGraphicsEditor.Fictory
 {
     public class BrushFictory : IFictory
     {
-        public IController CreateController()
+        public IFigureController CreateController()
         {
             return new BrushController();
         }

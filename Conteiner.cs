@@ -10,16 +10,15 @@ namespace VectorGraphicsEditor
 {
     public class Conteiner
     {
-        List<IMarkUp> markups { get; set; }
+        List<PointF[]> markups { get; set; }
+        IMarkUp markup { get; set; }
         public Conteiner()
         {
-            markups = new List<IMarkUp>();
+            markups = new List<PointF[]>();
         }
-
-        public void Add(IMarkUp markUp)
+        public void Add(PointF[] markUp)
         {
-            IMarkUp tmp = markUp;
-            markups.Add(tmp);
+            markups.Add(markUp);
         }
     }
 }

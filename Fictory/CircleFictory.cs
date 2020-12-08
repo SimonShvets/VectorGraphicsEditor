@@ -15,7 +15,7 @@ namespace VectorGraphicsEditor.Fictory
         {
             return new CirclePainter();
         }
-        public IController CreateController()
+        public IFigureController CreateController()
         {
             return new CircleController();
         }
