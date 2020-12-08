@@ -1,13 +1,15 @@
 ﻿using System.Drawing;
 using VectorGraphicsEditor.MarkUp;
 using VectorGraphicsEditor.Painter;
+using System.Windows.Forms;
 using System;
 
 namespace VectorGraphicsEditor.Controllers
 {
-    public class TriangleController: IController
+    public class IrregularPolygonController: IFigureController
     {
         private bool _mouseDown = true;
+        private bool _mouseDoubleDown = false;
         public void KeyDown()
         {
             throw new NotImplementedException();
@@ -17,38 +19,40 @@ namespace VectorGraphicsEditor.Controllers
         {
             throw new NotImplementedException();
         }
-        public void MouseDownHandle(PointF point, Pen pen, IMarkUp markUp,IPainter painter, Canvas canvas)
+        public void MouseDownHandle(PointF point, Pen pen, IMarkUp markUp, IPainter painter, Canvas canvas)
         {
-            if (markUp.Length == 0)
+            if (_mouseDoubleDown == false)
             {
-                markUp.StartPoint = point;
-                markUp.PointList.Add(markUp.StartPoint);
-            }
-            else
-            {
-                markUp.Update(point);
-            }
-            if (markUp.Length == 2)
-            {
-                painter.DrawFigure(pen, canvas.Graphics, markUp.Calculate());
-            }
-            else if (markUp.Length == 3)
-            {
-                canvas.Graphics.DrawLine(pen, markUp.StartPoint, markUp.Calculate()[2]);
+                if (markUp.Length == 0)
+                {
+                    markUp.StartPoint = point;
+                    markUp.PointList.Add(markUp.StartPoint);
+                }
+                else
+                {
+                    markUp.Update(point);
+                }
+                canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
+                canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
+                if (markUp.Length != 1)
+                {
+                    painter.DrawFigure(pen, canvas.Graphics, markUp.Calculate());
+                }
+                canvas.Save();
+                GC.Collect();
             }
             _mouseDown = true;
-            canvas.Save();
-            GC.Collect();
         }
 
         public void MouseMoveHandle(PointF point, Pen pen, IMarkUp markUp, IPainter painter, Canvas canvas)
         {
 
-            if (_mouseDown == false && markUp.Length > 0 && markUp.Length < 3)
+            if (_mouseDown == false && _mouseDoubleDown == false)
             {
                 canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
                 canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
                 canvas.Graphics.DrawLine(pen, markUp.PointList[markUp.Length - 1], point);
+                GC.Collect();
             }
         }
 
@@ -61,6 +65,8 @@ namespace VectorGraphicsEditor.Controllers
         public void MouseDoubleHandle(PointF point, Pen pen, IMarkUp markUp, IPainter painter, Canvas canvas)
         {
             _mouseDown = false;
+            _mouseDoubleDown = true;
+            canvas.Graphics.DrawLine(pen, markUp.Calculate()[0], markUp.Calculate()[markUp.Length - 1]);
             canvas.Save();
         }
     }

@@ -47,19 +47,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conteiner.cs" />
-    <Compile Include="Controllers\BrushController.cs" />
-    <Compile Include="Controllers\CircleController.cs" />
-    <Compile Include="Controllers\TriangleController.cs" />
-    <Compile Include="Controllers\RightTriangleController.cs" />
-    <Compile Include="Controllers\RectangleController.cs" />
-    <Compile Include="Controllers\PolygonController.cs" />
-    <Compile Include="Controllers\IsoscelesTriangleController.cs" />
-    <Compile Include="Controllers\IrregularPolygonController.cs" />
-    <Compile Include="Controllers\HandController.cs" />
-    <Compile Include="Controllers\ElipseController.cs" />
-    <Compile Include="Controllers\SquareController.cs" />
-    <Compile Include="Controllers\CurveController.cs" />
-    <Compile Include="Controllers\IController.cs" />
+    <Compile Include="Controllers\FigureControllers\BrushController.cs" />
+    <Compile Include="Controllers\FigureControllers\CircleController.cs" />
+    <Compile Include="Controllers\FigureControllers\TriangleController.cs" />
+    <Compile Include="Controllers\FigureControllers\RightTriangleController.cs" />
+    <Compile Include="Controllers\FigureControllers\RectangleController.cs" />
+    <Compile Include="Controllers\FigureControllers\PolygonController.cs" />
+    <Compile Include="Controllers\FigureControllers\IsoscelesTriangleController.cs" />
+    <Compile Include="Controllers\FigureControllers\IrregularPolygonController.cs" />
+    <Compile Include="Controllers\FigureControllers\HandController.cs" />
+    <Compile Include="Controllers\FigureControllers\ElipseController.cs" />
+    <Compile Include="Controllers\FigureControllers\SquareController.cs" />
+    <Compile Include="Controllers\FigureControllers\CurveController.cs" />
+    <Compile Include="Controllers\FigureControllers\IFigureController.cs" />
+    <Compile Include="Controllers\ToolsControllers\IToolController.cs" />
     <Compile Include="Fictory\BrushFictory.cs" />
     <Compile Include="Fictory\CircleFictory.cs" />
     <Compile Include="Fictory\IrregularPolygonFictory.cs" />
@@ -108,6 +109,8 @@
     <Compile Include="Painter\CurvePainter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Controllers\ToolsControllers\MoverController.cs" />
+    <Compile Include="Tool\MoveTool.cs" />
     <Compile Include="Tool\ITool.cs" />
     <EmbeddedResource Include="EditorForm.resx">
       <DependentUpon>EditorForm.cs</DependentUpon>
