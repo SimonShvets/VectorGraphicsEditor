@@ -37,6 +37,7 @@ namespace VectorGraphicsEditor
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.Rectangle = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -56,8 +57,11 @@ namespace VectorGraphicsEditor
             this.colorDialog2 = new System.Windows.Forms.ColorDialog();
             this.ChColor = new System.Windows.Forms.Button();
             this.clear = new System.Windows.Forms.Button();
-            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.pipette = new System.Windows.Forms.Button();
+            this.Width = new System.Windows.Forms.TextBox();
+            this.Height = new System.Windows.Forms.TextBox();
+            this.SizeLabel = new System.Windows.Forms.Label();
+            this.lupa = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).BeginInit();
@@ -136,12 +140,22 @@ namespace VectorGraphicsEditor
             this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton4.Text = "toolStripButton4";
             // 
+            // toolStripButton5
+            // 
+            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
+            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton5.Name = "toolStripButton5";
+            this.toolStripButton5.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton5.Text = "toolStripButton5";
+            // 
             // pictureBox
             // 
             this.pictureBox.BackColor = System.Drawing.Color.White;
             this.pictureBox.Location = new System.Drawing.Point(91, 53);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(1034, 597);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox.TabIndex = 4;
             this.pictureBox.TabStop = false;
             this.pictureBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDoubleClick);
@@ -293,7 +307,7 @@ namespace VectorGraphicsEditor
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(983, 27);
+            this.textBox2.Location = new System.Drawing.Point(981, 27);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(90, 20);
             this.textBox2.TabIndex = 18;
@@ -311,7 +325,7 @@ namespace VectorGraphicsEditor
             // 
             // ChColor
             // 
-            this.ChColor.Location = new System.Drawing.Point(793, 28);
+            this.ChColor.Location = new System.Drawing.Point(413, 0);
             this.ChColor.Name = "ChColor";
             this.ChColor.Size = new System.Drawing.Size(124, 20);
             this.ChColor.TabIndex = 20;
@@ -321,22 +335,13 @@ namespace VectorGraphicsEditor
             // 
             // clear
             // 
-            this.clear.Location = new System.Drawing.Point(586, 28);
+            this.clear.Location = new System.Drawing.Point(546, 0);
             this.clear.Name = "clear";
             this.clear.Size = new System.Drawing.Size(124, 20);
             this.clear.TabIndex = 21;
             this.clear.Text = "Clear";
             this.clear.UseVisualStyleBackColor = true;
             this.clear.Click += new System.EventHandler(this.clear_Click);
-            // 
-            // toolStripButton5
-            // 
-            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
-            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton5.Text = "toolStripButton5";
             // 
             // pipette
             // 
@@ -346,7 +351,42 @@ namespace VectorGraphicsEditor
             this.pipette.TabIndex = 22;
             this.pipette.Text = "Пипетка";
             this.pipette.UseVisualStyleBackColor = true;
-            this.pipette.Click += new System.EventHandler(this.pipette_Click);
+            this.pipette.Click += new System.EventHandler(this.pipette_Click_1);
+            // 
+            // Width
+            // 
+            this.Width.Location = new System.Drawing.Point(160, 27);
+            this.Width.Name = "Width";
+            this.Width.Size = new System.Drawing.Size(100, 20);
+            this.Width.TabIndex = 23;
+            this.Width.TextChanged += new System.EventHandler(this.Width_TextChanged);
+            // 
+            // Height
+            // 
+            this.Height.Location = new System.Drawing.Point(266, 27);
+            this.Height.Name = "Height";
+            this.Height.Size = new System.Drawing.Size(100, 20);
+            this.Height.TabIndex = 24;
+            this.Height.TextChanged += new System.EventHandler(this.Height_TextChanged);
+            // 
+            // SizeLabel
+            // 
+            this.SizeLabel.AutoSize = true;
+            this.SizeLabel.Location = new System.Drawing.Point(243, 9);
+            this.SizeLabel.Name = "SizeLabel";
+            this.SizeLabel.Size = new System.Drawing.Size(35, 13);
+            this.SizeLabel.TabIndex = 25;
+            this.SizeLabel.Text = "label1";
+            // 
+            // lupa
+            // 
+            this.lupa.Location = new System.Drawing.Point(546, 28);
+            this.lupa.Name = "lupa";
+            this.lupa.Size = new System.Drawing.Size(124, 20);
+            this.lupa.TabIndex = 26;
+            this.lupa.Text = "zoom";
+            this.lupa.UseVisualStyleBackColor = true;
+            this.lupa.Click += new System.EventHandler(this.lupa_Click);
             // 
             // EditorForm
             // 
@@ -354,6 +394,10 @@ namespace VectorGraphicsEditor
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Menu;
             this.ClientSize = new System.Drawing.Size(1164, 687);
+            this.Controls.Add(this.lupa);
+            this.Controls.Add(this.SizeLabel);
+            this.Controls.Add(this.Height);
+            this.Controls.Add(this.Width);
             this.Controls.Add(this.pipette);
             this.Controls.Add(this.clear);
             this.Controls.Add(this.ChColor);
@@ -419,6 +463,10 @@ namespace VectorGraphicsEditor
         private System.Windows.Forms.Button clear;
         private System.Windows.Forms.ToolStripButton toolStripButton5;
         private System.Windows.Forms.Button pipette;
+        private System.Windows.Forms.TextBox Width;
+        private System.Windows.Forms.TextBox Height;
+        private System.Windows.Forms.Label SizeLabel;
+        private System.Windows.Forms.Button lupa;
     }
 }
 

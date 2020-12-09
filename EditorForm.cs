@@ -16,13 +16,21 @@ namespace VectorGraphicsEditor
         IPainter painter;
         Canvas canvas;
         IMarkUp markup;
-        IFictory fictory;
+        IFictory fictory;       
         List<IPainter> painters;
         IMarkUp currentMarkUp;
+        bool pip = false;
+        Size StartSize;
+       // double zoom = 1.25;
+        bool lupaCh = false;
+
 
         public EditorForm()
         {
             InitializeComponent();
+            this.pictureBox.MouseWheel += PictureBox_MouseWheel;
+            //this.pictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
+            SizeLabel.Text = Convert.ToString($"{pictureBox.Width} X {pictureBox.Height}");
             canvas = new Canvas(pictureBox.Width, pictureBox.Height);
             canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
             canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
@@ -35,9 +43,76 @@ namespace VectorGraphicsEditor
             fictory = new BrushFictory();
             painters = new List<IPainter>();
         }
+
+        private void PictureBox_MouseWheel(object sender, MouseEventArgs e)
+        {
+            ////double ntX = e.X;
+            ////double ntY = e.Y;
+            ////double dtX = ntX - e.X;
+            ////double dtY = ntY - e.Y;
+             
+            //if (pictureBox.Image != null)
+            //{
+            //    if (e.Delta < 0)
+            //    {
+            //        double ntX = e.X * zoom;
+            //        double ntY = e.Y * zoom;
+            //        double dtX = ntX - e.X;
+            //        double dtY = ntY - e.Y;
+            //        zoom = zoom * 1.05;
+            //        //pictureBox.Location = e.Location;
+            //        //pictureBox.Height = (int)(pictureBox.Image.Height * zoom);
+            //        //pictureBox.Location = new Point((int)(pictureBox.Location.X - dtX), (int)(pictureBox.Location.Y - dtY));
+            //    }
+            //    else
+            //    {
+            //        if (zoom != 1.0)
+            //        {
+            //            //double ntX = e.X / zoom;
+            //            //double ntY = e.Y / zoom;                        
+            //            //double dtX = ntX - e.X;
+            //            //double dtY = ntY - e.Y;
+            //            //pictureBox.Height = (int)(pictureBox.Image.Height / zoom);
+            //            //pictureBox.Width = pictureBox.Image.Height + pictureBox.Image.Height / 3;
+            //            zoom = zoom / 1.05;
+            //            //pictureBox.Location = e.Location;
+            //            //pictureBox.Location = new Point((int)(pictureBox.Location.X - dtX), (int)(pictureBox.Location.Y - dtY));
+            //        }
+            //    }
+
+            //    pictureBox.Width = (int)Math.Round(pictureBox.Image.Width * zoom);
+            //    pictureBox.Height = (int)Math.Round(pictureBox.Image.Height * zoom);
+            //}
+        }
+
         private void pictureBox_MouseDown(object sender, MouseEventArgs e)
         {
-            if(markup.Length == 0)
+            if (lupaCh == true)
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    const double eps = 1.25;
+                    double ntX = e.X * eps;
+                    double ntY = e.Y * eps;
+                    double dtX = ntX - e.X;
+                    double dtY = ntY - e.Y;
+                    pictureBox.Height = (int)(pictureBox.Height * eps);
+                    pictureBox.Width = pictureBox.Height + pictureBox.Height / 3;
+                    pictureBox.Location = new Point((int)(pictureBox.Location.X - dtX), (int)(pictureBox.Location.Y - dtY));
+                }
+                if (e.Button == MouseButtons.Right)
+                {
+                    const double eps = 1.25;
+                    double ntX = e.X / eps;
+                    double ntY = e.Y / eps;
+                    double dtX = ntX - e.X;
+                    double dtY = ntY - e.Y;
+                    pictureBox.Height = (int)(pictureBox.Height / eps);
+                    pictureBox.Width = pictureBox.Height + pictureBox.Height / 3;
+                    pictureBox.Location = new Point((int)(pictureBox.Location.X - dtX), (int)(pictureBox.Location.Y - dtY));
+                }
+            }
+            if (markup.Length == 0)
             {
             markup = fictory.CreateMarkUp();
             painter = fictory.CreatePainter();
@@ -50,6 +125,13 @@ namespace VectorGraphicsEditor
             }
             painter.MouseDownHandle(e.Location, pen, markup, canvas);
             pictureBox.Image = canvas.TmpBitmap;
+            if (pip == true)
+            {
+                Color pipette = canvas.MainBitmap.GetPixel(e.Location.X, e.Location.Y);
+                pen.Color = pipette;
+            }
+            pip = false;
+            lupaCh = false;
 
         }
         private void pictureBox_MouseMove(object sender, MouseEventArgs e)
@@ -189,17 +271,36 @@ namespace VectorGraphicsEditor
         }
         private void clear_Click(object sender, EventArgs e)
         {
-            canvas.Graphics.Clear(Color.White);
+            canvas.Graphics.Clear(Color.White);           
+        }       
+
+        private void pipette_Click_1(object sender, EventArgs e)
+        {
+            pip = true;
         }
 
-        private void pipette_Click(object sender, EventArgs e, MouseEventArgs eM)
+        private void Width_TextChanged(object sender, EventArgs e)
         {
-            int x = eM.X;
-            int y = eM.Y;
-            PointF point;            
-            Color color;
-            ((Bitmap)pictureBox.Image).GetPixel(x, y);
+            pictureBox.Width = Convert.ToInt32(Width.Text);
+            SizeLabel.Text = Convert.ToString($"{pictureBox.Width} X {pictureBox.Height}");
+        }
 
+        private void Height_TextChanged(object sender, EventArgs e)
+        {
+            pictureBox.Height = Convert.ToInt32(Height.Text);
+            SizeLabel.Text = Convert.ToString($"{pictureBox.Width} X {pictureBox.Height}");
+        }
+
+        private void Fill_Click(object sender, EventArgs e)
+        {            
+            SolidBrush brush = new SolidBrush(Color.Red);
+            GraphicsPath gp = new GraphicsPath(FillMode.Winding);
+            canvas.Graphics.FillPath(brush, gp);
+        }
+
+        private void lupa_Click(object sender, EventArgs e)
+        {
+             lupaCh = true;
         }
     }
 }
