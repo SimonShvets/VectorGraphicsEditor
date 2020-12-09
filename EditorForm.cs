@@ -272,13 +272,8 @@ namespace VectorGraphicsEditor
         private void clear_Click(object sender, EventArgs e)
         {
             canvas.Graphics.Clear(Color.White);           
-        }       
-
-        private void pipette_Click_1(object sender, EventArgs e)
-        {
-            pip = true;
-        }
-
+        }     
+          
         private void Width_TextChanged(object sender, EventArgs e)
         {
             pictureBox.Width = Convert.ToInt32(Width.Text);
@@ -291,16 +286,14 @@ namespace VectorGraphicsEditor
             SizeLabel.Text = Convert.ToString($"{pictureBox.Width} X {pictureBox.Height}");
         }
 
-        private void Fill_Click(object sender, EventArgs e)
-        {            
-            SolidBrush brush = new SolidBrush(Color.Red);
-            GraphicsPath gp = new GraphicsPath(FillMode.Winding);
-            canvas.Graphics.FillPath(brush, gp);
+        private void pipette_Click_1(object sender, EventArgs e)
+        {
+            pip = true;
         }
 
         private void lupa_Click(object sender, EventArgs e)
         {
              lupaCh = true;
-        }
+        }        
     }
 }

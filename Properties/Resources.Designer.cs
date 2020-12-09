@@ -73,6 +73,26 @@ namespace VectorGraphicsEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_кисть_96 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-кисть-96", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap noun_Cross_3244675 {
+            get {
+                object obj = ResourceManager.GetObject("noun_Cross_3244675", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap software_shape_rectangle_98272 {
             get {
                 object obj = ResourceManager.GetObject("software-shape-rectangle_98272", resourceCulture);

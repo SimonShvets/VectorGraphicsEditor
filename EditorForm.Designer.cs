@@ -29,16 +29,7 @@ namespace VectorGraphicsEditor
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditorForm));
             this.createLine = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
-            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.Rectangle = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.Cycle = new System.Windows.Forms.Button();
@@ -62,217 +53,192 @@ namespace VectorGraphicsEditor
             this.Height = new System.Windows.Forms.TextBox();
             this.SizeLabel = new System.Windows.Forms.Label();
             this.lupa = new System.Windows.Forms.Button();
-            this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            this.closeWindow = new System.Windows.Forms.Button();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // createLine
             // 
-            this.createLine.Cursor = System.Windows.Forms.Cursors.Default;
-            this.createLine.Location = new System.Drawing.Point(12, 168);
+            this.createLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(57)))), ((int)(((byte)(61)))));
+            this.createLine.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.createLine.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.createLine.FlatAppearance.BorderSize = 0;
+            this.createLine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.createLine.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.createLine.Location = new System.Drawing.Point(222, 196);
             this.createLine.Name = "createLine";
-            this.createLine.Size = new System.Drawing.Size(73, 46);
+            this.createLine.Size = new System.Drawing.Size(38, 51);
             this.createLine.TabIndex = 1;
             this.createLine.Text = "прямая по N точкам";
-            this.createLine.UseVisualStyleBackColor = true;
+            this.createLine.UseVisualStyleBackColor = false;
             this.createLine.Click += new System.EventHandler(this.Curve_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(12, 116);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(73, 46);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "кисть";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.Brush_Click);
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.BackColor = System.Drawing.SystemColors.Menu;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.toolStripButton2,
-            this.toolStripButton3,
-            this.toolStripButton4,
-            this.toolStripButton5});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1164, 25);
-            this.toolStrip1.TabIndex = 3;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton2.Text = "toolStripButton2";
-            // 
-            // toolStripButton3
-            // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton3.Text = "toolStripButton3";
-            // 
-            // toolStripButton4
-            // 
-            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton4.Text = "toolStripButton4";
-            // 
-            // toolStripButton5
-            // 
-            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
-            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton5.Text = "toolStripButton5";
-            // 
-            // pictureBox
-            // 
-            this.pictureBox.BackColor = System.Drawing.Color.White;
-            this.pictureBox.Location = new System.Drawing.Point(91, 53);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(1034, 597);
-            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox.TabIndex = 4;
-            this.pictureBox.TabStop = false;
-            this.pictureBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDoubleClick);
-            this.pictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-            this.pictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
-            this.pictureBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
             // 
             // Rectangle
             // 
-            this.Rectangle.Location = new System.Drawing.Point(12, 220);
+            this.Rectangle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(57)))), ((int)(((byte)(61)))));
+            this.Rectangle.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Rectangle.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.Rectangle.FlatAppearance.BorderSize = 0;
+            this.Rectangle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Rectangle.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.Rectangle.Location = new System.Drawing.Point(222, 248);
             this.Rectangle.Name = "Rectangle";
-            this.Rectangle.Size = new System.Drawing.Size(73, 46);
+            this.Rectangle.Size = new System.Drawing.Size(38, 51);
             this.Rectangle.TabIndex = 5;
             this.Rectangle.Text = "Прямоугольник по двум точкам";
-            this.Rectangle.UseVisualStyleBackColor = true;
+            this.Rectangle.UseVisualStyleBackColor = false;
             this.Rectangle.Click += new System.EventHandler(this.Rectangle_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(12, 64);
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(57)))), ((int)(((byte)(61)))));
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.button2.Location = new System.Drawing.Point(931, 50);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(73, 46);
             this.button2.TabIndex = 6;
             this.button2.Text = "Hand";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.Hand_Click);
             // 
             // Cycle
             // 
-            this.Cycle.Location = new System.Drawing.Point(12, 272);
+            this.Cycle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(57)))), ((int)(((byte)(61)))));
+            this.Cycle.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Cycle.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.Cycle.FlatAppearance.BorderSize = 0;
+            this.Cycle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Cycle.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.Cycle.Location = new System.Drawing.Point(222, 300);
             this.Cycle.Name = "Cycle";
-            this.Cycle.Size = new System.Drawing.Size(73, 46);
+            this.Cycle.Size = new System.Drawing.Size(38, 51);
             this.Cycle.TabIndex = 7;
             this.Cycle.Text = "Окружность по двум точкам";
-            this.Cycle.UseVisualStyleBackColor = true;
+            this.Cycle.UseVisualStyleBackColor = false;
             this.Cycle.Click += new System.EventHandler(this.Circle_Click);
             // 
             // Elipse
             // 
-            this.Elipse.Location = new System.Drawing.Point(12, 324);
+            this.Elipse.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(57)))), ((int)(((byte)(61)))));
+            this.Elipse.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Elipse.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.Elipse.FlatAppearance.BorderSize = 0;
+            this.Elipse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Elipse.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.Elipse.Location = new System.Drawing.Point(222, 352);
             this.Elipse.Name = "Elipse";
-            this.Elipse.Size = new System.Drawing.Size(73, 46);
+            this.Elipse.Size = new System.Drawing.Size(38, 51);
             this.Elipse.TabIndex = 8;
             this.Elipse.Text = "Эллипс по двум точкам";
-            this.Elipse.UseVisualStyleBackColor = true;
+            this.Elipse.UseVisualStyleBackColor = false;
             this.Elipse.Click += new System.EventHandler(this.Ellipse_Click);
             // 
             // Triangle
             // 
-            this.Triangle.Location = new System.Drawing.Point(12, 376);
+            this.Triangle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(57)))), ((int)(((byte)(61)))));
+            this.Triangle.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Triangle.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.Triangle.FlatAppearance.BorderSize = 0;
+            this.Triangle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Triangle.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.Triangle.Location = new System.Drawing.Point(222, 404);
             this.Triangle.Name = "Triangle";
-            this.Triangle.Size = new System.Drawing.Size(73, 46);
+            this.Triangle.Size = new System.Drawing.Size(38, 51);
             this.Triangle.TabIndex = 9;
             this.Triangle.Text = "Треугольник по трем точкам";
-            this.Triangle.UseVisualStyleBackColor = true;
+            this.Triangle.UseVisualStyleBackColor = false;
             this.Triangle.Click += new System.EventHandler(this.Triangle_Click);
             // 
             // RightTriangle
             // 
-            this.RightTriangle.Location = new System.Drawing.Point(12, 428);
+            this.RightTriangle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(57)))), ((int)(((byte)(61)))));
+            this.RightTriangle.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.RightTriangle.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.RightTriangle.FlatAppearance.BorderSize = 0;
+            this.RightTriangle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RightTriangle.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.RightTriangle.Location = new System.Drawing.Point(222, 456);
             this.RightTriangle.Name = "RightTriangle";
-            this.RightTriangle.Size = new System.Drawing.Size(73, 64);
+            this.RightTriangle.Size = new System.Drawing.Size(38, 69);
             this.RightTriangle.TabIndex = 10;
             this.RightTriangle.Text = "Прямоугольный треугольник по двум точкам";
-            this.RightTriangle.UseVisualStyleBackColor = true;
+            this.RightTriangle.UseVisualStyleBackColor = false;
             this.RightTriangle.Click += new System.EventHandler(this.RightTriangle_Click);
             // 
             // IsoscelesTriangle
             // 
-            this.IsoscelesTriangle.Location = new System.Drawing.Point(12, 498);
+            this.IsoscelesTriangle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(57)))), ((int)(((byte)(61)))));
+            this.IsoscelesTriangle.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.IsoscelesTriangle.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.IsoscelesTriangle.FlatAppearance.BorderSize = 0;
+            this.IsoscelesTriangle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.IsoscelesTriangle.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.IsoscelesTriangle.Location = new System.Drawing.Point(222, 526);
             this.IsoscelesTriangle.Name = "IsoscelesTriangle";
-            this.IsoscelesTriangle.Size = new System.Drawing.Size(73, 46);
+            this.IsoscelesTriangle.Size = new System.Drawing.Size(38, 51);
             this.IsoscelesTriangle.TabIndex = 11;
             this.IsoscelesTriangle.Text = "Равнобедренный (не равносторонний) треугольник по двум точкам";
-            this.IsoscelesTriangle.UseVisualStyleBackColor = true;
+            this.IsoscelesTriangle.UseVisualStyleBackColor = false;
             this.IsoscelesTriangle.Click += new System.EventHandler(this.IsoscelesTriangle_Click);
             // 
             // WrongPolygon
             // 
-            this.WrongPolygon.Location = new System.Drawing.Point(12, 550);
+            this.WrongPolygon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(57)))), ((int)(((byte)(61)))));
+            this.WrongPolygon.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.WrongPolygon.FlatAppearance.BorderSize = 0;
+            this.WrongPolygon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.WrongPolygon.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.WrongPolygon.Location = new System.Drawing.Point(222, 578);
             this.WrongPolygon.Name = "WrongPolygon";
-            this.WrongPolygon.Size = new System.Drawing.Size(73, 46);
+            this.WrongPolygon.Size = new System.Drawing.Size(38, 51);
             this.WrongPolygon.TabIndex = 12;
             this.WrongPolygon.Text = "N угольник по N точкам";
-            this.WrongPolygon.UseVisualStyleBackColor = true;
+            this.WrongPolygon.UseVisualStyleBackColor = false;
             this.WrongPolygon.Click += new System.EventHandler(this.IrregularPolygon_Click);
             // 
             // Polygon
             // 
-            this.Polygon.Location = new System.Drawing.Point(12, 602);
+            this.Polygon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(57)))), ((int)(((byte)(61)))));
+            this.Polygon.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Polygon.FlatAppearance.BorderSize = 0;
+            this.Polygon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Polygon.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.Polygon.Location = new System.Drawing.Point(222, 630);
             this.Polygon.Name = "Polygon";
-            this.Polygon.Size = new System.Drawing.Size(73, 46);
+            this.Polygon.Size = new System.Drawing.Size(38, 51);
             this.Polygon.TabIndex = 13;
             this.Polygon.Text = "Правильный N угольник по числу граней и двум точкам";
-            this.Polygon.UseVisualStyleBackColor = true;
+            this.Polygon.UseVisualStyleBackColor = false;
             this.Polygon.Click += new System.EventHandler(this.Polygon_Click);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(546, 51);
+            this.textBox1.Location = new System.Drawing.Point(742, 114);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(143, 20);
+            this.textBox1.Size = new System.Drawing.Size(179, 20);
             this.textBox1.TabIndex = 14;
             this.textBox1.Text = "Введите количество углов";
             this.textBox1.Visible = false;
             // 
             // numericUpDown
             // 
-            this.numericUpDown.Location = new System.Drawing.Point(576, 77);
+            this.numericUpDown.Location = new System.Drawing.Point(772, 140);
             this.numericUpDown.Minimum = new decimal(new int[] {
             3,
             0,
             0,
             0});
             this.numericUpDown.Name = "numericUpDown";
-            this.numericUpDown.Size = new System.Drawing.Size(85, 20);
+            this.numericUpDown.Size = new System.Drawing.Size(121, 20);
             this.numericUpDown.TabIndex = 16;
             this.numericUpDown.Value = new decimal(new int[] {
             3,
@@ -284,7 +250,7 @@ namespace VectorGraphicsEditor
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(1077, 28);
+            this.numericUpDown1.Location = new System.Drawing.Point(1202, 78);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             20,
             0,
@@ -307,7 +273,7 @@ namespace VectorGraphicsEditor
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(981, 27);
+            this.textBox2.Location = new System.Drawing.Point(1106, 77);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(90, 20);
             this.textBox2.TabIndex = 18;
@@ -315,47 +281,70 @@ namespace VectorGraphicsEditor
             // 
             // square
             // 
-            this.square.Location = new System.Drawing.Point(12, 28);
+            this.square.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(57)))), ((int)(((byte)(61)))));
+            this.square.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.square.FlatAppearance.BorderSize = 0;
+            this.square.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.square.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.square.Location = new System.Drawing.Point(222, 87);
             this.square.Name = "square";
-            this.square.Size = new System.Drawing.Size(46, 31);
+            this.square.Size = new System.Drawing.Size(38, 67);
             this.square.TabIndex = 19;
             this.square.Text = "квадрат";
-            this.square.UseVisualStyleBackColor = true;
+            this.square.UseVisualStyleBackColor = false;
             this.square.Click += new System.EventHandler(this.square_Click);
             // 
             // ChColor
             // 
-            this.ChColor.Location = new System.Drawing.Point(413, 0);
+            this.ChColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(57)))), ((int)(((byte)(61)))));
+            this.ChColor.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ChColor.FlatAppearance.BorderSize = 0;
+            this.ChColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ChColor.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.ChColor.Location = new System.Drawing.Point(538, 50);
             this.ChColor.Name = "ChColor";
             this.ChColor.Size = new System.Drawing.Size(124, 20);
             this.ChColor.TabIndex = 20;
             this.ChColor.Text = "Цвет";
-            this.ChColor.UseVisualStyleBackColor = true;
+            this.ChColor.UseVisualStyleBackColor = false;
             this.ChColor.Click += new System.EventHandler(this.ChColor_Click);
             // 
             // clear
             // 
-            this.clear.Location = new System.Drawing.Point(546, 0);
+            this.clear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(57)))), ((int)(((byte)(61)))));
+            this.clear.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.clear.FlatAppearance.BorderSize = 0;
+            this.clear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.clear.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.clear.Location = new System.Drawing.Point(671, 50);
             this.clear.Name = "clear";
             this.clear.Size = new System.Drawing.Size(124, 20);
             this.clear.TabIndex = 21;
             this.clear.Text = "Clear";
-            this.clear.UseVisualStyleBackColor = true;
+            this.clear.UseVisualStyleBackColor = false;
             this.clear.Click += new System.EventHandler(this.clear_Click);
             // 
             // pipette
             // 
-            this.pipette.Location = new System.Drawing.Point(413, 28);
+            this.pipette.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(57)))), ((int)(((byte)(61)))));
+            this.pipette.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pipette.FlatAppearance.BorderSize = 0;
+            this.pipette.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.pipette.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.pipette.Location = new System.Drawing.Point(538, 78);
             this.pipette.Name = "pipette";
             this.pipette.Size = new System.Drawing.Size(124, 20);
             this.pipette.TabIndex = 22;
             this.pipette.Text = "Пипетка";
-            this.pipette.UseVisualStyleBackColor = true;
+            this.pipette.UseVisualStyleBackColor = false;
             this.pipette.Click += new System.EventHandler(this.pipette_Click_1);
             // 
             // Width
             // 
-            this.Width.Location = new System.Drawing.Point(160, 27);
+            this.Width.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(46)))));
+            this.Width.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Width.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.Width.Location = new System.Drawing.Point(285, 77);
             this.Width.Name = "Width";
             this.Width.Size = new System.Drawing.Size(100, 20);
             this.Width.TabIndex = 23;
@@ -363,7 +352,10 @@ namespace VectorGraphicsEditor
             // 
             // Height
             // 
-            this.Height.Location = new System.Drawing.Point(266, 27);
+            this.Height.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(46)))));
+            this.Height.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Height.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.Height.Location = new System.Drawing.Point(391, 77);
             this.Height.Name = "Height";
             this.Height.Size = new System.Drawing.Size(100, 20);
             this.Height.TabIndex = 24;
@@ -372,7 +364,8 @@ namespace VectorGraphicsEditor
             // SizeLabel
             // 
             this.SizeLabel.AutoSize = true;
-            this.SizeLabel.Location = new System.Drawing.Point(243, 9);
+            this.SizeLabel.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.SizeLabel.Location = new System.Drawing.Point(368, 59);
             this.SizeLabel.Name = "SizeLabel";
             this.SizeLabel.Size = new System.Drawing.Size(35, 13);
             this.SizeLabel.TabIndex = 25;
@@ -380,20 +373,72 @@ namespace VectorGraphicsEditor
             // 
             // lupa
             // 
-            this.lupa.Location = new System.Drawing.Point(546, 28);
+            this.lupa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(57)))), ((int)(((byte)(61)))));
+            this.lupa.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lupa.FlatAppearance.BorderSize = 0;
+            this.lupa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lupa.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.lupa.Location = new System.Drawing.Point(671, 78);
             this.lupa.Name = "lupa";
             this.lupa.Size = new System.Drawing.Size(124, 20);
             this.lupa.TabIndex = 26;
             this.lupa.Text = "zoom";
-            this.lupa.UseVisualStyleBackColor = true;
+            this.lupa.UseVisualStyleBackColor = false;
             this.lupa.Click += new System.EventHandler(this.lupa_Click);
+            // 
+            // closeWindow
+            // 
+            this.closeWindow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(57)))), ((int)(((byte)(61)))));
+            this.closeWindow.BackgroundImage = global::VectorGraphicsEditor.Properties.Resources.noun_Cross_3244675;
+            this.closeWindow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.closeWindow.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.closeWindow.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.closeWindow.FlatAppearance.BorderSize = 0;
+            this.closeWindow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.closeWindow.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.closeWindow.Location = new System.Drawing.Point(1358, 12);
+            this.closeWindow.Name = "closeWindow";
+            this.closeWindow.Size = new System.Drawing.Size(26, 26);
+            this.closeWindow.TabIndex = 27;
+            this.closeWindow.UseVisualStyleBackColor = false;
+            // 
+            // pictureBox
+            // 
+            this.pictureBox.BackColor = System.Drawing.Color.White;
+            this.pictureBox.Location = new System.Drawing.Point(287, 116);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(1070, 601);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox.TabIndex = 4;
+            this.pictureBox.TabStop = false;
+            this.pictureBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDoubleClick);
+            this.pictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+            this.pictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
+            this.pictureBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(57)))), ((int)(((byte)(61)))));
+            this.button3.BackgroundImage = global::VectorGraphicsEditor.Properties.Resources.icons8_кисть_96;
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.button3.Location = new System.Drawing.Point(109, 182);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(38, 43);
+            this.button3.TabIndex = 2;
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.Brush_Click);
             // 
             // EditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Menu;
-            this.ClientSize = new System.Drawing.Size(1164, 687);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(42)))), ((int)(((byte)(49)))));
+            this.ClientSize = new System.Drawing.Size(1396, 743);
+            this.Controls.Add(this.closeWindow);
             this.Controls.Add(this.lupa);
             this.Controls.Add(this.SizeLabel);
             this.Controls.Add(this.Height);
@@ -416,18 +461,16 @@ namespace VectorGraphicsEditor
             this.Controls.Add(this.button2);
             this.Controls.Add(this.Rectangle);
             this.Controls.Add(this.pictureBox);
-            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.createLine);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Name = "EditorForm";
             this.Text = "Form1";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EditorForm_KeyDown);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -437,10 +480,6 @@ namespace VectorGraphicsEditor
 
         private System.Windows.Forms.Button createLine;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.Button Rectangle;
         private System.Windows.Forms.Button button2;
@@ -456,17 +495,16 @@ namespace VectorGraphicsEditor
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button square;
-        private System.Windows.Forms.ToolStripButton toolStripButton4;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.ColorDialog colorDialog2;
         private System.Windows.Forms.Button ChColor;
         private System.Windows.Forms.Button clear;
-        private System.Windows.Forms.ToolStripButton toolStripButton5;
         private System.Windows.Forms.Button pipette;
         private System.Windows.Forms.TextBox Width;
         private System.Windows.Forms.TextBox Height;
         private System.Windows.Forms.Label SizeLabel;
         private System.Windows.Forms.Button lupa;
+        private System.Windows.Forms.Button closeWindow;
     }
 }
 
