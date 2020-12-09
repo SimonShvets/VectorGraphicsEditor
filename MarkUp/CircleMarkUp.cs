@@ -7,6 +7,13 @@ namespace VectorGraphicsEditor.MarkUp
     public class CircleMarkUp: IMarkUp
     {
         public List<PointF> PointList { get; set; }
+        public PointF[] Points
+        {
+            get
+            {
+                return PointList.ToArray();
+            }
+        }
         public PointF StartPoint { get; set; }
         public int Length
         {

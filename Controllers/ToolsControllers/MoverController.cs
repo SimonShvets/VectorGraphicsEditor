@@ -4,9 +4,9 @@ using VectorGraphicsEditor.MarkUp;
 using VectorGraphicsEditor.Painter;
 using VectorGraphicsEditor.Controllers.ToolsControllers;
 
-namespace VectorGraphicsEditor.ToolsControllers
+namespace VectorGraphicsEditor.Controllers.ToolsControllers
 {
-    public class Mover : IToolController
+    public class MoverController: IToolController
     {
         private bool mouseDown;
         public bool toolSelected;

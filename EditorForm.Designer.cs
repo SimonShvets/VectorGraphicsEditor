@@ -55,6 +55,7 @@ namespace VectorGraphicsEditor
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.colorDialog2 = new System.Windows.Forms.ColorDialog();
             this.ChColor = new System.Windows.Forms.Button();
+            this.Mover = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).BeginInit();
@@ -315,12 +316,23 @@ namespace VectorGraphicsEditor
             this.ChColor.UseVisualStyleBackColor = true;
             this.ChColor.Click += new System.EventHandler(this.ChColor_Click);
             // 
+            // Mover
+            // 
+            this.Mover.Location = new System.Drawing.Point(159, 27);
+            this.Mover.Name = "Mover";
+            this.Mover.Size = new System.Drawing.Size(75, 23);
+            this.Mover.TabIndex = 21;
+            this.Mover.Text = "Mover";
+            this.Mover.UseVisualStyleBackColor = true;
+            this.Mover.Click += new System.EventHandler(this.Mover_Click);
+            // 
             // EditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
             this.ClientSize = new System.Drawing.Size(1164, 687);
+            this.Controls.Add(this.Mover);
             this.Controls.Add(this.ChColor);
             this.Controls.Add(this.square);
             this.Controls.Add(this.textBox2);
@@ -381,6 +393,7 @@ namespace VectorGraphicsEditor
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.ColorDialog colorDialog2;
         private System.Windows.Forms.Button ChColor;
+        private System.Windows.Forms.Button Mover;
     }
 }
 

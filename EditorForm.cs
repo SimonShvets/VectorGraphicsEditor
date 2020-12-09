@@ -28,18 +28,30 @@ namespace VectorGraphicsEditor
             canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
             canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
             pictureBox.Image = canvas.MainBitmap;
-            pen = new Pen(Color.Red, (int)numericUpDown1.Value);            
+            pen = new Pen(Color.Red, (int)numericUpDown1.Value);
             pen.StartCap = LineCap.Round;
             pen.EndCap = LineCap.Round;
             painter = new BrushPainter();
             markup = new BrushMarkUp();
             figureController = new BrushController();
+            toolController = new MoverController();
             fictory = new BrushFictory();
             figures = new Conteiner();
         }
         private void pictureBox_MouseDown(object sender, MouseEventArgs e)
         {
-            if(markup.Length == 0 || painter is BrushPainter)
+            if (markup is TriangleMarkUp)
+            {
+                if (markup.Length % 3 == 0)
+                {
+                    markup = fictory.CreateMarkUp();
+                    painter = fictory.CreatePainter();
+                    figureController = fictory.CreateController();
+                }
+            }
+            if (!(markup is CurveMarkUp 
+                || markup is IrregularPolygonMarkUp
+                || markup is TriangleMarkUp))
             {
             markup = fictory.CreateMarkUp();
             painter = fictory.CreatePainter();
@@ -72,21 +84,18 @@ namespace VectorGraphicsEditor
                 || markup is TriangleMarkUp
                 || markup is IrregularPolygonMarkUp))
             {
-                figures.Add(markup.Calculate());
-                markup.PointList.Clear();
+                figures.Add(markup);
             }
             else if (markup is TriangleMarkUp)
             {
                 if (markup.Length % 3 == 0)
                 {
-                    figures.Add(markup.Calculate());
-                    markup.PointList.Clear();
+                    figures.Add(markup);
                 }
             }
             if (markup is BrushMarkUp)
             {
-                figures.Add(markup.Calculate());
-                markup.PointList.Clear();
+                figures.Add(markup);
             }
             //toolController.MouseDownHandle(e.Location, pen, markup, painter, canvas);
         }
@@ -94,8 +103,14 @@ namespace VectorGraphicsEditor
         {
             figureController.MouseDoubleHandle(e.Location, pen, markup, painter, canvas);
             pictureBox.Image = canvas.TmpBitmap;
-            figures.Add(markup.Calculate());
-            markup.PointList.Clear();
+            figures.Add(markup);
+            if (markup is CurveMarkUp
+                || markup is IrregularPolygonMarkUp)
+            {
+                markup = fictory.CreateMarkUp();
+                painter = fictory.CreatePainter();
+                figureController = fictory.CreateController();
+            }
             //toolController.MouseDownHandle(e.Location, pen, markup, painter, canvas);
         }
         private void Hand_Click(object sender, EventArgs e)
@@ -103,18 +118,27 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             fictory = new HandFictory();
+            markup = fictory.CreateMarkUp();
+            painter = fictory.CreatePainter();
+            figureController = fictory.CreateController();
         }
         private void Brush_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             fictory = new BrushFictory();
+            markup = fictory.CreateMarkUp();
+            painter = fictory.CreatePainter();
+            figureController = fictory.CreateController();
         }
         private void Curve_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             fictory = new CurveFictory();
+            markup = fictory.CreateMarkUp();
+            painter = fictory.CreatePainter();
+            figureController = fictory.CreateController();
         }   
 
         private void Circle_Click(object sender, EventArgs e)
@@ -122,6 +146,9 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             fictory = new CircleFictory();
+            markup = fictory.CreateMarkUp();
+            painter = fictory.CreatePainter();
+            figureController = fictory.CreateController();
         }
 
         private void Ellipse_Click(object sender, EventArgs e)
@@ -129,6 +156,9 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             fictory = new ElipseFictory();
+            markup = fictory.CreateMarkUp();
+            painter = fictory.CreatePainter();
+            figureController = fictory.CreateController();
         }
 
         private void Triangle_Click(object sender, EventArgs e)
@@ -136,6 +166,9 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             fictory = new TriangleFictory();
+            markup = fictory.CreateMarkUp();
+            painter = fictory.CreatePainter();
+            figureController = fictory.CreateController();
         }
 
         private void IsoscelesTriangle_Click(object sender, EventArgs e)
@@ -143,6 +176,9 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             fictory = new IsoscelesTriangleFictory();
+            markup = fictory.CreateMarkUp();
+            painter = fictory.CreatePainter();
+            figureController = fictory.CreateController();
         }
 
         private void IrregularPolygon_Click(object sender, EventArgs e)
@@ -150,6 +186,9 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             fictory = new IrregularPolygonFictory();
+            markup = fictory.CreateMarkUp();
+            painter = fictory.CreatePainter();
+            figureController = fictory.CreateController();
         }
 
         private void Polygon_Click(object sender, EventArgs e)
@@ -157,6 +196,9 @@ namespace VectorGraphicsEditor
             textBox1.Visible = true;
             numericUpDown.Visible = true;
             fictory = new PolygonFictory();
+            markup = fictory.CreateMarkUp();
+            painter = fictory.CreatePainter();
+            figureController = fictory.CreateController();
 
         }
         private void numericUpDown_TextChanged(object sender, EventArgs e)
@@ -176,6 +218,9 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             fictory = new RectangleFictory();
+            markup = fictory.CreateMarkUp();
+            painter = fictory.CreatePainter();
+            figureController = fictory.CreateController();
         }
 
         private void square_Click(object sender, EventArgs e)
@@ -183,6 +228,9 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             fictory = new SquareFictory();
+            markup = fictory.CreateMarkUp();
+            painter = fictory.CreatePainter();
+            figureController = fictory.CreateController();
         }
 
         private void EditorForm_KeyDown(object sender, KeyEventArgs e)
@@ -208,6 +256,14 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             fictory = new RightTriangleFictory();
+            markup = fictory.CreateMarkUp();
+            painter = fictory.CreatePainter();
+            figureController = fictory.CreateController();
+        }
+
+        private void Mover_Click(object sender, EventArgs e)
+        {
+            toolController = new MoverController();
         }
     }
 }

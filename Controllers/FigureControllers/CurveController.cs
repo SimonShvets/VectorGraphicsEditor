@@ -50,7 +50,10 @@ namespace VectorGraphicsEditor.Controllers
             {
                 canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
                 canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
-                canvas.Graphics.DrawLine(pen, markUp.PointList[markUp.Length-1], point);
+                if (markUp.Length != 0)
+                {
+                    canvas.Graphics.DrawLine(pen, markUp.PointList[markUp.Length - 1], point);
+                }
                 GC.Collect();
             }
         }
