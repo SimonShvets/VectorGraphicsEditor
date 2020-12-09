@@ -2,39 +2,42 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using VectorGraphicsEditor.Painter;
+using VectorGraphicsEditor.Controllers;
 
-namespace VectorGraphicsEditor.MarkUp
+namespace VectorGraphicsEditor.Figure
 {
-    public class PolygonMarkUp: IMarkUp
+    public class PolygonFigure: AbstractFigure
     {
         public int N { get; set; }
-        public List<PointF> PointList { get; set; }
-        public PointF StartPoint { get; set; }
-        public int Length
+        public override List<PointF> Markup { get; set; }
+        public override PointF StartPoint { get; set; }
+        public override PointF EndPoint { get; set; }
+        public override int Length
         {
             get
             {
-                return PointList.Count;
+                return Markup.Count;
             }
         }
-        public PolygonMarkUp()
+        public PolygonFigure(IPainter painter, IFigureController figureController)
         {
-            PointList = new List<PointF>();
+            Markup = new List<PointF>();
+            Painter = painter;
+            FigureController = figureController;
         }
-        public PointF[] Calculate()
+        public override PointF[] Calculate()
         {
 
-            return PointList.ToArray();
+            return Markup.ToArray();
         }
 
-        public void Update(PointF endPoint)
+        public override void Update(PointF endPoint)
         {
             if (N > 2)
             {
                 PointF PolygonStartPoint = new PointF(StartPoint.X, endPoint.Y);
-                PointList = new List<PointF>
+                Markup = new List<PointF>
             {
                 PolygonStartPoint
             };
@@ -47,7 +50,7 @@ namespace VectorGraphicsEditor.MarkUp
                     float x1 = (float)((StartPoint.X - (endPoint.Y - StartPoint.Y) * Math.Sin(rad)));
                     float y1 = (float)((StartPoint.Y + (endPoint.Y - StartPoint.Y) * Math.Cos(rad)));
                     PointF point = new PointF(x1, y1);
-                    PointList.Add(point);
+                    Markup.Add(point);
                     int x = (int)StartPoint.X;
                 }
             }

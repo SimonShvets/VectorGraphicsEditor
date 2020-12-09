@@ -1,5 +1,5 @@
 ﻿using System.Drawing;
-using VectorGraphicsEditor.MarkUp;
+using VectorGraphicsEditor.Figure;
 using VectorGraphicsEditor.Painter;
 using System.Windows.Forms;
 using System;
@@ -19,24 +19,24 @@ namespace VectorGraphicsEditor.Controllers
         {
             throw new NotImplementedException();
         }
-        public void MouseDownHandle(PointF point, Pen pen, IMarkUp markUp, IPainter painter, Canvas canvas)
+        public void MouseDownHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas)
         {
             if (_mouseDoubleDown == false)
             {
-                if (markUp.Length == 0)
+                if (figure.Length == 0)
                 {
-                    markUp.StartPoint = point;
-                    markUp.PointList.Add(markUp.StartPoint);
+                    figure.StartPoint = point;
+                    figure.Markup.Add(figure.StartPoint);
                 }
                 else
                 {
-                    markUp.Update(point);
+                    figure.Update(point);
                 }
                 canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
                 canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
-                if (markUp.Length != 1)
+                if (figure.Length != 1)
                 {
-                    painter.DrawFigure(pen, canvas.Graphics, markUp.Calculate());
+                    figure.Painter.DrawFigure(pen, canvas.Graphics, figure.Calculate());
                 }
                 canvas.Save();
                 GC.Collect();
@@ -44,32 +44,33 @@ namespace VectorGraphicsEditor.Controllers
             _mouseDown = true;
         }
 
-        public void MouseMoveHandle(PointF point, Pen pen, IMarkUp markUp, IPainter painter, Canvas canvas)
+        public void MouseMoveHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas)
         {
 
             if (_mouseDown == false && _mouseDoubleDown == false)
             {
                 canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
                 canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
-                if (markUp.Length != 0)
+                if (figure.Length != 0)
                 {
-                    canvas.Graphics.DrawLine(pen, markUp.PointList[markUp.Length - 1], point);
+                    canvas.Graphics.DrawLine(pen, figure.Markup[figure.Length - 1], point);
                 }
                 GC.Collect();
             }
         }
 
-        public void MouseUpHandle(PointF point, Pen pen, IMarkUp markUp, IPainter painter, Canvas canvas)
+        public void MouseUpHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas)
         {
             _mouseDown = false;
             canvas.Save();
         }
 
-        public void MouseDoubleHandle(PointF point, Pen pen, IMarkUp markUp, IPainter painter, Canvas canvas)
+        public void MouseDoubleHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas)
         {
             _mouseDown = false;
             _mouseDoubleDown = true;
-            canvas.Graphics.DrawLine(pen, markUp.Calculate()[0], markUp.Calculate()[markUp.Length - 1]);
+            canvas.Graphics.DrawLine(pen, figure.Calculate()[0], figure.Calculate()[figure.Length - 1]);
+            figure.EndPoint = point;
             canvas.Save();
         }
     }

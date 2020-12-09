@@ -1,41 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using VectorGraphicsEditor.Painter;
+using VectorGraphicsEditor.Controllers;
 
-namespace VectorGraphicsEditor.MarkUp
+namespace VectorGraphicsEditor.Figure
 {
-    public class CircleMarkUp: IMarkUp
+    public class CircleFigure : AbstractFigure
     {
-        public List<PointF> PointList { get; set; }
-        public PointF[] Points
-        {
-            get
-            {
-                return PointList.ToArray();
-            }
-        }
-        public PointF StartPoint { get; set; }
-        public int Length
-        {
-            get
-            {
-                return PointList.Count;
-            }
-        }
         private int N = 90;
-        public CircleMarkUp()
+        public override List<PointF> Markup { get; set; }
+        public override PointF StartPoint { get; set; }
+        public override PointF EndPoint { get; set; }
+        public override int Length
         {
-            PointList = new List<PointF>();
+            get
+            {
+                return Markup.Count;
+            }
         }
-        public PointF[] Calculate()
+        public CircleFigure(IPainter painter, IFigureController figureController)
         {
-            return PointList.ToArray();
+            Markup = new List<PointF>();
+            Painter = painter;
+            FigureController = figureController;
+        }
+        public override PointF[] Calculate()
+        {
+            return Markup.ToArray();
         }
 
-        public void Update(PointF endPoint)
+        public override void Update(PointF endPoint)
         {
             PointF CircleStartPoint = new PointF(StartPoint.X, endPoint.Y);
-            PointList = new List<PointF>
+            Markup = new List<PointF>
             {
                 CircleStartPoint
             };
@@ -48,7 +46,7 @@ namespace VectorGraphicsEditor.MarkUp
                 float x1 = (float)((StartPoint.X - (endPoint.Y - StartPoint.Y) * Math.Sin(rad)));
                 float y1 = (float)((StartPoint.Y + (endPoint.Y - StartPoint.Y) * Math.Cos(rad)));
                 PointF point = new PointF(x1, y1);
-                PointList.Add(point);
+                Markup.Add(point);
             }
         }
         //int y = (int)PointList[0].Y;

@@ -2,34 +2,37 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using VectorGraphicsEditor.Painter;
+using VectorGraphicsEditor.Controllers;
 
-namespace VectorGraphicsEditor.MarkUp
+namespace VectorGraphicsEditor.Figure
 {
-    public class IsoscelesTriangleMarkUp : IMarkUp
+    public class IsoscelesTriangleFigure : AbstractFigure
     {
-        public List<PointF> PointList { get; set; }
-        public PointF StartPoint { get; set; }
-        public int Length
+        public override List<PointF> Markup { get; set; }
+        public override PointF StartPoint { get; set; }
+        public override PointF EndPoint { get; set; }
+        public override int Length
         {
             get
             {
-                return PointList.Count;
+                return Markup.Count;
             }
         }
-        public IsoscelesTriangleMarkUp()
+        public IsoscelesTriangleFigure(IPainter painter, IFigureController figureController)
         {
-            PointList = new List<PointF>();
+            Markup = new List<PointF>();
+            Painter = painter;
+            FigureController = figureController;
         }
-        public PointF[] Calculate()
+        public override PointF[] Calculate()
         {
-            return PointList.ToArray();
+            return Markup.ToArray();
         }
 
-        public void Update(PointF endPoint)
+        public override void Update(PointF endPoint)
         {
-            PointList = new List<PointF>
+            Markup = new List<PointF>
             {
                 new PointF((int)StartPoint.X, (int)StartPoint.Y),
                 new PointF((int)endPoint.X, (int)endPoint.Y),
