@@ -152,9 +152,12 @@ namespace VectorGraphicsEditor
         }
         private void numericUpDown_TextChanged(object sender, EventArgs e)
         {
-            PolygonMarkUp tmp = (PolygonMarkUp)markup;
-            tmp.N = (int)numericUpDown.Value;
-            markup = tmp;
+            if(markup is PolygonMarkUp)
+            {
+                PolygonMarkUp tmp = (PolygonMarkUp)markup;
+                tmp.N = (int)numericUpDown.Value;
+                markup = tmp;
+            }
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
