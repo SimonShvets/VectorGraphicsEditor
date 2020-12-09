@@ -6,7 +6,7 @@ namespace VectorGraphicsEditor.Fictory
 {
     public class TriangleFictory : IFictory
     {
-        public IController CreateController()
+        public IFigureController CreateController()
         {
             return new TriangleController();
         }

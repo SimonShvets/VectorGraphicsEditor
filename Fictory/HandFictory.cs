@@ -6,7 +6,7 @@ namespace VectorGraphicsEditor.Fictory
 {
     public class HandFictory : IFictory
     {
-        public IController CreateController()
+        public IFigureController CreateController()
         {
             return new HandController();
         }

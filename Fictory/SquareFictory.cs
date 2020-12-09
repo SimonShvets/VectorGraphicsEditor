@@ -6,7 +6,7 @@ namespace VectorGraphicsEditor.Fictory
 {
     public class SquareFictory : IFictory
     {
-        public IController CreateController()
+        public IFigureController CreateController()
         {
            return new SquareController();
         }

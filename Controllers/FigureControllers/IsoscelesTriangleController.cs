@@ -5,7 +5,7 @@ using System;
 
 namespace VectorGraphicsEditor.Controllers
 {
-    public class RightTriangleController: IController
+    public class IsoscelesTriangleController: IFigureController
     {
         private bool _mouseDown = false;
         public void KeyDown()
@@ -25,7 +25,6 @@ namespace VectorGraphicsEditor.Controllers
 
         public void MouseDownHandle(PointF point, Pen pen, IMarkUp markUp, IPainter painter, Canvas canvas)
         {
-
             _mouseDown = true;
             markUp.StartPoint = point;
             canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
@@ -37,6 +36,7 @@ namespace VectorGraphicsEditor.Controllers
         {
             if (_mouseDown)
             {
+
                 markUp.Update(point);
                 canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
                 canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
@@ -50,6 +50,5 @@ namespace VectorGraphicsEditor.Controllers
             _mouseDown = false;
             canvas.Save();
         }
-
     }
 }

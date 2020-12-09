@@ -8,7 +8,7 @@ namespace VectorGraphicsEditor.Fictory
     {
         IMarkUp CreateMarkUp();
         IPainter CreatePainter();
-        IController CreateController();
+        IFigureController CreateController();
 
     }
 }

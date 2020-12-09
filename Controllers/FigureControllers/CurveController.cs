@@ -1,12 +1,11 @@
 ﻿using System.Drawing;
 using VectorGraphicsEditor.MarkUp;
 using VectorGraphicsEditor.Painter;
-using System.Windows.Forms;
 using System;
 
 namespace VectorGraphicsEditor.Controllers
 {
-    public class IrregularPolygonController: IController
+    public class CurveController: IFigureController
     {
         private bool _mouseDown = true;
         private bool _mouseDoubleDown = false;
@@ -21,6 +20,7 @@ namespace VectorGraphicsEditor.Controllers
         }
         public void MouseDownHandle(PointF point, Pen pen, IMarkUp markUp, IPainter painter, Canvas canvas)
         {
+            _mouseDown = true;
             if (_mouseDoubleDown == false)
             {
                 if (markUp.Length == 0)
@@ -30,7 +30,7 @@ namespace VectorGraphicsEditor.Controllers
                 }
                 else
                 {
-                    markUp.Update(point);
+                markUp.Update(point);
                 }
                 canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
                 canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
@@ -41,7 +41,6 @@ namespace VectorGraphicsEditor.Controllers
                 canvas.Save();
                 GC.Collect();
             }
-            _mouseDown = true;
         }
 
         public void MouseMoveHandle(PointF point, Pen pen, IMarkUp markUp, IPainter painter, Canvas canvas)
@@ -51,7 +50,10 @@ namespace VectorGraphicsEditor.Controllers
             {
                 canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
                 canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
-                canvas.Graphics.DrawLine(pen, markUp.PointList[markUp.Length - 1], point);
+                if (markUp.Length != 0)
+                {
+                    canvas.Graphics.DrawLine(pen, markUp.PointList[markUp.Length - 1], point);
+                }
                 GC.Collect();
             }
         }
@@ -66,7 +68,6 @@ namespace VectorGraphicsEditor.Controllers
         {
             _mouseDown = false;
             _mouseDoubleDown = true;
-            canvas.Graphics.DrawLine(pen, markUp.Calculate()[0], markUp.Calculate()[markUp.Length - 1]);
             canvas.Save();
         }
     }
