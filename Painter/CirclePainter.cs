@@ -9,7 +9,6 @@ namespace VectorGraphicsEditor.Painter
         {
             graphics.DrawPolygon(pen, points);
         }
-
         public void DrawFrame(Pen pen, Graphics graphics, PointF[] points)
         {
             graphics.DrawPolygon(pen, points);

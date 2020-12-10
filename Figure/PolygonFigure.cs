@@ -10,14 +10,8 @@ namespace VectorGraphicsEditor.Figure
     public class PolygonFigure: AbstractFigure
     {
         public int N { get; set; }
-<<<<<<< HEAD:MarkUp/PolygonMarkUp.cs
-        public List<PointF> PointList { get; set; }
-        public PointF StartPoint { get; set; }
         PointF PolygonStartPoint;
-        public int Length
-=======
         public PolygonFigure(IPainter painter, IFigureController figureController)
->>>>>>> NewArchitecture:Figure/PolygonFigure.cs
         {
             Markup = new List<PointF>();
             Painter = painter;
@@ -27,19 +21,11 @@ namespace VectorGraphicsEditor.Figure
         {
             if (N > 2)
             {
-<<<<<<< HEAD:MarkUp/PolygonMarkUp.cs
                 PolygonStartPoint = new PointF(StartPoint.X, endPoint.Y);
-                PointList = new List<PointF>
+                Markup = new List<PointF>
                 {
                     PolygonStartPoint
                 };
-=======
-                PointF PolygonStartPoint = new PointF(StartPoint.X, endPoint.Y);
-                Markup = new List<PointF>
-            {
-                PolygonStartPoint
-            };
->>>>>>> NewArchitecture:Figure/PolygonFigure.cs
                 int a = 360 / N;
                 float t;
                 for (int i = 1; i < N; i++)
@@ -54,57 +40,5 @@ namespace VectorGraphicsEditor.Figure
                 }
             }
         }
-        public PointF[] CalculateFrame()
-        {
-            float maxX = 0;
-            float referenceY = StartPoint.Y;
-            foreach (PointF point in Calculate())
-            {
-                if (PolygonStartPoint.Y < StartPoint.Y)
-                {
-                    if (point.Y > referenceY)
-                    {
-                        referenceY = point.Y;
-                    }
-                }
-                else
-                {
-                    if (point.Y < referenceY)
-                    {
-                        referenceY = point.Y;
-                    }
-                }
-                if (point.X > maxX)
-                {
-                    maxX = point.X;
-                }
-            }
-            PointF[] p = new PointF[]
-            {
-                PolygonStartPoint,
-                new PointF(maxX - (maxX - PolygonStartPoint.X)*2, PolygonStartPoint.Y),
-                new PointF(maxX - (maxX - PolygonStartPoint.X)*2, PolygonStartPoint.Y + (referenceY - PolygonStartPoint.Y)/2),
-                new PointF(maxX - (maxX - PolygonStartPoint.X)*2, referenceY),
-                new PointF(PolygonStartPoint.X, referenceY),
-                new PointF(maxX, referenceY),
-                new PointF(maxX, PolygonStartPoint.Y + (referenceY - PolygonStartPoint.Y)/2),
-                new PointF(maxX, PolygonStartPoint.Y)
-            };
-            return p;
-        }
-
-        public PointF[] Vertex(PointF i)
-        {
-            PointF[] node = new PointF[]
-            {
-                new PointF(i.X - 4, i.Y-4),
-                new PointF(i.X - 4, i.Y+4),
-                new PointF(i.X + 4, i.Y+4),
-                new PointF(i.X + 4, i.Y-4)
-            };
-            return node;
-        }
-
-
     }
 }

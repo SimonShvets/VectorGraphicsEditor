@@ -55,7 +55,6 @@
     <Compile Include="Controllers\FigureControllers\PolygonController.cs" />
     <Compile Include="Controllers\FigureControllers\IsoscelesTriangleController.cs" />
     <Compile Include="Controllers\FigureControllers\IrregularPolygonController.cs" />
-    <Compile Include="Controllers\FigureControllers\HandController.cs" />
     <Compile Include="Controllers\FigureControllers\ElipseController.cs" />
     <Compile Include="Controllers\FigureControllers\SquareController.cs" />
     <Compile Include="Controllers\FigureControllers\CurveController.cs" />

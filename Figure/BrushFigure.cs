@@ -13,6 +13,7 @@ namespace VectorGraphicsEditor.Figure
             Painter = painter;
             FigureController = figureController;
         }
+
         public override void Update(PointF endPoint)
         {
             Markup.Add(endPoint);

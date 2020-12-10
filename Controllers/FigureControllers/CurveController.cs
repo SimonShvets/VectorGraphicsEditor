@@ -53,7 +53,7 @@ namespace VectorGraphicsEditor.Controllers
                 canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
                 if (figure.Length != 0)
                 {
-                    canvas.Graphics.DrawLine(pen, figure.Markup[figure.Length - 1], point);
+                    canvas.Graphics.DrawLine(pen1, figure.Markup[figure.Length - 1], point);
                 }
                 GC.Collect();
             }
@@ -69,7 +69,15 @@ namespace VectorGraphicsEditor.Controllers
         {
             _mouseDown = false;
             _mouseDoubleDown = true;
+            canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
+            canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
             figure.EndPoint = point;
+            figure.Painter.DrawFrame(pen1, canvas.Graphics, figure.CalculateFrame());
+            foreach (PointF i in figure.CalculateFrame())
+            {
+                figure.Painter.DrawVertex(pen1, canvas.Graphics, figure.Vertex(i));
+            }
+            GC.Collect();
             canvas.Save();
         }
     }

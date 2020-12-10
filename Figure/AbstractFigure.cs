@@ -29,28 +29,55 @@ namespace VectorGraphicsEditor.Figure
         }
         public abstract void Update(PointF endPoint);
 
-<<<<<<< HEAD:MarkUp/CurveMarkUp.cs
-        public void Update(PointF endPoint)
+        public virtual PointF[] CalculateFrame()
         {
-            PointList.Add(endPoint);
-        }
-        public PointF[] CalculateFrame()
-        {
-            //float radius = StartPoint.Y - CircleStartPoint.Y;
+            float maxX = 0;
+            float maxY = 0;
+            float minX = StartPoint.X;
+            float minY = StartPoint.Y;
+            foreach (PointF point in Calculate())
+            {
+                if (point.Y > maxY)
+                {
+                    maxY = point.Y;
+                }
+                if (point.Y < minY)
+                {
+                    minY = point.Y;
+                }
+                if (point.X > maxX)
+                {
+                    maxX = point.X;
+                }
+                if (point.X < minX)
+                {
+                    minX = point.X;
+                }
+            }
             PointF[] p = new PointF[]
             {
-
+                new PointF(maxX,minY),
+                new PointF(minX + (maxX - minX)/2,minY),
+                new PointF(minX,minY),
+                new PointF(minX,minY + (maxY - minY)/2),
+                new PointF(minX,maxY),
+                new PointF(minX + (maxX - minX)/2,maxY),
+                new PointF(maxX,maxY),
+                new PointF(maxX,minY + (maxY - minY)/2)
             };
             return p;
         }
-        public PointF[] Vertex(PointF i)
+
+        public virtual PointF[] Vertex(PointF i)
         {
             PointF[] node = new PointF[]
-            {
-            };
+{
+                new PointF(i.X - 4, i.Y-4),
+                new PointF(i.X - 4, i.Y+4),
+                new PointF(i.X + 4, i.Y+4),
+                new PointF(i.X + 4, i.Y-4)
+};
             return node;
         }
-=======
->>>>>>> NewArchitecture:Figure/AbstractFigure.cs
     }
 }

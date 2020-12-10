@@ -39,8 +39,9 @@ namespace VectorGraphicsEditor.Controllers
                 figure.Update(point);
                 canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
                 canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
-                figure.Painter.DrawFigure(pen, canvas.Graphics, figure.Calculate());
                 figure.EndPoint = point;
+                figure.Painter.DrawFigure(pen1, canvas.Graphics, figure.Calculate());
+                
                 GC.Collect();
             }
         }
@@ -50,11 +51,12 @@ namespace VectorGraphicsEditor.Controllers
             _mouseDown = false;
             canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
             canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
-            painter.DrawFigure(pen, canvas.Graphics, markUp.Calculate());
-            painter.DrawFrame(pen1, canvas.Graphics, markUp.CalculateFrame());
-            foreach(PointF i in markUp.CalculateFrame())
+            figure.EndPoint = point;
+            figure.Painter.DrawFigure(pen, canvas.Graphics, figure.Calculate());
+            figure.Painter.DrawFrame(pen1, canvas.Graphics, figure.CalculateFrame());
+            foreach(PointF i in figure.CalculateFrame())
             {
-                painter.DrawVertex(pen1, canvas.Graphics, markUp.Vertex(i));
+                figure.Painter.DrawVertex(pen1, canvas.Graphics, figure.Vertex(i));
             }
             GC.Collect();
             canvas.Save();

@@ -72,6 +72,14 @@ namespace VectorGraphicsEditor.Controllers
             _mouseDoubleDown = true;
             canvas.Graphics.DrawLine(pen, figure.Calculate()[0], figure.Calculate()[figure.Length - 1]);
             figure.EndPoint = point;
+            canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
+            canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
+            figure.Painter.DrawFrame(pen1, canvas.Graphics, figure.CalculateFrame());
+            foreach (PointF i in figure.CalculateFrame())
+            {
+                figure.Painter.DrawVertex(pen1, canvas.Graphics, figure.Vertex(i));
+            }
+            GC.Collect();
             canvas.Save();
         }
     }

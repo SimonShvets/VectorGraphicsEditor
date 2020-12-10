@@ -8,23 +8,7 @@ namespace VectorGraphicsEditor.Figure
 {
     public class CircleFigure : AbstractFigure
     {
-        public List<PointF> PointList { get; set; }
-        public PointF[] Points
-        {
-            get
-            {
-                return PointList.ToArray();
-            }
-        }
-        public PointF StartPoint { get; set; }
-        public int Length
-        {
-            get
-            {
-                return PointList.Count;
-            }
-        }
-        private PointF CircleStartPoint{ get; set; }
+        private PointF CircleStartPoint;
         private int N = 90;
         public CircleFigure(IPainter painter, IFigureController figureController)
         {
@@ -35,8 +19,6 @@ namespace VectorGraphicsEditor.Figure
         public override void Update(PointF endPoint)
         {
             CircleStartPoint = new PointF(StartPoint.X, endPoint.Y);
-            PointList = new List<PointF> { CircleStartPoint };
-            PointF CircleStartPoint = new PointF(StartPoint.X, endPoint.Y);
             Markup = new List<PointF>
             {
                 CircleStartPoint
@@ -52,35 +34,6 @@ namespace VectorGraphicsEditor.Figure
                 PointF point = new PointF(x1, y1);
                 Markup.Add(point);
             }
-        }
-
-        public PointF[] CalculateFrame()
-        {
-            float radius = StartPoint.Y - CircleStartPoint.Y;
-            PointF[] p = new PointF[]
-            {
-                CircleStartPoint,
-                new PointF(CircleStartPoint.X - (radius), CircleStartPoint.Y),
-                new PointF(CircleStartPoint.X - (radius), CircleStartPoint.Y + (radius)),
-                new PointF(CircleStartPoint.X - (radius), CircleStartPoint.Y + 2*(radius)),
-                new PointF(CircleStartPoint.X, CircleStartPoint.Y + 2*(radius)),
-                new PointF(CircleStartPoint.X + (radius), CircleStartPoint.Y + 2*(radius)),
-                new PointF(CircleStartPoint.X + (radius), CircleStartPoint.Y + (radius)),
-                new PointF(CircleStartPoint.X + (radius), CircleStartPoint.Y)
-            };
-            return p;
-        }
-
-        public PointF[] Vertex(PointF i)
-        {
-            PointF[] node = new PointF[]
-            {
-                new PointF(i.X - 4, i.Y-4),
-                new PointF(i.X - 4, i.Y+4),
-                new PointF(i.X + 4, i.Y+4),
-                new PointF(i.X + 4, i.Y-4)
-            };
-            return node;
         }
     }
 }
