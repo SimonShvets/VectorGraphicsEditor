@@ -12,6 +12,7 @@ namespace VectorGraphicsEditor.MarkUp
         public int N { get; set; }
         public List<PointF> PointList { get; set; }
         public PointF StartPoint { get; set; }
+        PointF PolygonStartPoint;
         public int Length
         {
             get
@@ -33,11 +34,11 @@ namespace VectorGraphicsEditor.MarkUp
         {
             if (N > 2)
             {
-                PointF PolygonStartPoint = new PointF(StartPoint.X, endPoint.Y);
+                PolygonStartPoint = new PointF(StartPoint.X, endPoint.Y);
                 PointList = new List<PointF>
-            {
-                PolygonStartPoint
-            };
+                {
+                    PolygonStartPoint
+                };
                 int a = 360 / N;
                 float t;
                 for (int i = 1; i < N; i++)
@@ -52,5 +53,57 @@ namespace VectorGraphicsEditor.MarkUp
                 }
             }
         }
+        public PointF[] CalculateFrame()
+        {
+            float maxX = 0;
+            float referenceY = StartPoint.Y;
+            foreach (PointF point in Calculate())
+            {
+                if (PolygonStartPoint.Y < StartPoint.Y)
+                {
+                    if (point.Y > referenceY)
+                    {
+                        referenceY = point.Y;
+                    }
+                }
+                else
+                {
+                    if (point.Y < referenceY)
+                    {
+                        referenceY = point.Y;
+                    }
+                }
+                if (point.X > maxX)
+                {
+                    maxX = point.X;
+                }
+            }
+            PointF[] p = new PointF[]
+            {
+                PolygonStartPoint,
+                new PointF(maxX - (maxX - PolygonStartPoint.X)*2, PolygonStartPoint.Y),
+                new PointF(maxX - (maxX - PolygonStartPoint.X)*2, PolygonStartPoint.Y + (referenceY - PolygonStartPoint.Y)/2),
+                new PointF(maxX - (maxX - PolygonStartPoint.X)*2, referenceY),
+                new PointF(PolygonStartPoint.X, referenceY),
+                new PointF(maxX, referenceY),
+                new PointF(maxX, PolygonStartPoint.Y + (referenceY - PolygonStartPoint.Y)/2),
+                new PointF(maxX, PolygonStartPoint.Y)
+            };
+            return p;
+        }
+
+        public PointF[] Vertex(PointF i)
+        {
+            PointF[] node = new PointF[]
+            {
+                new PointF(i.X - 4, i.Y-4),
+                new PointF(i.X - 4, i.Y+4),
+                new PointF(i.X + 4, i.Y+4),
+                new PointF(i.X + 4, i.Y-4)
+            };
+            return node;
+        }
+
+
     }
 }

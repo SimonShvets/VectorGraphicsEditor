@@ -10,5 +10,7 @@ namespace VectorGraphicsEditor.MarkUp
         int Length { get; }
         PointF[] Calculate();
         void Update(PointF endPoint);
+        PointF[] CalculateFrame();
+        PointF[] Vertex(PointF i);
     }
 }

@@ -22,6 +22,7 @@ namespace VectorGraphicsEditor.MarkUp
                 return PointList.Count;
             }
         }
+        private PointF CircleStartPoint;
         private int N = 90;
         public CircleMarkUp()
         {
@@ -34,7 +35,7 @@ namespace VectorGraphicsEditor.MarkUp
 
         public void Update(PointF endPoint)
         {
-            PointF CircleStartPoint = new PointF(StartPoint.X, endPoint.Y);
+            CircleStartPoint = new PointF(StartPoint.X, endPoint.Y);
             PointList = new List<PointF>
             {
                 CircleStartPoint
@@ -52,9 +53,33 @@ namespace VectorGraphicsEditor.MarkUp
             }
         }
 
-        public void MarkUp()
+        public PointF[] CalculateFrame()
         {
+            float radius = StartPoint.Y - CircleStartPoint.Y;
+            PointF[] p = new PointF[]
+            {
+                CircleStartPoint,
+                new PointF(CircleStartPoint.X - (radius), CircleStartPoint.Y),
+                new PointF(CircleStartPoint.X - (radius), CircleStartPoint.Y + (radius)),
+                new PointF(CircleStartPoint.X - (radius), CircleStartPoint.Y + 2*(radius)),
+                new PointF(CircleStartPoint.X, CircleStartPoint.Y + 2*(radius)),
+                new PointF(CircleStartPoint.X + (radius), CircleStartPoint.Y + 2*(radius)),
+                new PointF(CircleStartPoint.X + (radius), CircleStartPoint.Y + (radius)),
+                new PointF(CircleStartPoint.X + (radius), CircleStartPoint.Y)
+            };
+            return p;
+        }
 
+        public PointF[] Vertex(PointF i)
+        {
+            PointF[] node = new PointF[]
+            {
+                new PointF(i.X - 4, i.Y-4),
+                new PointF(i.X - 4, i.Y+4),
+                new PointF(i.X + 4, i.Y+4),
+                new PointF(i.X + 4, i.Y-4)
+            };
+            return node;
         }
     }
 }

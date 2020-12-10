@@ -35,14 +35,22 @@ namespace VectorGraphicsEditor.MarkUp
                 new PointF((int)endPoint.X, (int)endPoint.Y),
                 new PointF((int)endPoint.X - ((int)endPoint.X - (int)StartPoint.X)*2, (int)endPoint.Y)
             };
-            //int x = (int)PointList[0].X;
-            //int y = (int)PointList[0].Y;
-            //int x2 = (int)PointList[1].X;
-            //int y2 = (int)PointList[1].Y;
-            //PointF[] points = new PointF[3];
-            //points[0] = PointList[0];
-            //points[1] = PointList[1];
-            //points[2] = new Point((x2 - (x2 - x) * 2), y2);
+        }
+        public PointF[] CalculateFrame()
+        {
+            //float radius = StartPoint.Y - CircleStartPoint.Y;
+            PointF[] p = new PointF[]
+            {
+
+            };
+            return p;
+        }
+        public PointF[] Vertex(PointF i)
+        {
+            PointF[] node = new PointF[]
+            {
+            };
+            return node;
         }
     }
 }

@@ -12,5 +12,7 @@ namespace VectorGraphicsEditor.Painter
     public interface IPainter
     {
         void DrawFigure(Pen pen, Graphics graphics, PointF[] points);
+        void DrawFrame(Pen pen, Graphics graphics, PointF[] points);
+        void DrawVertex(Pen pen, Graphics graphics, PointF[] points);
     }
 }

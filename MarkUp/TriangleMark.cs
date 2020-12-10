@@ -31,5 +31,21 @@ namespace VectorGraphicsEditor.MarkUp
         {
             PointList.Add(endPoint);
         }
+        public PointF[] CalculateFrame()
+        {
+            //float radius = StartPoint.Y - CircleStartPoint.Y;
+            PointF[] p = new PointF[]
+            {
+
+            };
+            return p;
+        }
+        public PointF[] Vertex(PointF i)
+        {
+            PointF[] node = new PointF[]
+            {
+            };
+            return node;
+        }
     }
 }

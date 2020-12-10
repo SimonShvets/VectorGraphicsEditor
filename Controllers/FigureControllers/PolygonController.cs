@@ -8,6 +8,7 @@ namespace VectorGraphicsEditor.Controllers
     public class PolygonController: IFigureController
     {
         private bool _mouseDown = false;
+        Pen pen1 = new Pen(Color.Blue, 1);
         public void MouseDownHandle(PointF point, Pen pen, IMarkUp markUp, IPainter painter, Canvas canvas)
         {
             _mouseDown = true;
@@ -32,6 +33,15 @@ namespace VectorGraphicsEditor.Controllers
         public void MouseUpHandle(PointF point, Pen pen, IMarkUp markUp, IPainter painter, Canvas canvas)
         {
             _mouseDown = false;
+            canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
+            canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
+            painter.DrawFigure(pen, canvas.Graphics, markUp.Calculate());
+            painter.DrawFrame(pen1, canvas.Graphics, markUp.CalculateFrame());
+            foreach (PointF i in markUp.CalculateFrame())
+            {
+                painter.DrawVertex(pen1, canvas.Graphics, markUp.Vertex(i));
+            }
+            GC.Collect();
             canvas.Save();
         }
 

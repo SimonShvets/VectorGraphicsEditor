@@ -34,5 +34,16 @@ namespace VectorGraphicsEditor.MarkUp
         {
             throw new NotImplementedException();
         }
+        public PointF[] CalculateFrame()
+        {
+            return new PointF[0];
+        }
+        public PointF[] Vertex(PointF i)
+        {
+            PointF[] node = new PointF[]
+            {
+            };
+            return node;
+        }
     }
 }

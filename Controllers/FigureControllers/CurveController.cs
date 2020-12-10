@@ -9,6 +9,7 @@ namespace VectorGraphicsEditor.Controllers
     {
         private bool _mouseDown = true;
         private bool _mouseDoubleDown = false;
+        Pen pen1 = new Pen(Color.Blue, 1);
         public void KeyDown()
         {
             throw new NotImplementedException();
