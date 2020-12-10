@@ -8,7 +8,7 @@ namespace VectorGraphicsEditor.Controllers.ToolsControllers
     public class MoveController: IToolController
     {
         private bool mouseDown;
-        public bool toolSelected = true;
+        public bool toolSelected = false;
         AbstractFigure CurrentFigure;
         public void KeyDown()
         {
