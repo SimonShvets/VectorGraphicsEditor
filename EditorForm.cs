@@ -3,11 +3,10 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using VectorGraphicsEditor.Painter;
-using VectorGraphicsEditor.MarkUp;
-using VectorGraphicsEditor.Fictory;
+using VectorGraphicsEditor.Factory;
 using VectorGraphicsEditor.Controllers;
-using System.Collections.Generic;
 using VectorGraphicsEditor.Controllers.ToolsControllers;
+using VectorGraphicsEditor.Figure;
 
 namespace VectorGraphicsEditor
 {
@@ -15,12 +14,11 @@ namespace VectorGraphicsEditor
     {
         Pen pen;
         Canvas canvas;
-        Conteiner figures;
-        IMarkUp markup;
-        IPainter painter;
-        IFigureController figureController;
+        Container container;
+        AbstractFigure figure;
         IToolController toolController;
-        IFictory fictory;
+        IFactory factory;
+
         public EditorForm()
         {
             InitializeComponent();
@@ -31,174 +29,148 @@ namespace VectorGraphicsEditor
             pen = new Pen(Color.Red, (int)numericUpDown1.Value);
             pen.StartCap = LineCap.Round;
             pen.EndCap = LineCap.Round;
-            painter = new BrushPainter();
-            markup = new BrushMarkUp();
-            figureController = new BrushController();
+            figure = new BrushFigure(new BrushPainter(), new BrushController());
             toolController = new MoverController();
-            fictory = new BrushFictory();
-            figures = new Conteiner();
+            factory = new BrushFactory();
+            container = new Container();
         }
         private void pictureBox_MouseDown(object sender, MouseEventArgs e)
         {
-            if (markup is TriangleMarkUp)
+            if (figure is TriangleFigure)
             {
-                if (markup.Length % 3 == 0)
+                if (figure.Length % 3 == 0)
                 {
-                    markup = fictory.CreateMarkUp();
-                    painter = fictory.CreatePainter();
-                    figureController = fictory.CreateController();
+                    figure = factory.CreateFigure(figure.Painter, figure.FigureController);
                 }
             }
-            if (!(markup is CurveMarkUp 
-                || markup is IrregularPolygonMarkUp
-                || markup is TriangleMarkUp))
+            if (!(figure is CurveFigure
+                || figure is IrregularPolygonFigure
+                || figure is TriangleFigure))
             {
-            markup = fictory.CreateMarkUp();
-            painter = fictory.CreatePainter();
-            figureController = fictory.CreateController();
+                figure = factory.CreateFigure(figure.Painter, figure.FigureController);
             }
-            if (markup is PolygonMarkUp)
+            if (figure is PolygonFigure)
             {
-                PolygonMarkUp tmp = (PolygonMarkUp)markup;
+                PolygonFigure tmp = (PolygonFigure)figure;
                 tmp.N = (int)numericUpDown.Value;
-                markup = tmp;
+                figure = tmp;
             }
-            figureController.MouseDownHandle(e.Location, pen, markup, painter, canvas);
-            //toolController.MouseDownHandle(e.Location, pen, markup, painter, canvas);
+            figure.FigureController.MouseDownHandle(e.Location, pen, figure, canvas);
+            toolController.MouseDownHandle(e.Location, pen, figure, canvas, container);
             pictureBox.Image = canvas.TmpBitmap;
 
         }
         private void pictureBox_MouseMove(object sender, MouseEventArgs e)
         {
-            figureController.MouseMoveHandle(e.Location, pen, markup, painter, canvas);
-            //toolController.MouseDownHandle(e.Location, pen, markup, painter, canvas);
+            figure.FigureController.MouseMoveHandle(e.Location, pen, figure, canvas);
+            toolController.MouseDownHandle(e.Location, pen, figure, canvas, container);
             pictureBox.Image = canvas.TmpBitmap;     
 
         }
         private void pictureBox_MouseUp(object sender, MouseEventArgs e)
         {
-            figureController.MouseUpHandle(e.Location, pen, markup, painter, canvas);
-            pictureBox.Image = canvas.TmpBitmap;
-            if  (!(markup is BrushMarkUp 
-                || markup is CurveMarkUp
-                || markup is TriangleMarkUp
-                || markup is IrregularPolygonMarkUp))
+            figure.FigureController.MouseUpHandle(e.Location, pen, figure, canvas);
+            if  (!(figure is BrushFigure 
+                || figure is CurveFigure
+                || figure is TriangleFigure
+                || figure is IrregularPolygonFigure))
             {
-                figures.Add(markup);
+                container.Add(figure);
             }
-            else if (markup is TriangleMarkUp)
+            else if (figure is TriangleFigure)
             {
-                if (markup.Length % 3 == 0)
+                if (figure.Length % 3 == 0)
                 {
-                    figures.Add(markup);
+                    container.Add(figure);
                 }
             }
-            if (markup is BrushMarkUp)
+            if (figure is BrushFigure)
             {
-                figures.Add(markup);
+                container.Add(figure);
             }
-            //toolController.MouseDownHandle(e.Location, pen, markup, painter, canvas);
+            toolController.MouseDownHandle(e.Location, pen, figure, canvas, container);
+            pictureBox.Image = canvas.TmpBitmap;
         }
         private void pictureBox_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            figureController.MouseDoubleHandle(e.Location, pen, markup, painter, canvas);
-            pictureBox.Image = canvas.TmpBitmap;
-            figures.Add(markup);
-            if (markup is CurveMarkUp
-                || markup is IrregularPolygonMarkUp)
+            figure.FigureController.MouseDoubleHandle(e.Location, pen, figure, canvas);
+            container.Add(figure);
+            if (figure is CurveFigure
+                || figure is IrregularPolygonFigure)
             {
-                markup = fictory.CreateMarkUp();
-                painter = fictory.CreatePainter();
-                figureController = fictory.CreateController();
+                figure = factory.CreateFigure(figure.Painter, figure.FigureController);
             }
-            //toolController.MouseDownHandle(e.Location, pen, markup, painter, canvas);
+            toolController.MouseDownHandle(e.Location, pen, figure, canvas, container);
+            pictureBox.Image = canvas.TmpBitmap;
         }
         private void Hand_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
             numericUpDown.Visible = false;
-            fictory = new HandFictory();
-            markup = fictory.CreateMarkUp();
-            painter = fictory.CreatePainter();
-            figureController = fictory.CreateController();
+            factory = new HandFactory();
+            //figure = factory.CreateFigure(figure.Painter, figure.FigureController);
         }
         private void Brush_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
             numericUpDown.Visible = false;
-            fictory = new BrushFictory();
-            markup = fictory.CreateMarkUp();
-            painter = fictory.CreatePainter();
-            figureController = fictory.CreateController();
+            factory = new BrushFactory();
+            //figure = factory.CreateFigure(figure.Painter, figure.FigureController);
         }
         private void Curve_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
             numericUpDown.Visible = false;
-            fictory = new CurveFictory();
-            markup = fictory.CreateMarkUp();
-            painter = fictory.CreatePainter();
-            figureController = fictory.CreateController();
+            factory = new CurveFactory();
+            //figure = factory.CreateFigure(figure.Painter, figure.FigureController);
         }   
 
         private void Circle_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
             numericUpDown.Visible = false;
-            fictory = new CircleFictory();
-            markup = fictory.CreateMarkUp();
-            painter = fictory.CreatePainter();
-            figureController = fictory.CreateController();
+            factory = new CircleFactory();
+            //figure = factory.CreateFigure(figure.Painter, figure.FigureController);
         }
 
         private void Ellipse_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
             numericUpDown.Visible = false;
-            fictory = new ElipseFictory();
-            markup = fictory.CreateMarkUp();
-            painter = fictory.CreatePainter();
-            figureController = fictory.CreateController();
+            factory = new ElipseFactory();
+            //figure = factory.CreateFigure(figure.Painter, figure.FigureController);
         }
 
         private void Triangle_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
             numericUpDown.Visible = false;
-            fictory = new TriangleFictory();
-            markup = fictory.CreateMarkUp();
-            painter = fictory.CreatePainter();
-            figureController = fictory.CreateController();
+            factory = new TriangleFactory();
+            //figure = factory.CreateFigure(figure.Painter, figure.FigureController);
         }
 
         private void IsoscelesTriangle_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
             numericUpDown.Visible = false;
-            fictory = new IsoscelesTriangleFictory();
-            markup = fictory.CreateMarkUp();
-            painter = fictory.CreatePainter();
-            figureController = fictory.CreateController();
+            factory = new IsoscelesTriangleFactory();
+            //figure = factory.CreateFigure(figure.Painter, figure.FigureController);
         }
 
         private void IrregularPolygon_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
             numericUpDown.Visible = false;
-            fictory = new IrregularPolygonFictory();
-            markup = fictory.CreateMarkUp();
-            painter = fictory.CreatePainter();
-            figureController = fictory.CreateController();
+            factory = new IrregularPolygonFactory();
+            //figure = factory.CreateFigure(figure.Painter, figure.FigureController);
         }
 
         private void Polygon_Click(object sender, EventArgs e)
         {   
             textBox1.Visible = true;
             numericUpDown.Visible = true;
-            fictory = new PolygonFictory();
-            markup = fictory.CreateMarkUp();
-            painter = fictory.CreatePainter();
-            figureController = fictory.CreateController();
+            factory = new PolygonFactory();
+            //figure = factory.CreateFigure(figure.Painter, figure.FigureController);
 
         }
         private void numericUpDown_TextChanged(object sender, EventArgs e)
@@ -220,20 +192,16 @@ namespace VectorGraphicsEditor
         {
             textBox1.Visible = false;
             numericUpDown.Visible = false;
-            fictory = new RectangleFictory();
-            markup = fictory.CreateMarkUp();
-            painter = fictory.CreatePainter();
-            figureController = fictory.CreateController();
+            factory = new RectangleFactory();
+            //figure = factory.CreateFigure(figure.Painter, figure.FigureController);
         }
 
         private void square_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
             numericUpDown.Visible = false;
-            fictory = new SquareFictory();
-            markup = fictory.CreateMarkUp();
-            painter = fictory.CreatePainter();
-            figureController = fictory.CreateController();
+            factory = new SquareFactory();
+            //figure = factory.CreateFigure(figure.Painter, figure.FigureController);
         }
 
         private void EditorForm_KeyDown(object sender, KeyEventArgs e)
@@ -258,10 +226,8 @@ namespace VectorGraphicsEditor
         {
             textBox1.Visible = false;
             numericUpDown.Visible = false;
-            fictory = new RightTriangleFictory();
-            markup = fictory.CreateMarkUp();
-            painter = fictory.CreatePainter();
-            figureController = fictory.CreateController();
+            factory = new RightTriangleFactory();
+            //figure = factory.CreateFigure(figure.Painter, figure.FigureController);
         }
 
         private void Mover_Click(object sender, EventArgs e)

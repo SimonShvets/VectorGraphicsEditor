@@ -1,28 +1,35 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
+using VectorGraphicsEditor.Painter;
+using VectorGraphicsEditor.Controllers;
 
-namespace VectorGraphicsEditor.MarkUp
+namespace VectorGraphicsEditor.Figure
 {
-    public class CurveMarkUp: IMarkUp
+    public abstract class AbstractFigure
     {
-        public List<PointF> PointList { get; set; }
+        public List<PointF> Markup { get; set; }
         public PointF StartPoint { get; set; }
+        public PointF EndPoint { get; set; }
+        public IPainter Painter { get; protected set; }
+        public IFigureController FigureController { get; protected set; }
         public int Length
         {
             get
             {
-                return PointList.Count;
+                return Markup.Count;
             }
         }
-        public CurveMarkUp()
+        public AbstractFigure()
         {
-            PointList = new List<PointF>();
+            Markup = new List<PointF>();
         }
-        public PointF[] Calculate()
+        public virtual PointF[] Calculate()
         {
-            return PointList.ToArray();
+            return Markup.ToArray();
         }
+        public abstract void Update(PointF endPoint);
 
+<<<<<<< HEAD:MarkUp/CurveMarkUp.cs
         public void Update(PointF endPoint)
         {
             PointList.Add(endPoint);
@@ -43,5 +50,7 @@ namespace VectorGraphicsEditor.MarkUp
             };
             return node;
         }
+=======
+>>>>>>> NewArchitecture:Figure/AbstractFigure.cs
     }
 }

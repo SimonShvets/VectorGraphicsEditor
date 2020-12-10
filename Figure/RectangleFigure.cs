@@ -2,34 +2,22 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using VectorGraphicsEditor.Painter;
+using VectorGraphicsEditor.Controllers;
 
-namespace VectorGraphicsEditor.MarkUp
+namespace VectorGraphicsEditor.Figure
 {
-    public class RectangleMarkUp : IMarkUp
+    public class RectangleFigure : AbstractFigure
     {
-        public List<PointF> PointList { get; set; }
-        public PointF StartPoint { get; set; }
-        public int Length
+        public RectangleFigure(IPainter painter, IFigureController figureController)
         {
-            get
-            {
-                return PointList.Count;
-            }
+            Markup = new List<PointF>();
+            Painter = painter;
+            FigureController = figureController;
         }
-
-        public RectangleMarkUp()
+        public override void Update(PointF endPoint)
         {
-            PointList = new List<PointF>();
-        }
-        public PointF[] Calculate()
-        {
-            return PointList.ToArray();
-        }
-        public void Update(PointF endPoint)
-        {
-            PointList = new List<PointF>
+            Markup = new List<PointF>
             {
                 StartPoint,
                 new PointF(StartPoint.X, endPoint.Y),

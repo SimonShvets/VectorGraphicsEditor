@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
 using VectorGraphicsEditor.Painter;
-using VectorGraphicsEditor.MarkUp;
 using System.Windows.Forms;
 
 namespace VectorGraphicsEditor

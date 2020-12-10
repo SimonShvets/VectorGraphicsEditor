@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using VectorGraphicsEditor.Painter;
+using VectorGraphicsEditor.Controllers;
 
-namespace VectorGraphicsEditor.MarkUp
+namespace VectorGraphicsEditor.Figure
 {
-    public class CircleMarkUp: IMarkUp
+    public class CircleFigure : AbstractFigure
     {
+<<<<<<< HEAD:MarkUp/CircleMarkUp.cs
         public List<PointF> PointList { get; set; }
         public PointF[] Points
         {
@@ -23,20 +26,24 @@ namespace VectorGraphicsEditor.MarkUp
             }
         }
         private PointF CircleStartPoint;
+=======
+>>>>>>> NewArchitecture:Figure/CircleFigure.cs
         private int N = 90;
-        public CircleMarkUp()
+        public CircleFigure(IPainter painter, IFigureController figureController)
         {
-            PointList = new List<PointF>();
+            Markup = new List<PointF>();
+            Painter = painter;
+            FigureController = figureController;
         }
-        public PointF[] Calculate()
+        public override void Update(PointF endPoint)
         {
-            return PointList.ToArray();
-        }
-
-        public void Update(PointF endPoint)
-        {
+<<<<<<< HEAD:MarkUp/CircleMarkUp.cs
             CircleStartPoint = new PointF(StartPoint.X, endPoint.Y);
             PointList = new List<PointF>
+=======
+            PointF CircleStartPoint = new PointF(StartPoint.X, endPoint.Y);
+            Markup = new List<PointF>
+>>>>>>> NewArchitecture:Figure/CircleFigure.cs
             {
                 CircleStartPoint
             };
@@ -49,9 +56,10 @@ namespace VectorGraphicsEditor.MarkUp
                 float x1 = (float)((StartPoint.X - (endPoint.Y - StartPoint.Y) * Math.Sin(rad)));
                 float y1 = (float)((StartPoint.Y + (endPoint.Y - StartPoint.Y) * Math.Cos(rad)));
                 PointF point = new PointF(x1, y1);
-                PointList.Add(point);
+                Markup.Add(point);
             }
         }
+<<<<<<< HEAD:MarkUp/CircleMarkUp.cs
 
         public PointF[] CalculateFrame()
         {
@@ -81,5 +89,7 @@ namespace VectorGraphicsEditor.MarkUp
             };
             return node;
         }
+=======
+>>>>>>> NewArchitecture:Figure/CircleFigure.cs
     }
 }

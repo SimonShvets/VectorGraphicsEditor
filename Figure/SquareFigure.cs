@@ -2,32 +2,21 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using VectorGraphicsEditor.Painter;
+using VectorGraphicsEditor.Controllers;
 
-namespace VectorGraphicsEditor.MarkUp
+namespace VectorGraphicsEditor.Figure
 {
-    public class SquareMarkUp : IMarkUp
+    public class SquareFigure : AbstractFigure
     {
-        public List<PointF> PointList { get; set; }
-        public PointF StartPoint { get; set; }
-        public int Length
+        public SquareFigure(IPainter painter, IFigureController figureController)
         {
-            get
-            {
-                return PointList.Count;
-            }
-        }
-        public SquareMarkUp()
-        {
-            PointList = new List<PointF>();
-        }
-        public PointF[] Calculate()
-        {
-            return PointList.ToArray();
+            Markup = new List<PointF>();
+            Painter = painter;
+            FigureController = figureController;
         }
 
-        public void Update(PointF endPoint)
+        public override void Update(PointF endPoint)
         {
             int x = (int)StartPoint.X;
             int y = (int)StartPoint.Y;
@@ -35,7 +24,7 @@ namespace VectorGraphicsEditor.MarkUp
             int y2 = (int)endPoint.Y;
             int a = Math.Abs(x2 - x);
             int b = Math.Abs(y2 - y);
-            PointList = new List<PointF>
+            Markup = new List<PointF>
             {
                  new PointF(x, y),
                  new PointF(x, y2 + a),
