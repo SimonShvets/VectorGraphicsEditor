@@ -2,9 +2,9 @@
 using VectorGraphicsEditor.Figure;
 using VectorGraphicsEditor.Controllers;
 
-namespace VectorGraphicsEditor.Factory
+namespace VectorGraphicsEditor.Factory.FigureFactory
 {
-    public interface IFactory
+    public interface IFigureFactory
     {
         AbstractFigure CreateFigure(IPainter Painter, IFigureController figureController);
     }

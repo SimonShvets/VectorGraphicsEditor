@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Drawing;
 using VectorGraphicsEditor.Figure;
-using VectorGraphicsEditor.Painter;
-using VectorGraphicsEditor.Controllers.ToolsControllers;
+using VectorGraphicsEditor.Tools;
 
 namespace VectorGraphicsEditor.Controllers.ToolsControllers
 {
-    public class MoverController: IToolController
+    public class MoveController: IToolController
     {
         private bool mouseDown;
         public bool toolSelected = true;
@@ -21,7 +20,7 @@ namespace VectorGraphicsEditor.Controllers.ToolsControllers
             throw new NotImplementedException();
         }
 
-        public void MouseDoubleHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas, Container figures)
+        public void MouseDoubleHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas, Container figures, AbstractTool tool)
         {
             if (toolSelected)
             {
@@ -32,13 +31,13 @@ namespace VectorGraphicsEditor.Controllers.ToolsControllers
             }
         }
 
-        public void MouseDownHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas, Container figures)
+        public void MouseDownHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas, Container figures, AbstractTool tool)
         {
             if (toolSelected)
             {
                 for (int i = 0; i < figures.Length; i++)
                 {
-                    if (figures.FigureSelected(figures[i].StartPoint, figures[i].EndPoint, point, 10))
+                    if (tool.Selector.Select(figures[i].StartPoint, figures[i].EndPoint, point, 10))
                     {
                         CurrentFigure = figures[i];
                         mouseDown = true;
@@ -47,7 +46,7 @@ namespace VectorGraphicsEditor.Controllers.ToolsControllers
             }
         }
 
-        public void MouseMoveHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas, Container figures)
+        public void MouseMoveHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas, Container figures, AbstractTool tool)
         {
             if (toolSelected)
             {
@@ -55,14 +54,14 @@ namespace VectorGraphicsEditor.Controllers.ToolsControllers
                 {
                     canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
                     canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
-                    figures.Move(CurrentFigure, point);
+                    //tool.Move(CurrentFigure);
                     CurrentFigure.Painter.DrawFigure(pen, canvas.Graphics, CurrentFigure.Calculate());
 
                 }
             }
         }
 
-        public void MouseUpHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas, Container figures)
+        public void MouseUpHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas, Container figures, AbstractTool tool)
         {
             if (toolSelected)
             {

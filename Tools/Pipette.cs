@@ -7,8 +7,11 @@ using VectorGraphicsEditor.Selector;
 
 namespace VectorGraphicsEditor.Tools
 {
-    public abstract class AbstractTool
+    public class Pipette: AbstractTool
     {
-        public AbstractSelector Selector { get; protected set; }
+        public Pipette(AbstractSelector handSelector)
+        {
+            Selector = handSelector;
+        }
     }
 }

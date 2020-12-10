@@ -2,13 +2,13 @@
 using VectorGraphicsEditor.Figure;
 using VectorGraphicsEditor.Painter;
 
-namespace VectorGraphicsEditor.Factory
+namespace VectorGraphicsEditor.Factory.FigureFactory
 {
-    public class CircleFactory : IFactory
+    public class ElipseFactory : IFigureFactory
     {
         public AbstractFigure CreateFigure(IPainter Painter, IFigureController figureController)
         {
-            return new CircleFigure(new CirclePainter(), new CircleController());
+            return new ElipseFigure(new ElipsePainter(), new ElipseController());
         }
     }
 }

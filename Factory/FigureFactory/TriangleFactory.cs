@@ -2,13 +2,13 @@
 using VectorGraphicsEditor.Figure;
 using VectorGraphicsEditor.Painter;
 
-namespace VectorGraphicsEditor.Factory
+namespace VectorGraphicsEditor.Factory.FigureFactory
 {
-    public class IrregularPolygonFactory : IFactory
+    public class TriangleFactory : IFigureFactory
     {
         public AbstractFigure CreateFigure(IPainter Painter, IFigureController figureController)
         {
-            return new IrregularPolygonFigure(new IrregularPolygonPainter(), new IrregularPolygonController());
+            return new TriangleFigure(new TrianglePainter(), new TriangleController());
         }
     }
 }

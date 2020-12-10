@@ -2,13 +2,13 @@
 using VectorGraphicsEditor.Figure;
 using VectorGraphicsEditor.Painter;
 
-namespace VectorGraphicsEditor.Factory
+namespace VectorGraphicsEditor.Factory.FigureFactory
 {
-    public class SquareFactory : IFactory
+    public class CircleFactory : IFigureFactory
     {
         public AbstractFigure CreateFigure(IPainter Painter, IFigureController figureController)
         {
-            return new SquareFigure(new SquarePainter(), new SquareController());
+            return new CircleFigure(new CirclePainter(), new CircleController());
         }
     }
 }
