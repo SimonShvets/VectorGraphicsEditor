@@ -110,6 +110,13 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\ToolsControllers\MoverController.cs" />
+    <Compile Include="Selector\HandSelector\ResizeSelector.cs" />
+    <Compile Include="Selector\HandSelector\RotateSelector.cs" />
+    <Compile Include="Selector\HandSelector\MoveSelector.cs" />
+    <Compile Include="Selector\HandSelector\IHandSelector.cs" />
+    <Compile Include="Selector\ISelector.cs" />
+    <Compile Include="Tools\AbstractTool.cs" />
+    <Compile Include="Tools\HandTool.cs" />
     <EmbeddedResource Include="EditorForm.resx">
       <DependentUpon>EditorForm.cs</DependentUpon>
     </EmbeddedResource>
