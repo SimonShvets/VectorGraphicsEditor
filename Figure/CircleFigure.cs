@@ -8,7 +8,6 @@ namespace VectorGraphicsEditor.Figure
 {
     public class CircleFigure : AbstractFigure
     {
-<<<<<<< HEAD:MarkUp/CircleMarkUp.cs
         public List<PointF> PointList { get; set; }
         public PointF[] Points
         {
@@ -25,9 +24,7 @@ namespace VectorGraphicsEditor.Figure
                 return PointList.Count;
             }
         }
-        private PointF CircleStartPoint;
-=======
->>>>>>> NewArchitecture:Figure/CircleFigure.cs
+        private PointF CircleStartPoint{ get; set; }
         private int N = 90;
         public CircleFigure(IPainter painter, IFigureController figureController)
         {
@@ -37,13 +34,10 @@ namespace VectorGraphicsEditor.Figure
         }
         public override void Update(PointF endPoint)
         {
-<<<<<<< HEAD:MarkUp/CircleMarkUp.cs
             CircleStartPoint = new PointF(StartPoint.X, endPoint.Y);
-            PointList = new List<PointF>
-=======
+            PointList = new List<PointF> { CircleStartPoint };
             PointF CircleStartPoint = new PointF(StartPoint.X, endPoint.Y);
             Markup = new List<PointF>
->>>>>>> NewArchitecture:Figure/CircleFigure.cs
             {
                 CircleStartPoint
             };
@@ -59,7 +53,6 @@ namespace VectorGraphicsEditor.Figure
                 Markup.Add(point);
             }
         }
-<<<<<<< HEAD:MarkUp/CircleMarkUp.cs
 
         public PointF[] CalculateFrame()
         {
@@ -89,7 +82,5 @@ namespace VectorGraphicsEditor.Figure
             };
             return node;
         }
-=======
->>>>>>> NewArchitecture:Figure/CircleFigure.cs
     }
 }
