@@ -108,21 +108,21 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             factory = new HandFactory();
-            figure = factory.CreateFigure(figure.Painter, figure.FigureController);
+            //figure = factory.CreateFigure(figure.Painter, figure.FigureController);
         }
         private void Brush_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             factory = new BrushFactory();
-            figure = factory.CreateFigure(figure.Painter, figure.FigureController);
+            //figure = factory.CreateFigure(figure.Painter, figure.FigureController);
         }
         private void Curve_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             factory = new CurveFactory();
-            figure = factory.CreateFigure(figure.Painter, figure.FigureController);
+            //figure = factory.CreateFigure(figure.Painter, figure.FigureController);
         }   
 
         private void Circle_Click(object sender, EventArgs e)
@@ -130,7 +130,7 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             factory = new CircleFactory();
-            figure = factory.CreateFigure(figure.Painter, figure.FigureController);
+            //figure = factory.CreateFigure(figure.Painter, figure.FigureController);
         }
 
         private void Ellipse_Click(object sender, EventArgs e)
@@ -138,7 +138,7 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             factory = new ElipseFactory();
-            figure = factory.CreateFigure(figure.Painter, figure.FigureController);
+            //figure = factory.CreateFigure(figure.Painter, figure.FigureController);
         }
 
         private void Triangle_Click(object sender, EventArgs e)
@@ -146,7 +146,7 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             factory = new TriangleFactory();
-            figure = factory.CreateFigure(figure.Painter, figure.FigureController);
+            //figure = factory.CreateFigure(figure.Painter, figure.FigureController);
         }
 
         private void IsoscelesTriangle_Click(object sender, EventArgs e)
@@ -154,7 +154,7 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             factory = new IsoscelesTriangleFactory();
-            figure = factory.CreateFigure(figure.Painter, figure.FigureController);
+            //figure = factory.CreateFigure(figure.Painter, figure.FigureController);
         }
 
         private void IrregularPolygon_Click(object sender, EventArgs e)
@@ -162,7 +162,7 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             factory = new IrregularPolygonFactory();
-            figure = factory.CreateFigure(figure.Painter, figure.FigureController);
+            //figure = factory.CreateFigure(figure.Painter, figure.FigureController);
         }
 
         private void Polygon_Click(object sender, EventArgs e)
@@ -170,7 +170,7 @@ namespace VectorGraphicsEditor
             textBox1.Visible = true;
             numericUpDown.Visible = true;
             factory = new PolygonFactory();
-            figure = factory.CreateFigure(figure.Painter, figure.FigureController);
+            //figure = factory.CreateFigure(figure.Painter, figure.FigureController);
 
         }
         private void numericUpDown_TextChanged(object sender, EventArgs e)
@@ -190,7 +190,7 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             factory = new RectangleFactory();
-            figure = factory.CreateFigure(figure.Painter, figure.FigureController);
+            //figure = factory.CreateFigure(figure.Painter, figure.FigureController);
         }
 
         private void square_Click(object sender, EventArgs e)
@@ -198,7 +198,7 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             factory = new SquareFactory();
-            figure = factory.CreateFigure(figure.Painter, figure.FigureController);
+            //figure = factory.CreateFigure(figure.Painter, figure.FigureController);
         }
 
         private void EditorForm_KeyDown(object sender, KeyEventArgs e)
@@ -224,7 +224,7 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             factory = new RightTriangleFactory();
-            figure = factory.CreateFigure(figure.Painter, figure.FigureController);
+            //figure = factory.CreateFigure(figure.Painter, figure.FigureController);
         }
 
         private void Mover_Click(object sender, EventArgs e)

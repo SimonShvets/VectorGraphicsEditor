@@ -8,16 +8,6 @@ namespace VectorGraphicsEditor.Figure
 {
     public class RightTriangleFigure : AbstractFigure
     {
-        public override List<PointF> Markup { get; set; }
-        public override PointF StartPoint { get; set; }
-        public override PointF EndPoint { get; set; }
-        public override int Length
-        {
-            get
-            {
-                return Markup.Count;
-            }
-        }
         public RightTriangleFigure(IPainter painter, IFigureController figureController)
         {
             Markup = new List<PointF>();
