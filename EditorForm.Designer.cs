@@ -324,7 +324,6 @@ namespace VectorGraphicsEditor
             this.Mover.TabIndex = 21;
             this.Mover.Text = "Mover";
             this.Mover.UseVisualStyleBackColor = true;
-            this.Mover.Click += new System.EventHandler(this.Mover_Click);
             // 
             // EditorForm
             // 

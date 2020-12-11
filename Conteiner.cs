@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VectorGraphicsEditor.Figure;
 using System.Drawing;
 
@@ -36,20 +33,23 @@ namespace VectorGraphicsEditor
                 }
                 Figures[index] = value;
             }
-
         }
         public Container()
         {
             Figures = new List<AbstractFigure>();
         }
-        public void Add(AbstractFigure markUp)
+            public void Add(AbstractFigure markUp)
         {
             Figures.Insert(0, markUp);
         }
 
-        public void Move(AbstractFigure markUp, PointF delta)
+        public void Insert(int index, AbstractFigure figureToReplace)
         {
-
+            Figures.Insert(index, figureToReplace);
+        }
+        public void Remove(int index)
+        {
+            Figures.RemoveAt(index);
         }
         public bool FigureSelected(PointF startPoint, PointF endPoint, PointF checkPoint, double accuracy)
         {

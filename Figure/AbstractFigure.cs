@@ -28,6 +28,5 @@ namespace VectorGraphicsEditor.Figure
             return Markup.ToArray();
         }
         public abstract void Update(PointF endPoint);
-
     }
 }

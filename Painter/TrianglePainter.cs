@@ -6,7 +6,8 @@ namespace VectorGraphicsEditor.Painter
     {
         public void DrawFigure(Pen pen, Graphics graphics, PointF[] points)
         {
-            graphics.DrawLine(pen, points[points.Length - 2], points[points.Length - 1]);
+            graphics.DrawLines(pen, points);
+            graphics.DrawLine(pen, points[0], points[2]);
         }
     }
 }

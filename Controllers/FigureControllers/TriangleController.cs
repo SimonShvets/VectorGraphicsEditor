@@ -28,17 +28,7 @@ namespace VectorGraphicsEditor.Controllers
             {
                 figure.Update(point);
             }
-            if (figure.Length == 2)
-            {
-                figure.Painter.DrawFigure(pen, canvas.Graphics, figure.Calculate());
-            }
-            else if (figure.Length == 3)
-            {
-                canvas.Graphics.DrawLine(pen, figure.StartPoint, point);
-                figure.EndPoint = point;
-            }
             _mouseDown = true;
-            canvas.Save();
             GC.Collect();
         }
 
@@ -47,8 +37,7 @@ namespace VectorGraphicsEditor.Controllers
 
             if (_mouseDown == false && figure.Length > 0 && figure.Length < 3)
             {
-                canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
-                canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
+                canvas.CreateLayer();
                 canvas.Graphics.DrawLine(pen, figure.Markup[figure.Length - 1], point);
             }
         }
@@ -56,13 +45,19 @@ namespace VectorGraphicsEditor.Controllers
         public void MouseUpHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas)
         {
             _mouseDown = false;
-            canvas.Save();
+            if (figure.Markup.Count == 3)
+            {
+                figure.Painter.DrawFigure(pen, canvas.Graphics, figure.Calculate());
+                figure.EndPoint = point;
+            }
+            canvas.SaveLayer();
+            canvas.Graphics.Dispose();
         }
 
         public void MouseDoubleHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas)
         {
             _mouseDown = false;
-            canvas.Save();
+            canvas.SaveLayer();
         }
     }
 }

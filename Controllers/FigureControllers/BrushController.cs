@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
 using VectorGraphicsEditor.Figure;
-using VectorGraphicsEditor.Painter;
 using System;
 
 namespace VectorGraphicsEditor.Controllers
@@ -11,19 +10,19 @@ namespace VectorGraphicsEditor.Controllers
         public void MouseDownHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas)
         {
             _mouseDown = true;
+            canvas.Graphics.Dispose();
             figure.StartPoint = point;
             figure.Update(point);
-            canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
-            canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
+            canvas.CreateLayer();
             GC.Collect();
         }
 
         public void MouseMoveHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas)
-        {
+        { 
             if (_mouseDown)
             {
                 figure.Update(point);
-                figure.Painter.DrawFigure(pen, canvas.Graphics, figure.Calculate());
+                canvas.Graphics.DrawLine(pen, figure.Calculate()[figure.Calculate().Length - 2], figure.Calculate()[figure.Calculate().Length - 1]);
                 figure.EndPoint = point;
                 GC.Collect();
             }
@@ -32,7 +31,11 @@ namespace VectorGraphicsEditor.Controllers
         public void MouseUpHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas)
         {
             _mouseDown = false;
-            canvas.Save();
+            if (figure.Markup.Count > 1)
+            {
+            figure.Painter.DrawFigure(pen, canvas.Graphics, figure.Calculate());
+            }
+            canvas.SaveLayer();
         }
 
         public void MouseDoubleHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas)

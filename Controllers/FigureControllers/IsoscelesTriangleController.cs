@@ -25,10 +25,9 @@ namespace VectorGraphicsEditor.Controllers
 
         public void MouseDownHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas)
         {
+            canvas.Graphics.Dispose();
             _mouseDown = true;
             figure.StartPoint = point;
-            canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
-            canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
             GC.Collect();
         }
 
@@ -38,8 +37,7 @@ namespace VectorGraphicsEditor.Controllers
             {
 
                 figure.Update(point);
-                canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
-                canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
+                canvas.CreateLayer();
                 figure.Painter.DrawFigure(pen, canvas.Graphics, figure.Calculate());
                 figure.EndPoint = point;
                 GC.Collect();
@@ -49,7 +47,7 @@ namespace VectorGraphicsEditor.Controllers
         public void MouseUpHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas)
         {
             _mouseDown = false;
-            canvas.Save();
+            canvas.SaveLayer();
         }
     }
 }
