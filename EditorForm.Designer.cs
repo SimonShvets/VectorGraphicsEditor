@@ -59,6 +59,9 @@ namespace VectorGraphicsEditor
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
+            this.Mover = new System.Windows.Forms.Button();
+            this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
@@ -316,6 +319,15 @@ namespace VectorGraphicsEditor
             this.ChColor.UseVisualStyleBackColor = false;
             this.ChColor.Click += new System.EventHandler(this.ChColor_Click);
             // 
+            // Mover
+            // 
+            this.Mover.Location = new System.Drawing.Point(159, 27);
+            this.Mover.Name = "Mover";
+            this.Mover.Size = new System.Drawing.Size(75, 23);
+            this.Mover.TabIndex = 21;
+            this.Mover.Text = "Mover";
+            this.Mover.UseVisualStyleBackColor = true;
+            // 
             // Polygon
             // 
             this.Polygon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(42)))), ((int)(((byte)(49)))));
@@ -521,6 +533,9 @@ namespace VectorGraphicsEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Info;
+            this.ClientSize = new System.Drawing.Size(1164, 687);
+            this.Controls.Add(this.Mover);
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(42)))), ((int)(((byte)(49)))));
             this.ClientSize = new System.Drawing.Size(1324, 743);
             this.Controls.Add(this.label1);
@@ -584,6 +599,7 @@ namespace VectorGraphicsEditor
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Button square;
         private System.Windows.Forms.Button ChColor;
+        private System.Windows.Forms.Button Mover;
         private System.Windows.Forms.Button clear;
         private System.Windows.Forms.Button pipette;
         private System.Windows.Forms.TextBox Width;

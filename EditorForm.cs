@@ -3,17 +3,19 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using VectorGraphicsEditor.Painter;
-using VectorGraphicsEditor.MarkUp;
-using VectorGraphicsEditor.Fictory;
-using System.Collections.Generic;
+using VectorGraphicsEditor.Factory.ToolFactory;
+using VectorGraphicsEditor.Factory.FigureFactory;
+using VectorGraphicsEditor.Controllers;
+using VectorGraphicsEditor.Controllers.ToolsControllers;
+using VectorGraphicsEditor.Selector;
+using VectorGraphicsEditor.Figure;
+using VectorGraphicsEditor.Tools;
 
 namespace VectorGraphicsEditor
 {
     public partial class EditorForm : Form
     {
-
         Pen pen;
-        IPainter painter;
         Canvas canvas;
         IMarkUp markup;
         IFictory fictory;       
@@ -26,6 +28,13 @@ namespace VectorGraphicsEditor
         Point lastPoint;       
 
 
+        Container container;
+        AbstractFigure figure;
+        AbstractTool tool;
+        IToolController toolController;
+        IFigureFactory figureFactory;
+        IToolFactory toolFactory;
+        bool PaintMode;
         public EditorForm()
         {
             InitializeComponent();
@@ -39,10 +48,11 @@ namespace VectorGraphicsEditor
             pen = new Pen(Color.Black, (int)numericUpDown1.Value);            
             pen.StartCap = LineCap.Round;
             pen.EndCap = LineCap.Round;
-            painter = new BrushPainter();
-            markup = new BrushMarkUp();
-            fictory = new BrushFictory();
-            painters = new List<IPainter>();
+            figure = new BrushFigure(new BrushPainter(), new BrushController());
+            toolController = new MoveController();
+            figureFactory = new BrushFactory();
+            tool = new HandTool(new HandSelector());
+            container = new Container();
         }
 
 
@@ -90,7 +100,14 @@ namespace VectorGraphicsEditor
         private void pictureBox_MouseDown(object sender, MouseEventArgs e)
         {
             if (lupaCh == true)
+            if (PaintMode)
             {
+            if (figure is TriangleFigure)
+            {
+                if (figure.Length % 3 == 0)
+                {
+                    figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+                }
                 if (e.Button == MouseButtons.Left)
                 {
                     const double eps = 1.25;
@@ -119,11 +136,17 @@ namespace VectorGraphicsEditor
             markup = fictory.CreateMarkUp();
             painter = fictory.CreatePainter();
             }
-            if (markup is PolygonMarkUp)
+            if (!(figure is CurveFigure
+                || figure is IrregularPolygonFigure
+                || figure is TriangleFigure))
             {
-                PolygonMarkUp tmp = (PolygonMarkUp)markup;
+                figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+            }
+            if (figure is PolygonFigure)
+            {
+                PolygonFigure tmp = (PolygonFigure)figure;
                 tmp.N = (int)numericUpDown.Value;
-                markup = tmp;
+                figure = tmp;
             }
             painter.MouseDownHandle(e.Location, pen, markup, canvas);
             pictureBox.Image = canvas.TmpBitmap;
@@ -134,29 +157,80 @@ namespace VectorGraphicsEditor
             }
             pip = false;
             lupaCh = false;
+            figure.FigureController.MouseDownHandle(e.Location, pen, figure, canvas);
+                pictureBox.Image = canvas.MainBitmap;
+            }
+            if (PaintMode == false)
+            {
+            toolController.MouseDownHandle(e.Location, pen, figure, canvas, container, tool);
+            pictureBox.Image = canvas.MainBitmap;
+            }
 
         }
         private void pictureBox_MouseMove(object sender, MouseEventArgs e)
         {
-            painter.MouseMoveHandle(e.Location, pen, markup, canvas);
-
-            pictureBox.Image = canvas.TmpBitmap;     
+            if (PaintMode)
+            {
+                figure.FigureController.MouseMoveHandle(e.Location, pen, figure, canvas);
+                pictureBox.Image = canvas.TmpBitmap;
+            }
+            if (PaintMode == false)
+            {
+                toolController.MouseMoveHandle(e.Location, pen, figure, canvas, container, tool);
+                pictureBox.Image = canvas.TmpBitmap;
+            }
 
         }
         private void pictureBox_MouseUp(object sender, MouseEventArgs e)
         {
-            painter.MouseUpHandle(e.Location, pen, markup, canvas);
-            pictureBox.Image = canvas.TmpBitmap;
-            painters.Add(painter);
-        }
+            if (PaintMode)
+            {
+                figure.FigureController.MouseUpHandle(e.Location, pen, figure, canvas);
+                pictureBox.Image = canvas.MainBitmap;
+                if (!(figure is BrushFigure
+                    || figure is CurveFigure
+                    || figure is TriangleFigure
+                    || figure is IrregularPolygonFigure))
+                {
+                    container.Add(figure);
+                }
+                else if (figure is TriangleFigure)
+                {
+                    if (figure.Length % 3 == 0)
+                    {
+                        container.Add(figure);
+                    }
+                }
+                if (figure is BrushFigure)
+                {
+                    container.Add(figure);
+                }
+                    
+            }
+            if (PaintMode == false)
+            {
+                toolController.MouseUpHandle(e.Location, pen, figure, canvas, container, tool);
+                pictureBox.Image = canvas.MainBitmap;
+            }
+            }
         private void pictureBox_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            painter.MouseDoubleHandle(e.Location, pen, markup, canvas);
-            pictureBox.Image = canvas.TmpBitmap;
-
-            painter.MouseUpHandle(e.Location, pen, markup, canvas);
-            painters.Add(painter);
-
+            if (PaintMode)
+            {
+                figure.FigureController.MouseDoubleHandle(e.Location, pen, figure, canvas);
+                container.Add(figure);
+                if (figure is CurveFigure
+                    || figure is IrregularPolygonFigure)
+                {
+                    figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+                    pictureBox.Image = canvas.MainBitmap;
+                }
+            }
+            if (PaintMode == false)
+            {
+                toolController.MouseDoubleHandle(e.Location, pen, figure, canvas, container, tool);
+                pictureBox.Image = canvas.MainBitmap;
+            }
         }
 
         private static void setColor(Control Container, Button btnFocus)
@@ -184,12 +258,17 @@ namespace VectorGraphicsEditor
             {
                 setColor(this, Btn);
             }
+            toolFactory = new HandFactory();
+            tool = toolFactory.CreateTool(tool.Selector);
+            PaintMode = false;
         }
-
         private void Brush_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
             numericUpDown.Visible = false;
+            figureFactory = new BrushFactory();
+            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+            PaintMode = true;
             fictory = new BrushFictory();
             Button Btn = sender as Button;
             if (Btn != null)
@@ -197,7 +276,6 @@ namespace VectorGraphicsEditor
                 setColor(this, Btn);
             }
         }
-
         private void Curve_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
@@ -209,6 +287,10 @@ namespace VectorGraphicsEditor
                 setColor(this, Btn);
             }
         }   
+            figureFactory = new CurveFactory();
+            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+            PaintMode = true;
+        }
 
         private void Circle_Click(object sender, EventArgs e)
         {
@@ -221,6 +303,9 @@ namespace VectorGraphicsEditor
                 setColor(this, Btn);                
             }
             
+            figureFactory = new CircleFactory();
+            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+            PaintMode = true;
         }
 
         private void Ellipse_Click(object sender, EventArgs e)
@@ -236,6 +321,9 @@ namespace VectorGraphicsEditor
             }
             
 
+            figureFactory = new ElipseFactory();
+            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+            PaintMode = true;
         }
 
         private void Triangle_Click(object sender, EventArgs e)
@@ -248,6 +336,9 @@ namespace VectorGraphicsEditor
             {
                 setColor(this, Btn);
             }
+            figureFactory = new TriangleFactory();
+            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+            PaintMode = true;
         }
 
         private void IsoscelesTriangle_Click(object sender, EventArgs e)
@@ -260,6 +351,9 @@ namespace VectorGraphicsEditor
             {
                 setColor(this, Btn);
             }
+            figureFactory = new IsoscelesTriangleFactory();
+            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+            PaintMode = true;
         }
 
         private void IrregularPolygon_Click(object sender, EventArgs e)
@@ -272,6 +366,9 @@ namespace VectorGraphicsEditor
             {
                 setColor(this, Btn);
             }
+            figureFactory = new IrregularPolygonFactory();
+            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+            PaintMode = true;
         }
 
         private void Polygon_Click(object sender, EventArgs e)
@@ -284,11 +381,14 @@ namespace VectorGraphicsEditor
             {
                 setColor(this, Btn);
             }
+            figureFactory = new PolygonFactory();
+            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+            PaintMode = true;
 
         }
         private void numericUpDown_TextChanged(object sender, EventArgs e)
         {
-            PolygonMarkUp tmp = (PolygonMarkUp)markup;
+            PolygonFigure tmp = (PolygonFigure)figure;
             tmp.N = (int)numericUpDown.Value;
             markup = tmp;
             Button Btn = sender as Button;
@@ -296,6 +396,7 @@ namespace VectorGraphicsEditor
             {
                 setColor(this, Btn);
             }
+            figure = tmp;
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
@@ -313,6 +414,10 @@ namespace VectorGraphicsEditor
             {
                 setColor(this, Btn);
             }
+            figureFactory = new RectangleFactory();
+            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+            PaintMode = true;
+            PaintMode = true;
         }
 
         private void square_Click(object sender, EventArgs e)
@@ -325,6 +430,9 @@ namespace VectorGraphicsEditor
             {
                 setColor(this, Btn);
             }
+            figureFactory = new SquareFactory();
+            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+            PaintMode = true;
         }
 
         private void EditorForm_KeyDown(object sender, KeyEventArgs e)
@@ -356,6 +464,14 @@ namespace VectorGraphicsEditor
             {
                 setColor(this, Btn);
             }
+            figureFactory = new RightTriangleFactory();
+            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+            PaintMode = true;
+        }
+
+        private void Mover_Click(object sender, EventArgs e)
+        {
+            toolController = new MoveController();
         }
         private void clear_Click(object sender, EventArgs e)
         {
