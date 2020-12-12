@@ -35,7 +35,7 @@ namespace VectorGraphicsEditor.Controllers.ToolsControllers
             ModifiedFigure = null;
             for (int i = 0; i < figures.Length; i++)
             {
-                if (tool.Selector.Select(figures[i].StartPoint,figures[i].EndPoint, point, 200))
+                if (tool.Selector.Select(figures[i].StartPoint,figures[i].EndPoint, point, 50))
                 {
                     ModifiedFigure = figures[i];
                     _pullStartPoint = point;
