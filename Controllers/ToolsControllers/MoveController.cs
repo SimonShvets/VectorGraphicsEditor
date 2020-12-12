@@ -54,10 +54,14 @@ namespace VectorGraphicsEditor.Controllers.ToolsControllers
                 PointF delta = new PointF(point.X - _pullStartPoint.X, point.Y - _pullStartPoint.Y);
                 _pullStartPoint = point;
                 canvas.CreateLayer();
-                tool.Move(delta, ModifiedFigure.Markup);
+                if (tool is HandTool)
+                {
+                ((HandTool)tool).Move(delta, ModifiedFigure.Markup);
+                }
                 ModifiedFigure.StartPoint = new PointF(ModifiedFigure.StartPoint.X + delta.X, ModifiedFigure.StartPoint.Y + delta.Y);
                 ModifiedFigure.EndPoint = new PointF(ModifiedFigure.EndPoint.X + delta.X, ModifiedFigure.EndPoint.Y + delta.Y);
                 ModifiedFigure.Painter.DrawFigure(pen, canvas.Graphics, ModifiedFigure.Markup.ToArray());
+                GC.Collect();
             }
         }
 
