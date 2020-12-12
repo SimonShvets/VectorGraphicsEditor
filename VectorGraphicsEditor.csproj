@@ -127,5 +127,125 @@
   <ItemGroup>
     <None Include="Resources\noun_Cross_3244675.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_copy_3244674.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_copy_32446741.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_copy_32446742.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Cross_32446751.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Minus_3244686.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Brush_646059.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Brush_6460591.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Brush_6460592.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Rectangle Tool_646339.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_line chart_626979.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rectangle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Circle_22564161.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Circle_22564162.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ellipse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ellipse1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\isos_triangle_2256414.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trianglePoints.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trianglePoint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trianglePoint1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Right triangle_2233680.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Right triangle_22336801.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_triangle_22564141.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trianglePoints1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trianglePoints2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Right triangle_22336802.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Right triangle_22336803.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Polygonal Lasso_2700180.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Polygon Tool_646338.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Polygon Tool_6463381.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Cursor_430417.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_palette_3647420.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Cursor_799534.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Cursor_7995341.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Delete_2785496.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_pipette_3241700.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_pipette_32417001.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_pipette_32417002.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_magnifier_3357137.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_magnifier_33571371.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

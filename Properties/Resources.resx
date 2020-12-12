@@ -118,16 +118,139 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="icons8-кисть-96" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-кисть-961.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="noun_Rectangle Tool_646339" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_Rectangle Tool_646339.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="noun_Cross_3244675" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_Cross_3244675.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="noun_line chart_626979" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_line chart_626979.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="noun_Right triangle_22336801" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_Right triangle_22336801.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="window2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\window2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="noun_Cross_32446751" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_Cross_32446751.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="noun_copy_3244674" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_copy_3244674.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="noun_Brush_6460591" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_Brush_6460591.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="trianglePoints2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\trianglePoints2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="noun_copy_32446742" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_copy_32446742.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="noun_pipette_32417001" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_pipette_32417001.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="noun_Brush_6460592" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_Brush_6460592.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="noun_palette_3647420" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_palette_3647420.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="noun_triangle_2256414" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_triangle_22564141.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="noun_Polygon Tool_6463381" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_Polygon Tool_6463381.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="software-shape-rectangle_98272" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\software-shape-rectangle_98272.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="noun_Circle_2256416" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_Circle_22564161.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="noun_magnifier_3357137" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_magnifier_3357137.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="noun_copy_32446741" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_copy_32446741.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="noun_Cursor_799534" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_Cursor_799534.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ellipse1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ellipse1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="trianglePoint1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\trianglePoint1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="isos_triangle_2256414" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\isos_triangle_2256414.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="close" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\close.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="cursor_arrow_13222 (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cursor_arrow_13222 (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="noun_Cross_3244675" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\noun_Cross_3244675.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="trianglePoint" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\trianglePoint.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="trianglePoints" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\trianglePoints.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="noun_Brush_646059" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_Brush_646059.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="noun_Right triangle_2233680" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_Right triangle_2233680.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="noun_Polygon Tool_646338" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_Polygon Tool_646338.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="noun_pipette_32417002" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_pipette_32417002.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="trianglePoints1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\trianglePoints1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rectangle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rectangle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ellipse" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ellipse.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="noun_Circle_22564161" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_Circle_22564162.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="noun_Cursor_430417" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_Cursor_430417.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="noun_Cursor_7995341" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_Cursor_7995341.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8-кисть-96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-кисть-961.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="noun_Delete_2785496" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_Delete_2785496.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="noun_pipette_3241700" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_pipette_3241700.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="noun_Right triangle_22336803" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_Right triangle_22336803.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="noun_Minus_3244686" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_Minus_3244686.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="noun_Polygonal Lasso_2700180" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_Polygonal Lasso_2700180.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="noun_Right triangle_22336802" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_Right triangle_22336802.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="noun_magnifier_33571371" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_magnifier_33571371.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

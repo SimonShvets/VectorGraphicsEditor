@@ -21,8 +21,9 @@ namespace VectorGraphicsEditor
         IMarkUp currentMarkUp;
         bool pip = false;
         Size StartSize;
-       // double zoom = 1.25;
+        //double zoom = 1.25;
         bool lupaCh = false;
+        Point lastPoint;       
 
 
         public EditorForm()
@@ -43,6 +44,7 @@ namespace VectorGraphicsEditor
             fictory = new BrushFictory();
             painters = new List<IPainter>();
         }
+
 
         private void PictureBox_MouseWheel(object sender, MouseEventArgs e)
         {
@@ -156,11 +158,32 @@ namespace VectorGraphicsEditor
             painters.Add(painter);
 
         }
+
+        private static void setColor(Control Container, Button btnFocus)
+        {
+            btnFocus.BackColor = Color.FromArgb(27, 28, 37);
+            foreach (Control Btn in Container.Controls)
+            {
+                if(Btn is Button)
+                {
+                    if(btnFocus != Btn)
+                    {
+                        Btn.BackColor = Color.FromArgb(41, 42, 49);
+                    }
+                }
+            }
+        }
+
         private void Hand_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             fictory = new HandFictory();
+            Button Btn = sender as Button;
+            if (Btn != null)
+            {
+                setColor(this, Btn);
+            }
         }
 
         private void Brush_Click(object sender, EventArgs e)
@@ -168,6 +191,11 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             fictory = new BrushFictory();
+            Button Btn = sender as Button;
+            if (Btn != null)
+            {
+                setColor(this, Btn);
+            }
         }
 
         private void Curve_Click(object sender, EventArgs e)
@@ -175,6 +203,11 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             fictory = new CurveFictory();
+            Button Btn = sender as Button;
+            if (Btn != null)
+            {
+                setColor(this, Btn);
+            }
         }   
 
         private void Circle_Click(object sender, EventArgs e)
@@ -182,6 +215,12 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             fictory = new CircleFictory();
+            Button Btn = sender as Button;
+            if (Btn != null)
+            {
+                setColor(this, Btn);                
+            }
+            
         }
 
         private void Ellipse_Click(object sender, EventArgs e)
@@ -189,6 +228,14 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             fictory = new ElipseFictory();
+            Button Btn = sender as Button;
+            if(Btn != null)
+            {
+                setColor(this, Btn);
+                
+            }
+            
+
         }
 
         private void Triangle_Click(object sender, EventArgs e)
@@ -196,6 +243,11 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             fictory = new TriangleFictory();
+            Button Btn = sender as Button;
+            if (Btn != null)
+            {
+                setColor(this, Btn);
+            }
         }
 
         private void IsoscelesTriangle_Click(object sender, EventArgs e)
@@ -203,6 +255,11 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             fictory = new IsoscelesTriangleFictory();
+            Button Btn = sender as Button;
+            if (Btn != null)
+            {
+                setColor(this, Btn);
+            }
         }
 
         private void IrregularPolygon_Click(object sender, EventArgs e)
@@ -210,6 +267,11 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             fictory = new IrregularPolygonFictory();
+            Button Btn = sender as Button;
+            if (Btn != null)
+            {
+                setColor(this, Btn);
+            }
         }
 
         private void Polygon_Click(object sender, EventArgs e)
@@ -217,6 +279,11 @@ namespace VectorGraphicsEditor
             textBox1.Visible = true;
             numericUpDown.Visible = true;
             fictory = new PolygonFictory();
+            Button Btn = sender as Button;
+            if (Btn != null)
+            {
+                setColor(this, Btn);
+            }
 
         }
         private void numericUpDown_TextChanged(object sender, EventArgs e)
@@ -224,11 +291,16 @@ namespace VectorGraphicsEditor
             PolygonMarkUp tmp = (PolygonMarkUp)markup;
             tmp.N = (int)numericUpDown.Value;
             markup = tmp;
+            Button Btn = sender as Button;
+            if (Btn != null)
+            {
+                setColor(this, Btn);
+            }
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            pen.Width = (int)numericUpDown1.Value;
+            pen.Width = (int)numericUpDown1.Value;            
         }
 
         private void Rectangle_Click(object sender, EventArgs e)
@@ -236,6 +308,11 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             fictory = new RectangleFictory();
+            Button Btn = sender as Button;
+            if (Btn != null)
+            {
+                setColor(this, Btn);
+            }
         }
 
         private void square_Click(object sender, EventArgs e)
@@ -243,6 +320,11 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             fictory = new SquareFictory();
+            Button Btn = sender as Button;
+            if (Btn != null)
+            {
+                setColor(this, Btn);
+            }
         }
 
         private void EditorForm_KeyDown(object sender, KeyEventArgs e)
@@ -250,6 +332,7 @@ namespace VectorGraphicsEditor
             if (e.KeyValue == (char)Keys.NumPad0)
             {
                 square.PerformClick();
+
             }
         }
 
@@ -268,6 +351,11 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             fictory = new RightTriangleFictory();
+            Button Btn = sender as Button;
+            if (Btn != null)
+            {
+                setColor(this, Btn);
+            }
         }
         private void clear_Click(object sender, EventArgs e)
         {
@@ -294,6 +382,30 @@ namespace VectorGraphicsEditor
         private void lupa_Click(object sender, EventArgs e)
         {
              lupaCh = true;
-        }        
+        }
+
+        private void closeButton_Click(object sender, EventArgs e)
+        {
+            this.Close();            
+        }
+
+        private void EditorForm_MouseMove(object sender, MouseEventArgs e)
+        {            
+            if(e.Button == MouseButtons.Left)
+            {
+                this.Left += e.X - lastPoint.X;
+                this.Top += e.Y - lastPoint.Y;
+            }
+        }
+
+        private void EditorForm_MouseDown(object sender, MouseEventArgs e)
+        {            
+            lastPoint = new Point(e.X, e.Y);
+        }
+
+        private void minimizeButton_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
     }
 }
