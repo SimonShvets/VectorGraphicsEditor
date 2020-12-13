@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using VectorGraphicsEditor.Figure;
 using VectorGraphicsEditor.Tools;
 
@@ -35,13 +36,13 @@ namespace VectorGraphicsEditor.Controllers.ToolsControllers
             ModifiedFigure = null;
             for (int i = 0; i < figures.Length; i++)
             {
-                //if (tool.Selector.Select(figures[i].StartPoint,figures[i].EndPoint, point, 50))
+                if (figures[i].Markup.IsVisible(point))
                 {
                     ModifiedFigure = figures[i];
                     _pullStartPoint = point;
                     _modifiedFigureIndex = i;
                     figures.Remove(_modifiedFigureIndex);
-                    canvas.UndoLayer();
+                    //canvas.UndoLayer();
                     break;
                 }
             }
@@ -51,17 +52,19 @@ namespace VectorGraphicsEditor.Controllers.ToolsControllers
         {
             if (mouseDown && ModifiedFigure != null)
             {
-                //PointF delta = new PointF(point.X - _pullStartPoint.X, point.Y - _pullStartPoint.Y);
-                //_pullStartPoint = point;
-                //canvas.CreateLayer();
+                PointF delta = new PointF(point.X - _pullStartPoint.X, point.Y - _pullStartPoint.Y);
+                _pullStartPoint = point;
+                canvas.CreateLayer();
                 //if (tool is HandTool)
                 //{
-                //((HandTool)tool).Move(delta, ModifiedFigure.Markup);
+                //    ((HandTool)tool).Move(delta, ModifiedFigure.Markup);
                 //}
+                Matrix translateMatrix = new Matrix();
+                translateMatrix.Translate(100,0);
+                ModifiedFigure.Markup.Transform(translateMatrix);
                 //ModifiedFigure.StartPoint = new PointF(ModifiedFigure.StartPoint.X + delta.X, ModifiedFigure.StartPoint.Y + delta.Y);
-                //ModifiedFigure.EndPoint = new PointF(ModifiedFigure.EndPoint.X + delta.X, ModifiedFigure.EndPoint.Y + delta.Y);
-                //ModifiedFigure.Painter.DrawFigure(pen, canvas.Graphics, ModifiedFigure.Markup.ToArray());
-                //GC.Collect();
+                canvas.Graphics.DrawPath(pen, ModifiedFigure.Markup);
+                GC.Collect();
             }
         }
 

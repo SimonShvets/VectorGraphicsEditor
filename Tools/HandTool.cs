@@ -7,6 +7,7 @@ using VectorGraphicsEditor.Figure;
 using VectorGraphicsEditor.Selector;
 using System.Drawing;
 using VectorGraphicsEditor.Controllers.ToolsControllers;
+using System.Drawing.Drawing2D;
 
 namespace VectorGraphicsEditor.Tools
 {
@@ -17,12 +18,14 @@ namespace VectorGraphicsEditor.Tools
             Selector = handSelector;
         }
         //MoveSelector - родной метод в абстрактном классе селектора
-        public void Move(PointF delta, List<PointF> markup)
+        public void Move(PointF delta, GraphicsPath markup)
         {
-            ToolController = new MoveController();
-            for (int i = 0; i < markup.Count; i++)
+            for (int i = 0; i < markup.PointCount; i++)
             {
-                markup[i] = new PointF(markup[i].X + delta.X, markup[i].Y + delta.Y);
+                //markup[i] = new PointF(markup[i].X + delta.X, markup[i].Y + delta.Y);
+                Matrix translateMatrix = new Matrix();
+                translateMatrix.Translate(delta.X, delta.Y);
+                markup.Transform(translateMatrix);
             }
         }
         //RotateSelector - 1я перегрузка в handselector
