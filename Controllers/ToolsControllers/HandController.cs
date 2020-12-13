@@ -32,6 +32,7 @@ namespace VectorGraphicsEditor.Controllers.ToolsControllers
 
         public void MouseDownHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas, Container figures, AbstractTool tool)
         {
+            Frame frame = new Frame();
             mouseDown = true;
             ModifiedFigure = null;
             for (int i = 0; i < figures.Length; i++)
@@ -39,8 +40,9 @@ namespace VectorGraphicsEditor.Controllers.ToolsControllers
                 if (figures[i].Markup.IsVisible(point))
                 {
                     ModifiedFigure = figures[i];
-                    Frame.CreateFrame(canvas, ModifiedFigure);
-
+                    canvas.CreateLayer();
+                    frame.CreateFrame(canvas, ModifiedFigure);
+                    frame.CreateVertex(canvas);
                     break;
                 }
             }

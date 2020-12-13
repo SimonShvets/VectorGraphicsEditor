@@ -8,15 +8,44 @@ namespace VectorGraphicsEditor
 {
     public class Frame
     {
-        static public void CreateFrame(Canvas canvas, AbstractFigure ModifiedFigure)
+        Pen pen = new Pen(Color.Black, 1);
+        PointF[] p;
+
+        public void CreateFrame(Canvas canvas, AbstractFigure ModifiedFigure)
         {
-            canvas.CreateLayer();
             RectangleF boundRect = ModifiedFigure.Markup.GetBounds();
-            canvas.Graphics.DrawRectangle(new Pen(Color.Black, 1),
+            canvas.Graphics.DrawRectangle(pen,
                 boundRect.X,
                 boundRect.Y,
                 boundRect.Width,
                 boundRect.Height);
+
+            p = new PointF[]
+            {
+                new PointF(boundRect.X,boundRect.Y),
+                new PointF(boundRect.X,boundRect.Y+boundRect.Height/2),
+                new PointF(boundRect.X,boundRect.Y+boundRect.Height),
+                new PointF(boundRect.X+boundRect.Width/2,boundRect.Y+boundRect.Height),
+                new PointF(boundRect.X+boundRect.Width,boundRect.Y+boundRect.Height),
+                new PointF(boundRect.X+boundRect.Width,boundRect.Y+boundRect.Height/2),
+                new PointF(boundRect.X+boundRect.Width,boundRect.Y),
+                new PointF(boundRect.X+boundRect.Width/2,boundRect.Y)
+            };
         }
+        public void CreateVertex(Canvas canvas)
+        {
+            foreach (PointF i in p) 
+            {
+                PointF[] node = new PointF[]
+{
+                new PointF(i.X - 4, i.Y-4),
+                new PointF(i.X - 4, i.Y+4),
+                new PointF(i.X + 4, i.Y+4),
+                new PointF(i.X + 4, i.Y-4)
+};
+                canvas.Graphics.DrawPolygon(pen, node);
+            }
+        }
+
     }
 }
