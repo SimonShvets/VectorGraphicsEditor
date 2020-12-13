@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-using VectorGraphicsEditor.Painter;
 using VectorGraphicsEditor.Factory.ToolFactory;
 using VectorGraphicsEditor.Factory.FigureFactory;
 using VectorGraphicsEditor.Controllers;
@@ -34,7 +33,7 @@ namespace VectorGraphicsEditor
             pen = new Pen(Color.Red, (int)numericUpDown1.Value);
             pen.StartCap = LineCap.Round;
             pen.EndCap = LineCap.Round;
-            figure = new BrushFigure(new BrushPainter(), new BrushController());
+            figure = new BrushFigure(new BrushController());
             toolController = new MoveController();
             figureFactory = new BrushFactory();
             tool = new HandTool(new HandSelector());
@@ -48,14 +47,14 @@ namespace VectorGraphicsEditor
             {
                 if (figure.Points.Count % 3 == 0)
                 {
-                    figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+                    figure = figureFactory.CreateFigure(figure.FigureController);
                 }
             }
             if (!(figure is CurveFigure
                 || figure is IrregularPolygonFigure
                 || figure is TriangleFigure))
             {
-                figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+                figure = figureFactory.CreateFigure(figure.FigureController);
             }
             if (figure is PolygonFigure)
             {
@@ -128,7 +127,7 @@ namespace VectorGraphicsEditor
                 if (figure is CurveFigure
                     || figure is IrregularPolygonFigure)
                 {
-                    figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+                    figure = figureFactory.CreateFigure(figure.FigureController);
                     pictureBox.Image = canvas.MainBitmap;
                 }
             }
@@ -151,7 +150,7 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             figureFactory = new BrushFactory();
-            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+            figure = figureFactory.CreateFigure(figure.FigureController);
             PaintMode = true;
         }
         private void Curve_Click(object sender, EventArgs e)
@@ -159,7 +158,7 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             figureFactory = new CurveFactory();
-            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+            figure = figureFactory.CreateFigure(figure.FigureController);
             PaintMode = true;
         }
 
@@ -168,7 +167,7 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             figureFactory = new CircleFactory();
-            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+            figure = figureFactory.CreateFigure(figure.FigureController);
             PaintMode = true;
         }
 
@@ -177,7 +176,7 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             figureFactory = new ElipseFactory();
-            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+            figure = figureFactory.CreateFigure(figure.FigureController);
             PaintMode = true;
         }
 
@@ -186,7 +185,7 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             figureFactory = new TriangleFactory();
-            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+            figure = figureFactory.CreateFigure(figure.FigureController);
             PaintMode = true;
         }
 
@@ -195,7 +194,7 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             figureFactory = new IsoscelesTriangleFactory();
-            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+            figure = figureFactory.CreateFigure(figure.FigureController);
             PaintMode = true;
         }
 
@@ -204,7 +203,7 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             figureFactory = new IrregularPolygonFactory();
-            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+            figure = figureFactory.CreateFigure(figure.FigureController);
             PaintMode = true;
         }
 
@@ -213,7 +212,7 @@ namespace VectorGraphicsEditor
             textBox1.Visible = true;
             numericUpDown.Visible = true;
             figureFactory = new PolygonFactory();
-            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+            figure = figureFactory.CreateFigure(figure.FigureController);
             PaintMode = true;
 
         }
@@ -234,7 +233,7 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             figureFactory = new RectangleFactory();
-            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+            figure = figureFactory.CreateFigure(figure.FigureController);
             PaintMode = true;
             PaintMode = true;
         }
@@ -244,7 +243,7 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             figureFactory = new SquareFactory();
-            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+            figure = figureFactory.CreateFigure(figure.FigureController);
             PaintMode = true;
         }
 
@@ -271,7 +270,7 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             figureFactory = new RightTriangleFactory();
-            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+            figure = figureFactory.CreateFigure(figure.FigureController);
             PaintMode = true;
         }
 

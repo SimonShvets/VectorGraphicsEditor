@@ -1,5 +1,4 @@
 ﻿using System.Drawing;
-using VectorGraphicsEditor.Painter;
 using VectorGraphicsEditor.Figure;
 using System;
 using System.Drawing.Drawing2D;

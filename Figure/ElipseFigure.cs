@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
-using VectorGraphicsEditor.Painter;
 using VectorGraphicsEditor.Controllers;
 using System.Drawing.Drawing2D;
 
@@ -8,9 +7,8 @@ namespace VectorGraphicsEditor.Figure
 {
     public class ElipseFigure : AbstractFigure
     {
-        public ElipseFigure(IPainter painter, IFigureController figureController)
+        public ElipseFigure(IFigureController figureController)
         {
-            Painter = painter;
             FigureController = figureController;
         }
 

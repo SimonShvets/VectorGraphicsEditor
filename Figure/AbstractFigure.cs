@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
-using VectorGraphicsEditor.Painter;
 using VectorGraphicsEditor.Controllers;
 using System.Drawing.Drawing2D;
 using System;
@@ -12,7 +11,6 @@ namespace VectorGraphicsEditor.Figure
         public GraphicsPath Markup { get; set; }
         public PointF StartPoint { get; set; }
         public List<PointF> Points { get; set; }
-        public IPainter Painter { get; protected set; }
         public IFigureController FigureController { get; protected set; }
         public AbstractFigure()
         {

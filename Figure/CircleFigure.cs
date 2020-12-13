@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using VectorGraphicsEditor.Painter;
 using VectorGraphicsEditor.Controllers;
 using System.Drawing.Drawing2D;
 
@@ -10,9 +9,8 @@ namespace VectorGraphicsEditor.Figure
     public class CircleFigure : AbstractFigure
     {
         private int N = 90;
-        public CircleFigure(IPainter painter, IFigureController figureController)
+        public CircleFigure(IFigureController figureController)
         {
-            Painter = painter;
             FigureController = figureController;
         }
         public override PointF[] Update(PointF point)

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
-using VectorGraphicsEditor.Painter;
 using VectorGraphicsEditor.Controllers;
 using System.Drawing.Drawing2D;
 
@@ -8,9 +7,8 @@ namespace VectorGraphicsEditor.Figure
 {
     public class CurveFigure: AbstractFigure
     {
-        public CurveFigure(IPainter painter, IFigureController figureController)
+        public CurveFigure(IFigureController figureController)
         {
-            Painter = painter;
             FigureController = figureController;
         }
 

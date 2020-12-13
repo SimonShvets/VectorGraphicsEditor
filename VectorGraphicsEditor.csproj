@@ -89,24 +89,12 @@
     <Compile Include="Figure\RectangleFigure.cs" />
     <Compile Include="Figure\AbstractFigure.cs" />
     <Compile Include="Canvas.cs" />
-    <Compile Include="Painter\SquarePainter.cs" />
-    <Compile Include="Painter\IPainter.cs" />
     <Compile Include="EditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EditorForm.Designer.cs">
       <DependentUpon>EditorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Painter\BrushPainter.cs" />
-    <Compile Include="Painter\CirclePainter.cs" />
-    <Compile Include="Painter\ElipsePainter.cs" />
-    <Compile Include="Painter\IsoscelesTrianglePainter.cs" />
-    <Compile Include="Painter\PolygonPainter.cs" />
-    <Compile Include="Painter\RectanglePainter.cs" />
-    <Compile Include="Painter\RightTrianglePainter.cs" />
-    <Compile Include="Painter\TrianglePainter.cs" />
-    <Compile Include="Painter\IrregularPolygonPainter.cs" />
-    <Compile Include="Painter\CurvePainter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\ToolsControllers\MoveController.cs" />

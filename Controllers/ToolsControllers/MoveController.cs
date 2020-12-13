@@ -52,16 +52,15 @@ namespace VectorGraphicsEditor.Controllers.ToolsControllers
         {
             if (mouseDown && ModifiedFigure != null)
             {
-                PointF delta = new PointF(point.X - _pullStartPoint.X, point.Y - _pullStartPoint.Y);
-                _pullStartPoint = point;
                 canvas.CreateLayer();
                 //if (tool is HandTool)
                 //{
                 //    ((HandTool)tool).Move(delta, ModifiedFigure.Markup);
                 //}
                 Matrix translateMatrix = new Matrix();
-                translateMatrix.Translate(100,0);
+                translateMatrix.Translate(point.X - _pullStartPoint.X, point.Y - _pullStartPoint.Y);
                 ModifiedFigure.Markup.Transform(translateMatrix);
+                _pullStartPoint = point;
                 //ModifiedFigure.StartPoint = new PointF(ModifiedFigure.StartPoint.X + delta.X, ModifiedFigure.StartPoint.Y + delta.Y);
                 canvas.Graphics.DrawPath(pen, ModifiedFigure.Markup);
                 GC.Collect();

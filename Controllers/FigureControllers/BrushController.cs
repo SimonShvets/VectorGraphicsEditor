@@ -31,6 +31,12 @@ namespace VectorGraphicsEditor.Controllers
             _mouseDown = false;
             figure.Markup.AddLines(figure.Points.ToArray());
             canvas.Graphics.DrawPath(pen, figure.Markup);
+            RectangleF boundRect = figure.Markup.GetBounds();
+            canvas.Graphics.DrawRectangle(new Pen(Color.Red, 1),
+        boundRect.X,
+        boundRect.Y,
+        boundRect.Width,
+        boundRect.Height);
             canvas.SaveLayer();
             canvas.Graphics.Dispose();
         }
