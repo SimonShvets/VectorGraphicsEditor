@@ -59,6 +59,8 @@
     <Compile Include="Controllers\FigureControllers\SquareController.cs" />
     <Compile Include="Controllers\FigureControllers\CurveController.cs" />
     <Compile Include="Controllers\FigureControllers\IFigureController.cs" />
+    <Compile Include="Controllers\ToolsControllers\HandController.cs" />
+    <Compile Include="Controllers\ToolsControllers\ResizeController.cs" />
     <Compile Include="Controllers\ToolsControllers\RotateController.cs" />
     <Compile Include="Controllers\ToolsControllers\IToolController.cs" />
     <Compile Include="Factory\FigureFactory\BrushFactory.cs" />
@@ -95,6 +97,7 @@
     <Compile Include="EditorForm.Designer.cs">
       <DependentUpon>EditorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\ToolsControllers\MoveController.cs" />

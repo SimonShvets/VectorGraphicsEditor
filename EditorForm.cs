@@ -34,7 +34,7 @@ namespace VectorGraphicsEditor
             pen.StartCap = LineCap.Round;
             pen.EndCap = LineCap.Round;
             figure = new BrushFigure(new BrushController());
-            toolController = new MoveController();
+            toolController = new HandController();
             figureFactory = new BrushFactory();
             tool = new HandTool(new HandSelector());
             container = new Container();
