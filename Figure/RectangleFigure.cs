@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using VectorGraphicsEditor.Painter;
 using VectorGraphicsEditor.Controllers;
+using System.Drawing.Drawing2D;
 
 namespace VectorGraphicsEditor.Figure
 {
@@ -11,19 +12,19 @@ namespace VectorGraphicsEditor.Figure
     {
         public RectangleFigure(IPainter painter, IFigureController figureController)
         {
-            Markup = new List<PointF>();
             Painter = painter;
             FigureController = figureController;
         }
-        public override void Update(PointF endPoint)
+        public override PointF[] Update(PointF endPoint)
         {
-            Markup = new List<PointF>
+            Points = new List<PointF>
             {
                 StartPoint,
-                new PointF(StartPoint.X, endPoint.Y),
+                new PointF(StartPoint .X, endPoint.Y),
                 endPoint,
-                new PointF(endPoint.X, StartPoint.Y)
+                new PointF(endPoint.X, StartPoint .Y)
             };
+            return Points.ToArray();
         }
     }
 }

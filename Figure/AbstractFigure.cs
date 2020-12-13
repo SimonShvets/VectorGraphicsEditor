@@ -2,31 +2,23 @@
 using System.Drawing;
 using VectorGraphicsEditor.Painter;
 using VectorGraphicsEditor.Controllers;
+using System.Drawing.Drawing2D;
+using System;
 
 namespace VectorGraphicsEditor.Figure
 {
     public abstract class AbstractFigure
     {
-        public List<PointF> Markup { get; set; }
+        public GraphicsPath Markup { get; set; }
         public PointF StartPoint { get; set; }
-        public PointF EndPoint { get; set; }
+        public List<PointF> Points { get; set; }
         public IPainter Painter { get; protected set; }
         public IFigureController FigureController { get; protected set; }
-        public int Length
-        {
-            get
-            {
-                return Markup.Count;
-            }
-        }
         public AbstractFigure()
         {
-            Markup = new List<PointF>();
+            Markup = new GraphicsPath();
+            Points = new List<PointF>();
         }
-        public virtual PointF[] Calculate()
-        {
-            return Markup.ToArray();
-        }
-        public abstract void Update(PointF endPoint);
+        public abstract PointF[] Update(PointF point);
     }
 }

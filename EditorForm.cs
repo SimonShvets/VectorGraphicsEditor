@@ -46,7 +46,7 @@ namespace VectorGraphicsEditor
             {
             if (figure is TriangleFigure)
             {
-                if (figure.Length % 3 == 0)
+                if (figure.Points.Count % 3 == 0)
                 {
                     figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
                 }
@@ -102,7 +102,7 @@ namespace VectorGraphicsEditor
                 }
                 else if (figure is TriangleFigure)
                 {
-                    if (figure.Length % 3 == 0)
+                    if (figure.Points.Count % 3 == 0)
                     {
                         container.Add(figure);
                     }

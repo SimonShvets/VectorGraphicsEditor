@@ -11,7 +11,5 @@ namespace VectorGraphicsEditor.Controllers
         void MouseMoveHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas);
         void MouseUpHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas);
         void MouseDoubleHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas);
-        void KeyDown();
-        void KeyUp();
     }
 }

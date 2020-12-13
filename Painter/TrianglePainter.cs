@@ -1,13 +1,12 @@
 ﻿using System.Drawing;
-
+using System.Drawing.Drawing2D;
 namespace VectorGraphicsEditor.Painter
 {
     public class TrianglePainter: IPainter
     {
-        public void DrawFigure(Pen pen, Graphics graphics, PointF[] points)
+        public void DrawFigure(Pen pen, Graphics graphics, GraphicsPath path)
         {
-            graphics.DrawLines(pen, points);
-            graphics.DrawLine(pen, points[0], points[2]);
+            graphics.DrawPath(pen, path);
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Drawing;
 using VectorGraphicsEditor.Painter;
 using VectorGraphicsEditor.Controllers;
+using System.Drawing.Drawing2D;
 
 namespace VectorGraphicsEditor.Figure
 {
@@ -9,13 +10,13 @@ namespace VectorGraphicsEditor.Figure
     {
         public IrregularPolygonFigure(IPainter painter, IFigureController figureController)
         {
-            Markup = new List<PointF>();
             Painter = painter;
             FigureController = figureController;
         }
-        public override void Update(PointF endPoint)
+        public override PointF[] Update(PointF point)
         {
-            Markup.Add(endPoint);
+            Points.Add(point);
+            return Points.ToArray();
         }
     }
 }

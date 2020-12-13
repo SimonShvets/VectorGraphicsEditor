@@ -80,7 +80,6 @@
     <Compile Include="Figure\CurveFigure.cs" />
     <Compile Include="Figure\CircleFigure.cs" />
     <Compile Include="Figure\ElipseFigure.cs" />
-    <Compile Include="Figure\HandFigure.cs" />
     <Compile Include="Figure\IsoscelesTriangleFigure.cs" />
     <Compile Include="Figure\PolygonFigure.cs" />
     <Compile Include="Figure\SquareFigure.cs" />
@@ -101,7 +100,6 @@
     <Compile Include="Painter\BrushPainter.cs" />
     <Compile Include="Painter\CirclePainter.cs" />
     <Compile Include="Painter\ElipsePainter.cs" />
-    <Compile Include="Painter\HandPainter.cs" />
     <Compile Include="Painter\IsoscelesTrianglePainter.cs" />
     <Compile Include="Painter\PolygonPainter.cs" />
     <Compile Include="Painter\RectanglePainter.cs" />

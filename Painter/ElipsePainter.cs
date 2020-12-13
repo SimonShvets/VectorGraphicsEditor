@@ -1,13 +1,12 @@
 ﻿using System.Drawing;
-
+using System.Drawing.Drawing2D;
 namespace VectorGraphicsEditor.Painter
 {
     public class ElipsePainter : IPainter
     {
-        public void DrawFigure(Pen pen, Graphics graphics, PointF[] points)
+        public void DrawFigure(Pen pen, Graphics graphics, GraphicsPath path)
         {
-            Rectangle rect = new Rectangle((int)points[0].X, (int)points[1].X, (int)points[2].X, (int)points[3].X);
-            graphics.DrawEllipse(pen, rect);
+            graphics.DrawPath(pen, path);
         }
     }
 }

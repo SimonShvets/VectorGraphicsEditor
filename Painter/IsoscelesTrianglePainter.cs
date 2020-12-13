@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
-
+using System.Drawing.Drawing2D;
 namespace VectorGraphicsEditor.Painter
 {
     public class IsoscelesTrianglePainter : IPainter
     {
-        public void DrawFigure(Pen pen, Graphics graphics, PointF[] points)
+        public void DrawFigure(Pen pen, Graphics graphics, GraphicsPath path)
         {
-            graphics.DrawPolygon(pen, points);
+            graphics.DrawPath(pen, path);
         }
     }
 }

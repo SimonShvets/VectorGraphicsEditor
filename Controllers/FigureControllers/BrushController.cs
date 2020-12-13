@@ -10,8 +10,6 @@ namespace VectorGraphicsEditor.Controllers
         public void MouseDownHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas)
         {
             _mouseDown = true;
-            canvas.Graphics.Dispose();
-            figure.StartPoint = point;
             figure.Update(point);
             canvas.CreateLayer();
             GC.Collect();
@@ -21,9 +19,9 @@ namespace VectorGraphicsEditor.Controllers
         { 
             if (_mouseDown)
             {
+                PointF prevPoint = figure.Points[figure.Points.Count - 1];
                 figure.Update(point);
-                canvas.Graphics.DrawLine(pen, figure.Calculate()[figure.Calculate().Length - 2], figure.Calculate()[figure.Calculate().Length - 1]);
-                figure.EndPoint = point;
+                canvas.Graphics.DrawLine(pen, prevPoint, point);
                 GC.Collect();
             }
         }
@@ -31,26 +29,15 @@ namespace VectorGraphicsEditor.Controllers
         public void MouseUpHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas)
         {
             _mouseDown = false;
-            if (figure.Markup.Count > 1)
-            {
-            figure.Painter.DrawFigure(pen, canvas.Graphics, figure.Calculate());
-            }
+            figure.Markup.AddLines(figure.Points.ToArray());
+            canvas.Graphics.DrawPath(pen, figure.Markup);
             canvas.SaveLayer();
+            canvas.Graphics.Dispose();
         }
 
         public void MouseDoubleHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas)
         {
             _mouseDown = false;
-        }
-
-        public void KeyDown()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void KeyUp()
-        {
-            throw new NotImplementedException();
         }
     }
 }

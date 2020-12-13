@@ -8,50 +8,36 @@ namespace VectorGraphicsEditor.Controllers
     public class TriangleController: IFigureController
     {
         private bool _mouseDown = true;
-        public void KeyDown()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void KeyUp()
-        {
-            throw new NotImplementedException();
-        }
         public void MouseDownHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas)
         {
-            if (figure.Length == 0)
-            {
-                figure.StartPoint = point;
-                figure.Markup.Add(figure.StartPoint);
-            }
-            else
-            {
-                figure.Update(point);
-            }
-            _mouseDown = true;
+            figure.Update(point);
+            canvas.SaveLayer();
             GC.Collect();
         }
 
         public void MouseMoveHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas)
         {
 
-            if (_mouseDown == false && figure.Length > 0 && figure.Length < 3)
+            if (_mouseDown == false && figure.Points.Count> 0 && figure.Points.Count < 3)
             {
                 canvas.CreateLayer();
-                canvas.Graphics.DrawLine(pen, figure.Markup[figure.Length - 1], point);
+                if (figure.Points.Count != 0)
+                {
+                    canvas.Graphics.DrawLine(pen, figure.Points[figure.Points.Count - 1], point);
+                }
+                GC.Collect();
             }
         }
 
         public void MouseUpHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas)
         {
             _mouseDown = false;
-            if (figure.Markup.Count == 3)
+            if (figure.Points.Count == 3)
             {
-                figure.Painter.DrawFigure(pen, canvas.Graphics, figure.Calculate());
-                figure.EndPoint = point;
+                figure.Markup.AddPolygon(figure.Points.ToArray());
+                canvas.Graphics.DrawPath(pen, figure.Markup);
             }
             canvas.SaveLayer();
-            canvas.Graphics.Dispose();
         }
 
         public void MouseDoubleHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas)

@@ -51,7 +51,7 @@ namespace VectorGraphicsEditor
         public void SaveLayer()
         {
             MainBitmap = TmpBitmap;
-            Layers.Add(MainBitmap);
+            //Layers.Add(MainBitmap);
         }
 
         public void UndoLayer()

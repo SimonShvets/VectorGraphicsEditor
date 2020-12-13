@@ -8,16 +8,6 @@ namespace VectorGraphicsEditor.Controllers
     public class ElipseController: IFigureController
     {
         private bool _mouseDown = false;
-        public void KeyDown()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void KeyUp()
-        {
-            throw new NotImplementedException();
-        }
-
         public void MouseDoubleHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas)
         {
         }
@@ -25,8 +15,7 @@ namespace VectorGraphicsEditor.Controllers
         public void MouseDownHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas)
         {
             _mouseDown = true;
-            canvas.Graphics.Dispose();
-            figure.StartPoint = point;
+            figure.Points.Add(point);
             GC.Collect();
         }
 
@@ -36,8 +25,8 @@ namespace VectorGraphicsEditor.Controllers
             {
                 figure.Update(point);
                 canvas.CreateLayer();
-                figure.Painter.DrawFigure(pen, canvas.Graphics, figure.Calculate());
-                figure.EndPoint = point;
+                //RectangleF rectangle = new RectangleF(figure.Update(point));
+                //canvas.Graphics.DrawEllipse();
                 GC.Collect();
             }
         }
