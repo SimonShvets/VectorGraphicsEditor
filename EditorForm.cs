@@ -4,7 +4,6 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using VectorGraphicsEditor.Painter;
 using VectorGraphicsEditor.Factory.ToolFactory;
 using VectorGraphicsEditor.Factory.FigureFactory;
 using VectorGraphicsEditor.Controllers;
@@ -41,8 +40,8 @@ namespace VectorGraphicsEditor
             pen = new Pen(Color.Black, (int)numericUpDown1.Value);            
             pen.StartCap = LineCap.Round;
             pen.EndCap = LineCap.Round;
-            figure = new BrushFigure(new BrushPainter(), new BrushController());
-            toolController = new MoveController();
+            figure = new BrushFigure(new BrushController());
+            toolController = new HandController();
             figureFactory = new BrushFactory();
             tool = new HandTool(new HandSelector());            
             container = new Container();     
@@ -99,17 +98,16 @@ namespace VectorGraphicsEditor
             {
             if (figure is TriangleFigure)
             {
-                if (figure.Length % 3 == 0)
+                if (figure.Points.Count % 3 == 0)
                 {
-                    figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
-                }               
-                
-            }            
+                    figure = figureFactory.CreateFigure(figure.FigureController);
+                }
+            }
             if (!(figure is CurveFigure
                 || figure is IrregularPolygonFigure
                 || figure is TriangleFigure))
             {
-                figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+                figure = figureFactory.CreateFigure(figure.FigureController);
             }
             if (figure is PolygonFigure)
             {
@@ -158,7 +156,7 @@ namespace VectorGraphicsEditor
                 }
                 else if (figure is TriangleFigure)
                 {
-                    if (figure.Length % 3 == 0)
+                    if (figure.Points.Count % 3 == 0)
                     {
                         container.Add(figure);
                     }
@@ -184,14 +182,9 @@ namespace VectorGraphicsEditor
                 if (figure is CurveFigure
                     || figure is IrregularPolygonFigure)
                 {
-                    figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+                    figure = figureFactory.CreateFigure(figure.FigureController);
                     pictureBox.Image = canvas.MainBitmap;
                 }
-            }
-            if (PaintMode == false)
-            {
-                toolController.MouseDoubleHandle(e.Location, pen, figure, canvas, container, tool);
-                pictureBox.Image = canvas.MainBitmap;
             }
         }
 
@@ -279,20 +272,21 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             figureFactory = new BrushFactory();
-            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
-            PaintMode = true;            
-            Button Btn = sender as Button;
+            figure = figureFactory.CreateFigure(figure.FigureController);
+            PaintMode = true;
             if (Btn != null)
             {
                 setColor(this, Btn);
             }
+            Button Btn = sender as Button;
+            PaintMode = true;            
         }
         private void Curve_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
             numericUpDown.Visible = false;            
             figureFactory = new CurveFactory();
-            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+            figure = figureFactory.CreateFigure(figure.FigureController);
             PaintMode = true;
             Button Btn = sender as Button;
             if (Btn != null)
@@ -314,7 +308,7 @@ namespace VectorGraphicsEditor
             }
             
             figureFactory = new CircleFactory();
-            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+            figure = figureFactory.CreateFigure(figure.FigureController);
             PaintMode = true;
         }
 
@@ -331,7 +325,7 @@ namespace VectorGraphicsEditor
             
 
             figureFactory = new ElipseFactory();
-            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+            figure = figureFactory.CreateFigure(figure.FigureController);
             PaintMode = true;
         }
 
@@ -345,7 +339,7 @@ namespace VectorGraphicsEditor
                 setColor(this, Btn);
             }
             figureFactory = new TriangleFactory();
-            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+            figure = figureFactory.CreateFigure(figure.FigureController);
             PaintMode = true;
         }
 
@@ -359,7 +353,7 @@ namespace VectorGraphicsEditor
                 setColor(this, Btn);
             }
             figureFactory = new IsoscelesTriangleFactory();
-            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+            figure = figureFactory.CreateFigure(figure.FigureController);
             PaintMode = true;
         }
 
@@ -373,7 +367,7 @@ namespace VectorGraphicsEditor
                 setColor(this, Btn);
             }
             figureFactory = new IrregularPolygonFactory();
-            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+            figure = figureFactory.CreateFigure(figure.FigureController);
             PaintMode = true;
         }
 
@@ -387,7 +381,7 @@ namespace VectorGraphicsEditor
                 setColor(this, Btn);
             }
             figureFactory = new PolygonFactory();
-            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+            figure = figureFactory.CreateFigure(figure.FigureController);
             PaintMode = true;
 
         }
@@ -418,7 +412,7 @@ namespace VectorGraphicsEditor
                 setColor(this, Btn);
             }
             figureFactory = new RectangleFactory();
-            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+            figure = figureFactory.CreateFigure(figure.FigureController);
             PaintMode = true;
             PaintMode = true;
         }
@@ -433,7 +427,7 @@ namespace VectorGraphicsEditor
                 setColor(this, Btn);
             }
             figureFactory = new SquareFactory();
-            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+            figure = figureFactory.CreateFigure(figure.FigureController);
             PaintMode = true;
         }
 
@@ -465,15 +459,9 @@ namespace VectorGraphicsEditor
                 setColor(this, Btn);
             }
             figureFactory = new RightTriangleFactory();
-            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+            figure = figureFactory.CreateFigure(figure.FigureController);
             PaintMode = true;
         }
-
-        private void Mover_Click(object sender, EventArgs e)
-        {
-            toolController = new MoveController();
-        }
-      
         private void Width_TextChanged(object sender, EventArgs e)
         {
             if (Width.Text.Length < 1)
@@ -600,5 +588,6 @@ namespace VectorGraphicsEditor
                 }
             }
         }
+      
     }
 }

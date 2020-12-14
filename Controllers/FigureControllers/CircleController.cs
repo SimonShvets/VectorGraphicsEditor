@@ -1,22 +1,13 @@
 ﻿using System.Drawing;
 using VectorGraphicsEditor.Figure;
 using System;
+using System.Drawing.Drawing2D;
 
 namespace VectorGraphicsEditor.Controllers
 {
     public class CircleController: IFigureController
     {
         private bool _mouseDown = false;
-        public void KeyDown()
-        {
-
-        }
-
-        public void KeyUp()
-        {
-
-        }
-
         public void MouseDoubleHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas)
         {
 
@@ -25,7 +16,6 @@ namespace VectorGraphicsEditor.Controllers
         public void MouseDownHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas)
         {
             _mouseDown = true;
-            canvas.Graphics.Dispose();
             figure.StartPoint = point;
             GC.Collect();
         }
@@ -36,8 +26,7 @@ namespace VectorGraphicsEditor.Controllers
             {
                 figure.Update(point);
                 canvas.CreateLayer();
-                figure.Painter.DrawFigure(pen, canvas.Graphics, figure.Calculate());
-                figure.EndPoint = point;
+                canvas.Graphics.DrawPolygon(pen, figure.Points.ToArray());
                 GC.Collect();
             }
         }
@@ -45,7 +34,10 @@ namespace VectorGraphicsEditor.Controllers
         public void MouseUpHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas)
         {
             _mouseDown = false;
+            figure.Markup.AddPolygon(figure.Points.ToArray());
+            canvas.Graphics.DrawPath(pen, figure.Markup);
             canvas.SaveLayer();
+            canvas.Graphics.Dispose();
         }
     }
 }

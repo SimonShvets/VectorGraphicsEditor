@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
 using VectorGraphicsEditor.Figure;
-using VectorGraphicsEditor.Painter;
 
 
 namespace VectorGraphicsEditor.Controllers
@@ -11,7 +10,5 @@ namespace VectorGraphicsEditor.Controllers
         void MouseMoveHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas);
         void MouseUpHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas);
         void MouseDoubleHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas);
-        void KeyDown();
-        void KeyUp();
     }
 }

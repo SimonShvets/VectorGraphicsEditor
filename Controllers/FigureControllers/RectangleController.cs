@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
 using VectorGraphicsEditor.Figure;
-using VectorGraphicsEditor.Painter;
 using System;
 
 namespace VectorGraphicsEditor.Controllers
@@ -8,9 +7,13 @@ namespace VectorGraphicsEditor.Controllers
     public class RectangleController: IFigureController
     {
         private bool _mouseDown = false;
+        public void MouseDoubleHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas)
+        {
+
+        }
+
         public void MouseDownHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas)
         {
-            canvas.Graphics.Dispose();
             _mouseDown = true;
             figure.StartPoint = point;
             GC.Collect();
@@ -22,8 +25,7 @@ namespace VectorGraphicsEditor.Controllers
             {
                 figure.Update(point);
                 canvas.CreateLayer();
-                figure.Painter.DrawFigure(pen, canvas.Graphics, figure.Calculate());
-                figure.EndPoint = point;
+                canvas.Graphics.DrawPolygon(pen, figure.Points.ToArray());
                 GC.Collect();
             }
         }
@@ -31,22 +33,10 @@ namespace VectorGraphicsEditor.Controllers
         public void MouseUpHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas)
         {
             _mouseDown = false;
+            figure.Markup.AddPolygon(figure.Points.ToArray());
+            canvas.Graphics.DrawPath(pen, figure.Markup);
             canvas.SaveLayer();
-        }
-
-        public void MouseDoubleHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas)
-        {
-
-        }
-
-        public void KeyDown()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void KeyUp()
-        {
-            throw new NotImplementedException();
+            canvas.Graphics.Dispose();
         }
     }
 }
