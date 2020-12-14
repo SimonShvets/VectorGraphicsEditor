@@ -121,6 +121,9 @@
   <data name="noun_Rectangle Tool_646339" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\noun_Rectangle Tool_646339.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="noun_fill_1536146" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_fill_1536146.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="noun_Cross_3244675" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\noun_Cross_3244675.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -136,8 +139,8 @@
   <data name="noun_Cross_32446751" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\noun_Cross_32446751.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="noun_copy_3244674" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\noun_copy_3244674.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="noun_Cursor_430417" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_Cursor_430417.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="noun_Brush_6460591" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\noun_Brush_6460591.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -156,9 +159,6 @@
   </data>
   <data name="noun_palette_3647420" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\noun_palette_3647420.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="noun_triangle_2256414" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\noun_triangle_22564141.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="noun_Polygon Tool_6463381" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\noun_Polygon Tool_6463381.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -187,11 +187,11 @@
   <data name="isos_triangle_2256414" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\isos_triangle_2256414.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="close" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\close.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="cursor_arrow_13222 (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cursor_arrow_13222 (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="noun_magnifier_33571371" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_magnifier_33571371.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="trianglePoint" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\trianglePoint.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -204,6 +204,9 @@
   </data>
   <data name="noun_Right triangle_2233680" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\noun_Right triangle_2233680.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="noun_Right triangle_22336802" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_Right triangle_22336802.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="noun_Polygon Tool_646338" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\noun_Polygon Tool_646338.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -223,14 +226,17 @@
   <data name="noun_Circle_22564161" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\noun_Circle_22564162.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="noun_Cursor_430417" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\noun_Cursor_430417.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="close" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\close.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="noun_Cursor_7995341" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\noun_Cursor_7995341.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-кисть-96" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-кисть-961.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="noun_copy_3244674" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_copy_3244674.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="noun_Delete_2785496" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\noun_Delete_2785496.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -247,10 +253,10 @@
   <data name="noun_Polygonal Lasso_2700180" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\noun_Polygonal Lasso_2700180.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="noun_Right triangle_22336802" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\noun_Right triangle_22336802.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="noun_triangle_2256414" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_triangle_22564141.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="noun_magnifier_33571371" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\noun_magnifier_33571371.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="noun_fill_1536i146" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noun_fill_1536i146.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

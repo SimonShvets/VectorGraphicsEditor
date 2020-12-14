@@ -263,6 +263,26 @@ namespace VectorGraphicsEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap noun_fill_1536146 {
+            get {
+                object obj = ResourceManager.GetObject("noun_fill_1536146", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap noun_fill_1536i146 {
+            get {
+                object obj = ResourceManager.GetObject("noun_fill_1536i146", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap noun_line_chart_626979 {
             get {
                 object obj = ResourceManager.GetObject("noun_line chart_626979", resourceCulture);

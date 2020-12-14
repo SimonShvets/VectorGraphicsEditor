@@ -269,6 +269,14 @@ namespace VectorGraphicsEditor
             canvas.Graphics.Clear(Color.White);
             container.Clear();
         }
+        private void Fill_Click(object sender, EventArgs e)
+        {
+            Button Btn = sender as Button;
+            if (Btn != null)
+            {
+                setColor(this, Btn);
+            }
+        }
 
         private void Brush_Click(object sender, EventArgs e)
         {
@@ -591,6 +599,6 @@ namespace VectorGraphicsEditor
                 }
             }
         }
-      
+        
     }
 }
