@@ -59,6 +59,7 @@
     <Compile Include="Controllers\FigureControllers\SquareController.cs" />
     <Compile Include="Controllers\FigureControllers\CurveController.cs" />
     <Compile Include="Controllers\FigureControllers\IFigureController.cs" />
+    <Compile Include="Controllers\ToolsControllers\FillController.cs" />
     <Compile Include="Controllers\ToolsControllers\HandController.cs" />
     <Compile Include="Controllers\ToolsControllers\MinusLensController.cs" />
     <Compile Include="Controllers\ToolsControllers\LensController.cs" />
