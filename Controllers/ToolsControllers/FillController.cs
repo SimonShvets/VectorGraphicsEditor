@@ -23,7 +23,7 @@ namespace VectorGraphicsEditor.Controllers.ToolsControllers
                 if (tool.Selector.Select(figures[i], point))
                 {
                     canvas.CreateLayer();
-                    canvas.Graphics.FillPath(new SolidBrush(pen.Color), ModifiedFigure.Markup);
+                    canvas.Graphics.FillPath(new SolidBrush(pen.Color), figures[i].Markup);
                     GC.Collect();
                     break;
                 }

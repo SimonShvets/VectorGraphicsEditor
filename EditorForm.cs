@@ -212,6 +212,7 @@ namespace VectorGraphicsEditor
             {
                 setColor(this, Btn);
             }
+            toolController = new HandController();
             toolFactory = new HandFactory();
             tool = toolFactory.CreateTool(tool.Selector);
             PaintMode = false;
@@ -271,11 +272,15 @@ namespace VectorGraphicsEditor
         }
         private void Fill_Click(object sender, EventArgs e)
         {
+            textBox1.Visible = false;
+            numericUpDown.Visible = false;
+            toolController = new FillController();
             Button Btn = sender as Button;
             if (Btn != null)
             {
                 setColor(this, Btn);
             }
+            PaintMode = false;
         }
 
         private void Brush_Click(object sender, EventArgs e)
