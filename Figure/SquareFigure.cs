@@ -16,29 +16,34 @@ namespace VectorGraphicsEditor.Figure
 
         public override PointF[] Update(PointF point)
         {
-            int x = (int)StartPoint.X;
-            int y = (int)StartPoint.Y;
-            int x2 = (int)endPoint.X;
-            int y2 = (int)endPoint.Y;
-            //int a = Math.Abs(x2 - x);
-            //int b = Math.Abs(y2 - y);
-            int a = Math.Abs(x - x2);
-
-            if (y > y2)
-            {
-                a = -a;
-            }
-
-
-            Markup = new List<PointF>
-            {
-                new PointF(x, y),
-                new PointF(x, y + a),
-                new PointF(x2, y + a),
-                new PointF(x2, y),
-            };
             throw new NotImplementedException();
         }
+
+        //public override PointF[] Update(PointF point)
+        //{
+        //    int x = (int)StartPoint.X;
+        //    int y = (int)StartPoint.Y;
+        //    int x2 = (int)endPoint.X;
+        //    int y2 = (int)endPoint.Y;
+        //    //int a = Math.Abs(x2 - x);
+        //    //int b = Math.Abs(y2 - y);
+        //    int a = Math.Abs(x - x2);
+
+        //    if (y > y2)
+        //    {
+        //        a = -a;
+        //    }
+
+
+        //    Markup = new List<PointF>
+        //    {
+        //        new PointF(x, y),
+        //        new PointF(x, y + a),
+        //        new PointF(x2, y + a),
+        //        new PointF(x2, y),
+        //    };
+
+        // }
 
         //public override void Update(PointF endPoint)
         //{

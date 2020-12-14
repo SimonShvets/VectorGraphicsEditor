@@ -272,14 +272,14 @@ namespace VectorGraphicsEditor
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             figureFactory = new BrushFactory();
-            figure = figureFactory.CreateFigure(figure.FigureController);
+            figure = figureFactory.CreateFigure(figure.FigureController);            
             PaintMode = true;
+            Button Btn = sender as Button;
             if (Btn != null)
             {
                 setColor(this, Btn);
             }
-            Button Btn = sender as Button;
-            PaintMode = true;            
+            
         }
         private void Curve_Click(object sender, EventArgs e)
         {
