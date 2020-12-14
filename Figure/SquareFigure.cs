@@ -13,53 +13,26 @@ namespace VectorGraphicsEditor.Figure
         {
             FigureController = figureController;
         }
-
         public override PointF[] Update(PointF point)
         {
-            throw new NotImplementedException();
+            int x = (int)StartPoint.X;
+            int y = (int)StartPoint.Y;
+            int x2 = (int)point.X;
+            int y2 = (int)point.Y;
+            int a = Math.Abs(x - x2);
+            if (y > y2)
+            {
+                a = -a;
+            }
+            Points = new List<PointF>
+            {
+                new PointF(x, y),
+                new PointF(x, y + a),
+                new PointF(x2, y + a),
+                new PointF(x2, y),
+            };
+            return Points.ToArray();
         }
 
-        //public override PointF[] Update(PointF point)
-        //{
-        //    int x = (int)StartPoint.X;
-        //    int y = (int)StartPoint.Y;
-        //    int x2 = (int)endPoint.X;
-        //    int y2 = (int)endPoint.Y;
-        //    //int a = Math.Abs(x2 - x);
-        //    //int b = Math.Abs(y2 - y);
-        //    int a = Math.Abs(x - x2);
-
-        //    if (y > y2)
-        //    {
-        //        a = -a;
-        //    }
-
-
-        //    Markup = new List<PointF>
-        //    {
-        //        new PointF(x, y),
-        //        new PointF(x, y + a),
-        //        new PointF(x2, y + a),
-        //        new PointF(x2, y),
-        //    };
-
-        // }
-
-        //public override void Update(PointF endPoint)
-        //{
-        //    int x = (int)StartPoint.X;
-        //    int y = (int)StartPoint.Y;
-        //    int x2 = (int)endPoint.X;
-        //    int y2 = (int)endPoint.Y;
-        //    int a = Math.Abs(x2 - x);
-        //    int b = Math.Abs(y2 - y);
-        //    Markup = new List<PointF>
-        //    {
-        //         new PointF(x, y),
-        //         new PointF(x, y2 + a),
-        //         new PointF(x2 + b, y2 + a),
-        //         new PointF(x2 + b, y),
-        //    };
-        //}
     }
 }

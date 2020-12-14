@@ -118,7 +118,7 @@ namespace VectorGraphicsEditor
             this.numericUpDown1.Size = new System.Drawing.Size(56, 20);
             this.numericUpDown1.TabIndex = 17;
             this.numericUpDown1.Value = new decimal(new int[] {
-            8,
+            4,
             0,
             0,
             0});

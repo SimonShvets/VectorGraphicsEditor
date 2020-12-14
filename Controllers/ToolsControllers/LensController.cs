@@ -9,15 +9,6 @@ namespace VectorGraphicsEditor.Controllers.ToolsControllers
     public class LensController: IToolController
     {
         private bool mouseDown;     
-        public void KeyDown()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void KeyUp()
-        {
-            throw new NotImplementedException();
-        }
 
         public void MouseDoubleHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas, Container figures, AbstractTool tool)
         {
