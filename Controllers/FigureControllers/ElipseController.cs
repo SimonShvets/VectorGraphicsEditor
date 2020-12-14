@@ -24,8 +24,6 @@ namespace VectorGraphicsEditor.Controllers
             {
                 figure.Update(point);
                 canvas.CreateLayer();
-                //RectangleF rectangle = new RectangleF(figure.Update(point));
-                //canvas.Graphics.DrawEllipse();
                 GC.Collect();
             }
         }

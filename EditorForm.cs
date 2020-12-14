@@ -131,11 +131,6 @@ namespace VectorGraphicsEditor
                     pictureBox.Image = canvas.MainBitmap;
                 }
             }
-            if (PaintMode == false)
-            {
-                toolController.MouseDoubleHandle(e.Location, pen, figure, canvas, container, tool);
-                pictureBox.Image = canvas.MainBitmap;
-            }
         }
         private void Hand_Click(object sender, EventArgs e)
         {
@@ -272,11 +267,6 @@ namespace VectorGraphicsEditor
             figureFactory = new RightTriangleFactory();
             figure = figureFactory.CreateFigure(figure.FigureController);
             PaintMode = true;
-        }
-
-        private void Mover_Click(object sender, EventArgs e)
-        {
-            toolController = new MoveController();
         }
     }
 }

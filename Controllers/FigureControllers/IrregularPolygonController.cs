@@ -46,7 +46,6 @@ namespace VectorGraphicsEditor.Controllers
             _mouseDoubleDown = true;
             figure.Markup.AddPolygon(figure.Points.ToArray());
             canvas.Graphics.DrawPath(pen, figure.Markup);
-            //canvas.Graphics.FillPath(new SolidBrush(Color.Red), figure.Markup);
             canvas.SaveLayer();
             canvas.Graphics.Dispose();
         }

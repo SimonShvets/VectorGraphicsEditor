@@ -9,7 +9,7 @@ namespace VectorGraphicsEditor.Selector
 {
     public class PipetteSelector: AbstractSelector
     {
-        public override bool Select(PointF StartPoint, PointF EndPoint, PointF checkPoint, double accuracy)
+        public bool Select(PointF checkPoint)
         {
             return true;
         }

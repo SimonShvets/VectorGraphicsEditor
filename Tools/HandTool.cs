@@ -17,28 +17,21 @@ namespace VectorGraphicsEditor.Tools
         {
             Selector = handSelector;
         }
-        //MoveSelector - родной метод в абстрактном классе селектора
         public void Move(PointF delta, GraphicsPath markup)
         {
-            for (int i = 0; i < markup.PointCount; i++)
-            {
-                //markup[i] = new PointF(markup[i].X + delta.X, markup[i].Y + delta.Y);
-                Matrix translateMatrix = new Matrix();
-                translateMatrix.Translate(delta.X, delta.Y);
-                markup.Transform(translateMatrix);
-            }
+            Matrix translateMatrix = new Matrix();
+            translateMatrix.Translate(delta.X, delta.Y);
+            markup.Transform(translateMatrix);
         }
-        //RotateSelector - 1я перегрузка в handselector
-        public void Rotate(PointF delta, List<PointF> markup)
+        public void Rotate(PointF delta, PointF CentrePoint, GraphicsPath markup)
         {
-            ToolController = new RotateController();
-
+            Matrix rotateMatrix = new Matrix();
+            rotateMatrix.RotateAt(delta.X, CentrePoint);
+            markup.Transform(rotateMatrix);
         }
-        //ResizeSelector - 2я перегрузка в handselector
         public void Resize(PointF delta, List<PointF> markup)
         {
-            ToolController = new MoveController();
-
+            
         }
     }
 }
