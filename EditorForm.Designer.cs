@@ -61,7 +61,6 @@ namespace VectorGraphicsEditor
             this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
-            this.Mover = new System.Windows.Forms.Button();
             this.minusLupa = new System.Windows.Forms.Button();
             this.WindowButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).BeginInit();
@@ -538,15 +537,6 @@ namespace VectorGraphicsEditor
             this.label1.TabIndex = 31;
             this.label1.Text = "Толщина кисти";
             // 
-            // Mover
-            // 
-            this.Mover.Location = new System.Drawing.Point(624, 32);
-            this.Mover.Name = "Mover";
-            this.Mover.Size = new System.Drawing.Size(75, 23);
-            this.Mover.TabIndex = 21;
-            this.Mover.Text = "Mover";
-            this.Mover.UseVisualStyleBackColor = true;
-            // 
             // minusLupa
             // 
             this.minusLupa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(42)))), ((int)(((byte)(49)))));
@@ -592,7 +582,6 @@ namespace VectorGraphicsEditor
             this.ClientSize = new System.Drawing.Size(1324, 743);
             this.Controls.Add(this.WindowButton);
             this.Controls.Add(this.minusLupa);
-            this.Controls.Add(this.Mover);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Elipse);
             this.Controls.Add(this.Cycle);
@@ -655,7 +644,6 @@ namespace VectorGraphicsEditor
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Button square;
         private System.Windows.Forms.Button ChColor;
-        private System.Windows.Forms.Button Mover;
         private System.Windows.Forms.Button clear;
         private System.Windows.Forms.Button pipette;
         private System.Windows.Forms.TextBox Width;

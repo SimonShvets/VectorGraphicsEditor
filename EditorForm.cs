@@ -264,7 +264,10 @@ namespace VectorGraphicsEditor
         }
         private void clear_Click(object sender, EventArgs e)
         {
+            canvas.CreateLayer();
+            canvas.SaveLayer();
             canvas.Graphics.Clear(Color.White);
+            container.Clear();
         }
 
         private void Brush_Click(object sender, EventArgs e)

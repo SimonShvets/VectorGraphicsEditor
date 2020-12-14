@@ -51,5 +51,9 @@ namespace VectorGraphicsEditor
         {
             Figures.RemoveAt(index);
         }
+        public void Clear() 
+        {
+            Figures.Clear();
+        }
     }
 }
