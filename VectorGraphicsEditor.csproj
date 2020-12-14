@@ -46,42 +46,76 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Markup\BrushMarkUp.cs" />
-    <Compile Include="Markup\CurveMarkUp.cs" />
-    <Compile Include="Markup\CircleMarkUp.cs" />
-    <Compile Include="Markup\ElipseMarkUp.cs" />
-    <Compile Include="Markup\HandMarkUp.cs" />
-    <Compile Include="Markup\IsoscelesTriangleMarkUp.cs" />
-    <Compile Include="Markup\PolygonMarkUp.cs" />
-    <Compile Include="Markup\SquareMarkUp.cs" />
-    <Compile Include="Markup\TriangleMark.cs" />
-    <Compile Include="Markup\RightTriangleMarkUp.cs" />
-    <Compile Include="Markup\IrregularPolygonMarkUp.cs" />
-    <Compile Include="Markup\RectangleMarkUp.cs" />
-    <Compile Include="Markup\IMarkUp.cs" />
+    <Compile Include="Conteiner.cs" />
+    <Compile Include="Controllers\FigureControllers\BrushController.cs" />
+    <Compile Include="Controllers\FigureControllers\CircleController.cs" />
+    <Compile Include="Controllers\FigureControllers\TriangleController.cs" />
+    <Compile Include="Controllers\FigureControllers\RightTriangleController.cs" />
+    <Compile Include="Controllers\FigureControllers\RectangleController.cs" />
+    <Compile Include="Controllers\FigureControllers\PolygonController.cs" />
+    <Compile Include="Controllers\FigureControllers\IsoscelesTriangleController.cs" />
+    <Compile Include="Controllers\FigureControllers\IrregularPolygonController.cs" />
+    <Compile Include="Controllers\FigureControllers\ElipseController.cs" />
+    <Compile Include="Controllers\FigureControllers\SquareController.cs" />
+    <Compile Include="Controllers\FigureControllers\CurveController.cs" />
+    <Compile Include="Controllers\FigureControllers\IFigureController.cs" />
+    <Compile Include="Controllers\ToolsControllers\HandController.cs" />
+    <Compile Include="Controllers\ToolsControllers\MinusLensController.cs" />
+    <Compile Include="Controllers\ToolsControllers\LensController.cs" />
+    <Compile Include="Controllers\ToolsControllers\PipetteController .cs" />
+    <Compile Include="Controllers\ToolsControllers\IToolController.cs" />
+    <Compile Include="Factory\FigureFactory\BrushFactory.cs" />
+    <Compile Include="Factory\FigureFactory\CircleFactory.cs" />
+    <Compile Include="Factory\FigureFactory\IrregularPolygonFactory.cs" />
+    <Compile Include="Factory\FigureFactory\IsoscelesTriangleFactory.cs" />
+    <Compile Include="Factory\FigureFactory\PolygonFactory.cs" />
+    <Compile Include="Factory\FigureFactory\RectangleFactory.cs" />
+    <Compile Include="Factory\FigureFactory\RightTriangleFactory.cs" />
+    <Compile Include="Factory\FigureFactory\SquareFactory.cs" />
+    <Compile Include="Factory\FigureFactory\TriangleFactory.cs" />
+    <Compile Include="Factory\FigureFactory\CurveFactory.cs" />
+    <Compile Include="Factory\FigureFactory\ElipseFactory.cs" />
+    <Compile Include="Factory\FigureFactory\IFigureFactory.cs" />
+    <Compile Include="Factory\ToolFactory\ClearFactory.cs" />
+    <Compile Include="Factory\ToolFactory\MinusLensFactory.cs" />
+    <Compile Include="Factory\ToolFactory\LensFactory.cs" />
+    <Compile Include="Factory\ToolFactory\PipetteFactory.cs" />
+    <Compile Include="Factory\ToolFactory\HandFactory.cs" />
+    <Compile Include="Factory\ToolFactory\IToolFactory.cs" />
+    <Compile Include="Figure\BrushFigure.cs" />
+    <Compile Include="Figure\CurveFigure.cs" />
+    <Compile Include="Figure\CircleFigure.cs" />
+    <Compile Include="Figure\ElipseFigure.cs" />
+    <Compile Include="Figure\IsoscelesTriangleFigure.cs" />
+    <Compile Include="Figure\PolygonFigure.cs" />
+    <Compile Include="Figure\SquareFigure.cs" />
+    <Compile Include="Figure\TriangleFigure.cs" />
+    <Compile Include="Figure\RightTriangleFigure.cs" />
+    <Compile Include="Figure\IrregularPolygonFigure.cs" />
+    <Compile Include="Figure\RectangleFigure.cs" />
+    <Compile Include="Figure\AbstractFigure.cs" />
     <Compile Include="Canvas.cs" />
-    <Compile Include="Painter\SquarePainter.cs" />
-    <Compile Include="Painter\IPainter.cs" />
     <Compile Include="EditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EditorForm.Designer.cs">
       <DependentUpon>EditorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Painter\BrushPainter.cs" />
-    <Compile Include="Painter\CirclePainter.cs" />
-    <Compile Include="Painter\ElipsePainter.cs" />
-    <Compile Include="Painter\HandPainter.cs" />
-    <Compile Include="Painter\IsoscelesTrianglePainter.cs" />
-    <Compile Include="Painter\PolygonPainter.cs" />
-    <Compile Include="Painter\RectanglePainter.cs" />
-    <Compile Include="Painter\RightTrianglePainter.cs" />
-    <Compile Include="Painter\TrianglePainter.cs" />
-    <Compile Include="Painter\IrregularPolygonPainter.cs" />
-    <Compile Include="Painter\CurvePainter.cs" />
+    <Compile Include="Frame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tool\ITool.cs" />
+    <Compile Include="Selector\ClearSelector.cs" />
+    <Compile Include="Selector\MinusLensSelector.cs" />
+    <Compile Include="Selector\LensSelector.cs" />
+    <Compile Include="Selector\PipetteSelector.cs" />
+    <Compile Include="Selector\HandSelector.cs" />
+    <Compile Include="Selector\AbstractSelector.cs" />
+    <Compile Include="Tools\AbstractTool.cs" />
+    <Compile Include="Tools\Clear.cs" />
+    <Compile Include="Tools\MinusLens.cs" />
+    <Compile Include="Tools\Lens.cs" />
+    <Compile Include="Tools\Pipette.cs" />
+    <Compile Include="Tools\HandTool.cs" />
     <EmbeddedResource Include="EditorForm.resx">
       <DependentUpon>EditorForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -93,6 +127,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -107,6 +142,131 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\icons8-кисть-961.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Cross_3244675.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_copy_3244674.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_copy_32446741.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_copy_32446742.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Cross_32446751.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Minus_3244686.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Brush_646059.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Brush_6460591.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Brush_6460592.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Rectangle Tool_646339.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_line chart_626979.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rectangle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Circle_22564161.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Circle_22564162.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ellipse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ellipse1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\isos_triangle_2256414.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trianglePoints.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trianglePoint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trianglePoint1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Right triangle_2233680.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Right triangle_22336801.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_triangle_22564141.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trianglePoints1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trianglePoints2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Right triangle_22336802.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Right triangle_22336803.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Polygonal Lasso_2700180.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Polygon Tool_646338.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Polygon Tool_6463381.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Cursor_430417.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_palette_3647420.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Cursor_799534.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Cursor_7995341.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_Delete_2785496.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_pipette_3241700.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_pipette_32417001.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_pipette_32417002.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_magnifier_3357137.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_magnifier_33571371.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
