@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using VectorGraphicsEditor.Painter;
 using VectorGraphicsEditor.Factory.ToolFactory;
@@ -16,18 +18,9 @@ namespace VectorGraphicsEditor
     public partial class EditorForm : Form
     {
         Pen pen;
-        Canvas canvas;
-        IMarkUp markup;
-        IFictory fictory;       
-        List<IPainter> painters;
-        IMarkUp currentMarkUp;
-        bool pip = false;
-        Size StartSize;
-        //double zoom = 1.25;
-        bool lupaCh = false;
-        Point lastPoint;       
-
-
+        Canvas canvas;   
+        Size StartSize;      
+        Point lastPoint;      
         Container container;
         AbstractFigure figure;
         AbstractTool tool;
@@ -35,13 +28,13 @@ namespace VectorGraphicsEditor
         IFigureFactory figureFactory;
         IToolFactory toolFactory;
         bool PaintMode;
+        Metafile metafile;
         public EditorForm()
         {
             InitializeComponent();
-            this.pictureBox.MouseWheel += PictureBox_MouseWheel;
-            //this.pictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
             SizeLabel.Text = Convert.ToString($"{pictureBox.Width} X {pictureBox.Height}");
             canvas = new Canvas(pictureBox.Width, pictureBox.Height);
+            canvas.PictureBox = pictureBox;
             canvas.TmpBitmap = (Bitmap)canvas.MainBitmap.Clone();
             canvas.Graphics = Graphics.FromImage(canvas.TmpBitmap);
             pictureBox.Image = canvas.MainBitmap;
@@ -51,55 +44,57 @@ namespace VectorGraphicsEditor
             figure = new BrushFigure(new BrushPainter(), new BrushController());
             toolController = new MoveController();
             figureFactory = new BrushFactory();
-            tool = new HandTool(new HandSelector());
-            container = new Container();
+            tool = new HandTool(new HandSelector());            
+            container = new Container();     
+            
+        }
+        public void SetImage(string path)
+        {
+            Bitmap b1 = new Bitmap(path);
+            Bitmap b2 = new Bitmap(b1, new Size(pictureBox.Width, pictureBox.Height));
+            pictureBox.Image = (Image)new Bitmap(b2);
         }
 
-
-        private void PictureBox_MouseWheel(object sender, MouseEventArgs e)
+        private void Editor_SizeChanged(object sender, EventArgs e)
         {
-            ////double ntX = e.X;
-            ////double ntY = e.Y;
-            ////double dtX = ntX - e.X;
-            ////double dtY = ntY - e.Y;
-             
-            //if (pictureBox.Image != null)
-            //{
-            //    if (e.Delta < 0)
-            //    {
-            //        double ntX = e.X * zoom;
-            //        double ntY = e.Y * zoom;
-            //        double dtX = ntX - e.X;
-            //        double dtY = ntY - e.Y;
-            //        zoom = zoom * 1.05;
-            //        //pictureBox.Location = e.Location;
-            //        //pictureBox.Height = (int)(pictureBox.Image.Height * zoom);
-            //        //pictureBox.Location = new Point((int)(pictureBox.Location.X - dtX), (int)(pictureBox.Location.Y - dtY));
-            //    }
-            //    else
-            //    {
-            //        if (zoom != 1.0)
-            //        {
-            //            //double ntX = e.X / zoom;
-            //            //double ntY = e.Y / zoom;                        
-            //            //double dtX = ntX - e.X;
-            //            //double dtY = ntY - e.Y;
-            //            //pictureBox.Height = (int)(pictureBox.Image.Height / zoom);
-            //            //pictureBox.Width = pictureBox.Image.Height + pictureBox.Image.Height / 3;
-            //            zoom = zoom / 1.05;
-            //            //pictureBox.Location = e.Location;
-            //            //pictureBox.Location = new Point((int)(pictureBox.Location.X - dtX), (int)(pictureBox.Location.Y - dtY));
-            //        }
-            //    }
+            if (pictureBox.Image != null)
+            {
+                Bitmap b1 = new Bitmap(pictureBox.Image);
+                Bitmap b2 = new Bitmap(b1, new Size(pictureBox.Width, pictureBox.Height));
+                pictureBox.Image = (Image)new Bitmap(b2);
+            }
+        }
 
-            //    pictureBox.Width = (int)Math.Round(pictureBox.Image.Width * zoom);
-            //    pictureBox.Height = (int)Math.Round(pictureBox.Image.Height * zoom);
-            //}
+        private Metafile MakeMetafile(float width, float height, string filename)
+        {
+            using (Bitmap bm = new Bitmap(16, 16))
+            {
+                using (Graphics gr = Graphics.FromImage(bm))
+                {
+                    RectangleF bounds = new RectangleF(0, 0, width, height);
+                    Metafile mf;
+                    if(filename != null && filename.Length > 0)
+                    {
+                        mf = new Metafile(filename, gr.GetHdc(), bounds, MetafileFrameUnit.Pixel);
+                    }
+                    else
+                        mf = new Metafile(gr.GetHdc(), bounds,
+                   MetafileFrameUnit.Pixel);
+
+                    gr.ReleaseHdc();
+                    return mf;
+                }
+            }
+        }
+
+        private void DrawOnMetafile(Metafile mf)
+        {
+
         }
 
         private void pictureBox_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (lupaCh == true)
+        {            
+
             if (PaintMode)
             {
             if (figure is TriangleFigure)
@@ -107,35 +102,9 @@ namespace VectorGraphicsEditor
                 if (figure.Length % 3 == 0)
                 {
                     figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
-                }
-                if (e.Button == MouseButtons.Left)
-                {
-                    const double eps = 1.25;
-                    double ntX = e.X * eps;
-                    double ntY = e.Y * eps;
-                    double dtX = ntX - e.X;
-                    double dtY = ntY - e.Y;
-                    pictureBox.Height = (int)(pictureBox.Height * eps);
-                    pictureBox.Width = pictureBox.Height + pictureBox.Height / 3;
-                    pictureBox.Location = new Point((int)(pictureBox.Location.X - dtX), (int)(pictureBox.Location.Y - dtY));
-                }
-                if (e.Button == MouseButtons.Right)
-                {
-                    const double eps = 1.25;
-                    double ntX = e.X / eps;
-                    double ntY = e.Y / eps;
-                    double dtX = ntX - e.X;
-                    double dtY = ntY - e.Y;
-                    pictureBox.Height = (int)(pictureBox.Height / eps);
-                    pictureBox.Width = pictureBox.Height + pictureBox.Height / 3;
-                    pictureBox.Location = new Point((int)(pictureBox.Location.X - dtX), (int)(pictureBox.Location.Y - dtY));
-                }
-            }
-            if (markup.Length == 0)
-            {
-            markup = fictory.CreateMarkUp();
-            painter = fictory.CreatePainter();
-            }
+                }               
+                
+            }            
             if (!(figure is CurveFigure
                 || figure is IrregularPolygonFigure
                 || figure is TriangleFigure))
@@ -147,16 +116,9 @@ namespace VectorGraphicsEditor
                 PolygonFigure tmp = (PolygonFigure)figure;
                 tmp.N = (int)numericUpDown.Value;
                 figure = tmp;
-            }
-            painter.MouseDownHandle(e.Location, pen, markup, canvas);
+            }            
             pictureBox.Image = canvas.TmpBitmap;
-            if (pip == true)
-            {
-                Color pipette = canvas.MainBitmap.GetPixel(e.Location.X, e.Location.Y);
-                pen.Color = pipette;
-            }
-            pip = false;
-            lupaCh = false;
+            
             figure.FigureController.MouseDownHandle(e.Location, pen, figure, canvas);
                 pictureBox.Image = canvas.MainBitmap;
             }
@@ -251,8 +213,7 @@ namespace VectorGraphicsEditor
         private void Hand_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
-            numericUpDown.Visible = false;
-            fictory = new HandFictory();
+            numericUpDown.Visible = false;            
             Button Btn = sender as Button;
             if (Btn != null)
             {
@@ -262,14 +223,64 @@ namespace VectorGraphicsEditor
             tool = toolFactory.CreateTool(tool.Selector);
             PaintMode = false;
         }
+        private void pipette_Click_1(object sender, EventArgs e)
+        {
+            textBox1.Visible = false;
+            numericUpDown.Visible = false;
+            Button Btn = sender as Button;
+            if (Btn != null)
+            {
+                setColor(this, Btn);
+            }
+            toolController = new PipetteController();            
+            tool = new Pipette(new PipetteSelector());
+            toolFactory = new PipetteFactory();            
+            tool = toolFactory.CreateTool(tool.Selector);            
+            PaintMode = false;
+        }
+
+        private void lupa_Click(object sender, EventArgs e)
+        {
+            textBox1.Visible = false;
+            numericUpDown.Visible = false;
+            Button Btn = sender as Button;
+            if (Btn != null)
+            {
+                setColor(this, Btn);
+            }
+            toolController = new LensController();
+            tool = new Lens(new LensSelector());
+            toolFactory = new LensFactory();
+            tool = toolFactory.CreateTool(tool.Selector);
+            PaintMode = false;
+        }
+        private void minusLupa_Click(object sender, EventArgs e)
+        {
+            textBox1.Visible = false;
+            numericUpDown.Visible = false;
+            Button Btn = sender as Button;
+            if (Btn != null)
+            {
+                setColor(this, Btn);
+            }
+            toolController = new MinusLensController();
+            tool = new MinusLens(new MinusLensSelector());
+            toolFactory = new MinusLensFactory();
+            tool = toolFactory.CreateTool(tool.Selector);
+            PaintMode = false;
+        }
+        private void clear_Click(object sender, EventArgs e)
+        {
+            canvas.Graphics.Clear(Color.White);
+        }
+
         private void Brush_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
             numericUpDown.Visible = false;
             figureFactory = new BrushFactory();
             figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
-            PaintMode = true;
-            fictory = new BrushFictory();
+            PaintMode = true;            
             Button Btn = sender as Button;
             if (Btn != null)
             {
@@ -279,24 +290,23 @@ namespace VectorGraphicsEditor
         private void Curve_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
-            numericUpDown.Visible = false;
-            fictory = new CurveFictory();
+            numericUpDown.Visible = false;            
+            figureFactory = new CurveFactory();
+            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
+            PaintMode = true;
             Button Btn = sender as Button;
             if (Btn != null)
             {
                 setColor(this, Btn);
             }
         }   
-            figureFactory = new CurveFactory();
-            figure = figureFactory.CreateFigure(figure.Painter, figure.FigureController);
-            PaintMode = true;
-        }
+            
+        
 
         private void Circle_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
-            numericUpDown.Visible = false;
-            fictory = new CircleFictory();
+            numericUpDown.Visible = false;            
             Button Btn = sender as Button;
             if (Btn != null)
             {
@@ -311,8 +321,7 @@ namespace VectorGraphicsEditor
         private void Ellipse_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
-            numericUpDown.Visible = false;
-            fictory = new ElipseFictory();
+            numericUpDown.Visible = false;          
             Button Btn = sender as Button;
             if(Btn != null)
             {
@@ -329,8 +338,7 @@ namespace VectorGraphicsEditor
         private void Triangle_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
-            numericUpDown.Visible = false;
-            fictory = new TriangleFictory();
+            numericUpDown.Visible = false;            
             Button Btn = sender as Button;
             if (Btn != null)
             {
@@ -344,8 +352,7 @@ namespace VectorGraphicsEditor
         private void IsoscelesTriangle_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
-            numericUpDown.Visible = false;
-            fictory = new IsoscelesTriangleFictory();
+            numericUpDown.Visible = false;           
             Button Btn = sender as Button;
             if (Btn != null)
             {
@@ -359,8 +366,7 @@ namespace VectorGraphicsEditor
         private void IrregularPolygon_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
-            numericUpDown.Visible = false;
-            fictory = new IrregularPolygonFictory();
+            numericUpDown.Visible = false;           
             Button Btn = sender as Button;
             if (Btn != null)
             {
@@ -374,8 +380,7 @@ namespace VectorGraphicsEditor
         private void Polygon_Click(object sender, EventArgs e)
         {   
             textBox1.Visible = true;
-            numericUpDown.Visible = true;
-            fictory = new PolygonFictory();
+            numericUpDown.Visible = true;          
             Button Btn = sender as Button;
             if (Btn != null)
             {
@@ -389,8 +394,7 @@ namespace VectorGraphicsEditor
         private void numericUpDown_TextChanged(object sender, EventArgs e)
         {
             PolygonFigure tmp = (PolygonFigure)figure;
-            tmp.N = (int)numericUpDown.Value;
-            markup = tmp;
+            tmp.N = (int)numericUpDown.Value;            
             Button Btn = sender as Button;
             if (Btn != null)
             {
@@ -407,8 +411,7 @@ namespace VectorGraphicsEditor
         private void Rectangle_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
-            numericUpDown.Visible = false;
-            fictory = new RectangleFictory();
+            numericUpDown.Visible = false;            
             Button Btn = sender as Button;
             if (Btn != null)
             {
@@ -423,8 +426,7 @@ namespace VectorGraphicsEditor
         private void square_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
-            numericUpDown.Visible = false;
-            fictory = new SquareFictory();
+            numericUpDown.Visible = false;           
             Button Btn = sender as Button;
             if (Btn != null)
             {
@@ -440,7 +442,6 @@ namespace VectorGraphicsEditor
             if (e.KeyValue == (char)Keys.NumPad0)
             {
                 square.PerformClick();
-
             }
         }
 
@@ -457,8 +458,7 @@ namespace VectorGraphicsEditor
         private void RightTriangle_Click(object sender, EventArgs e)
         {
             textBox1.Visible = false;
-            numericUpDown.Visible = false;
-            fictory = new RightTriangleFictory();
+            numericUpDown.Visible = false;           
             Button Btn = sender as Button;
             if (Btn != null)
             {
@@ -473,32 +473,46 @@ namespace VectorGraphicsEditor
         {
             toolController = new MoveController();
         }
-        private void clear_Click(object sender, EventArgs e)
-        {
-            canvas.Graphics.Clear(Color.White);           
-        }     
-          
+      
         private void Width_TextChanged(object sender, EventArgs e)
         {
+            if (Width.Text.Length < 1)
+            {
+                Width.Text = Convert.ToString(100);
+            }            
             pictureBox.Width = Convert.ToInt32(Width.Text);
             SizeLabel.Text = Convert.ToString($"{pictureBox.Width} X {pictureBox.Height}");
+
+        }
+        private void Width_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if(!char.IsDigit(ch) && ch != 8)
+            {
+                e.Handled = true;
+            }
         }
 
         private void Height_TextChanged(object sender, EventArgs e)
-        {
+        {            
+            if (Height.Text.Length < 1)
+            {
+                Height.Text = Convert.ToString(100);
+            }
             pictureBox.Height = Convert.ToInt32(Height.Text);
             SizeLabel.Text = Convert.ToString($"{pictureBox.Width} X {pictureBox.Height}");
+            
+        }
+        private void Height_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!char.IsDigit(ch) && ch != 8)
+            {
+                e.Handled = true;
+            }
+            
         }
 
-        private void pipette_Click_1(object sender, EventArgs e)
-        {
-            pip = true;
-        }
-
-        private void lupa_Click(object sender, EventArgs e)
-        {
-             lupaCh = true;
-        }
 
         private void closeButton_Click(object sender, EventArgs e)
         {
@@ -522,6 +536,69 @@ namespace VectorGraphicsEditor
         private void minimizeButton_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void Max_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                this.WindowButton.Visible = true;
+                this.WindowButton.Enabled = true;
+            }
+
+        }
+
+        private void WindowButton_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                this.WindowButton.Visible = false;
+                this.WindowButton.Enabled = false;
+            }           
+            this.WindowState = FormWindowState.Normal;
+        }
+
+        private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(pictureBox.Image != null)
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Title = "сохранить как";
+                sfd.OverwritePrompt = true;
+                sfd.CheckPathExists = true;
+                sfd.Filter = "Image Files(*.BMP)|*.BMP | Image Files(*.JPG)|*.JPG| Image Files(*.PNG)|*.PNG| Image Files(*.ico)|*.ico";
+                sfd.ShowHelp = true;
+
+                if(sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        pictureBox.Image.Save(sfd.FileName);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Невозможно сохранить", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Image Files(*.BMP)|*.BMP | Image Files(*.JPG)|*.JPG| Image Files(*.PNG)|*.PNG| Image Files(*.ico)|*.ico";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    canvas.TmpBitmap = new Bitmap(ofd.FileName);
+                }
+                catch
+                {
+                    MessageBox.Show("Невозможно открыть", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

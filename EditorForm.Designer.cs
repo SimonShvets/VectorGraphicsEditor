@@ -29,6 +29,7 @@ namespace VectorGraphicsEditor
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditorForm));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.numericUpDown = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
@@ -39,7 +40,7 @@ namespace VectorGraphicsEditor
             this.Elipse = new System.Windows.Forms.Button();
             this.minimizeButton = new System.Windows.Forms.Button();
             this.Cycle = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.Max = new System.Windows.Forms.Button();
             this.closeButton = new System.Windows.Forms.Button();
             this.lupa = new System.Windows.Forms.Button();
             this.pipette = new System.Windows.Forms.Button();
@@ -60,8 +61,9 @@ namespace VectorGraphicsEditor
             this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.Mover = new System.Windows.Forms.Button();
-            this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            this.minusLupa = new System.Windows.Forms.Button();
+            this.WindowButton = new System.Windows.Forms.Button();
+            this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
@@ -117,7 +119,7 @@ namespace VectorGraphicsEditor
             this.numericUpDown1.Size = new System.Drawing.Size(56, 20);
             this.numericUpDown1.TabIndex = 17;
             this.numericUpDown1.Value = new decimal(new int[] {
-            3,
+            8,
             0,
             0,
             0});
@@ -133,6 +135,7 @@ namespace VectorGraphicsEditor
             this.Width.Size = new System.Drawing.Size(59, 20);
             this.Width.TabIndex = 23;
             this.Width.TextChanged += new System.EventHandler(this.Width_TextChanged);
+            this.Width.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Width_KeyPress);
             // 
             // Height
             // 
@@ -144,12 +147,14 @@ namespace VectorGraphicsEditor
             this.Height.Size = new System.Drawing.Size(59, 20);
             this.Height.TabIndex = 24;
             this.Height.TextChanged += new System.EventHandler(this.Height_TextChanged);
+            this.Height.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Height_KeyPress);
             // 
             // SizeLabel
             // 
+            this.SizeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.SizeLabel.AutoSize = true;
             this.SizeLabel.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.SizeLabel.Location = new System.Drawing.Point(1240, 694);
+            this.SizeLabel.Location = new System.Drawing.Point(8, 721);
             this.SizeLabel.Name = "SizeLabel";
             this.SizeLabel.Size = new System.Drawing.Size(35, 13);
             this.SizeLabel.TabIndex = 25;
@@ -190,6 +195,7 @@ namespace VectorGraphicsEditor
             // 
             // minimizeButton
             // 
+            this.minimizeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.minimizeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(42)))), ((int)(((byte)(49)))));
             this.minimizeButton.BackgroundImage = global::VectorGraphicsEditor.Properties.Resources.noun_Minus_3244686;
             this.minimizeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -222,25 +228,28 @@ namespace VectorGraphicsEditor
             this.Cycle.UseVisualStyleBackColor = false;
             this.Cycle.Click += new System.EventHandler(this.Circle_Click);
             // 
-            // button4
+            // Max
             // 
-            this.button4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(42)))), ((int)(((byte)(49)))));
-            this.button4.BackgroundImage = global::VectorGraphicsEditor.Properties.Resources.window2;
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.Red;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.button4.Location = new System.Drawing.Point(1233, 1);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(42, 34);
-            this.button4.TabIndex = 28;
-            this.button4.UseVisualStyleBackColor = false;
+            this.Max.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Max.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.Max.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(42)))), ((int)(((byte)(49)))));
+            this.Max.BackgroundImage = global::VectorGraphicsEditor.Properties.Resources.window2;
+            this.Max.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.Max.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Max.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.Max.FlatAppearance.BorderSize = 0;
+            this.Max.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Max.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.Max.Location = new System.Drawing.Point(1233, 1);
+            this.Max.Name = "Max";
+            this.Max.Size = new System.Drawing.Size(42, 34);
+            this.Max.TabIndex = 28;
+            this.Max.UseVisualStyleBackColor = false;
+            this.Max.Click += new System.EventHandler(this.Max_Click);
             // 
             // closeButton
             // 
+            this.closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.closeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(42)))), ((int)(((byte)(49)))));
             this.closeButton.BackgroundImage = global::VectorGraphicsEditor.Properties.Resources.close;
             this.closeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -265,7 +274,7 @@ namespace VectorGraphicsEditor
             this.lupa.FlatAppearance.BorderSize = 0;
             this.lupa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lupa.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.lupa.Location = new System.Drawing.Point(311, 23);
+            this.lupa.Location = new System.Drawing.Point(335, 23);
             this.lupa.Name = "lupa";
             this.lupa.Size = new System.Drawing.Size(45, 34);
             this.lupa.TabIndex = 26;
@@ -318,15 +327,6 @@ namespace VectorGraphicsEditor
             this.ChColor.TabIndex = 20;
             this.ChColor.UseVisualStyleBackColor = false;
             this.ChColor.Click += new System.EventHandler(this.ChColor_Click);
-            // 
-            // Mover
-            // 
-            this.Mover.Location = new System.Drawing.Point(159, 27);
-            this.Mover.Name = "Mover";
-            this.Mover.Size = new System.Drawing.Size(75, 23);
-            this.Mover.TabIndex = 21;
-            this.Mover.Text = "Mover";
-            this.Mover.UseVisualStyleBackColor = true;
             // 
             // Polygon
             // 
@@ -449,8 +449,8 @@ namespace VectorGraphicsEditor
             this.pictureBox.BackColor = System.Drawing.Color.White;
             this.pictureBox.Location = new System.Drawing.Point(113, 63);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(1153, 628);
-            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox.Size = new System.Drawing.Size(1149, 612);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox.TabIndex = 4;
             this.pictureBox.TabStop = false;
             this.pictureBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDoubleClick);
@@ -467,7 +467,7 @@ namespace VectorGraphicsEditor
             this.brush.FlatAppearance.BorderSize = 0;
             this.brush.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.brush.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.brush.Location = new System.Drawing.Point(62, 50);
+            this.brush.Location = new System.Drawing.Point(62, 53);
             this.brush.Name = "brush";
             this.brush.Size = new System.Drawing.Size(45, 34);
             this.brush.TabIndex = 2;
@@ -498,7 +498,7 @@ namespace VectorGraphicsEditor
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1});
-            this.menuStrip1.Location = new System.Drawing.Point(3, 1);
+            this.menuStrip1.Location = new System.Drawing.Point(0, 1);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(56, 24);
             this.menuStrip1.TabIndex = 30;
@@ -507,7 +507,8 @@ namespace VectorGraphicsEditor
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.сохранитьToolStripMenuItem});
+            this.сохранитьToolStripMenuItem,
+            this.loadToolStripMenuItem});
             this.toolStripMenuItem1.ForeColor = System.Drawing.SystemColors.ButtonShadow;
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(48, 20);
@@ -517,7 +518,8 @@ namespace VectorGraphicsEditor
             // 
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
             this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.сохранитьToolStripMenuItem.Text = "Сохранить";
+            this.сохранитьToolStripMenuItem.Text = "Save";
+            this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
             // 
             // label1
             // 
@@ -529,21 +531,74 @@ namespace VectorGraphicsEditor
             this.label1.TabIndex = 31;
             this.label1.Text = "Толщина кисти";
             // 
+            // Mover
+            // 
+            this.Mover.Location = new System.Drawing.Point(624, 32);
+            this.Mover.Name = "Mover";
+            this.Mover.Size = new System.Drawing.Size(75, 23);
+            this.Mover.TabIndex = 21;
+            this.Mover.Text = "Mover";
+            this.Mover.UseVisualStyleBackColor = true;
+            // 
+            // minusLupa
+            // 
+            this.minusLupa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(42)))), ((int)(((byte)(49)))));
+            this.minusLupa.BackgroundImage = global::VectorGraphicsEditor.Properties.Resources.noun_magnifier_33571371;
+            this.minusLupa.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.minusLupa.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.minusLupa.FlatAppearance.BorderSize = 0;
+            this.minusLupa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.minusLupa.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.minusLupa.Location = new System.Drawing.Point(414, 23);
+            this.minusLupa.Name = "minusLupa";
+            this.minusLupa.Size = new System.Drawing.Size(45, 34);
+            this.minusLupa.TabIndex = 32;
+            this.minusLupa.UseVisualStyleBackColor = false;
+            this.minusLupa.Click += new System.EventHandler(this.minusLupa_Click);
+            // 
+            // WindowButton
+            // 
+            this.WindowButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.WindowButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.WindowButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(42)))), ((int)(((byte)(49)))));
+            this.WindowButton.BackgroundImage = global::VectorGraphicsEditor.Properties.Resources.noun_copy_32446742;
+            this.WindowButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.WindowButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.WindowButton.Enabled = false;
+            this.WindowButton.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.WindowButton.FlatAppearance.BorderSize = 0;
+            this.WindowButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.WindowButton.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.WindowButton.Location = new System.Drawing.Point(1233, 1);
+            this.WindowButton.Name = "WindowButton";
+            this.WindowButton.Size = new System.Drawing.Size(42, 34);
+            this.WindowButton.TabIndex = 33;
+            this.WindowButton.UseVisualStyleBackColor = false;
+            this.WindowButton.Visible = false;
+            this.WindowButton.Click += new System.EventHandler(this.WindowButton_Click);
+            // 
+            // loadToolStripMenuItem
+            // 
+            this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loadToolStripMenuItem.Text = "Load";
+            this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
+            // 
             // EditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Info;
-            this.ClientSize = new System.Drawing.Size(1164, 687);
-            this.Controls.Add(this.Mover);
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(42)))), ((int)(((byte)(49)))));
             this.ClientSize = new System.Drawing.Size(1324, 743);
+            this.Controls.Add(this.WindowButton);
+            this.Controls.Add(this.minusLupa);
+            this.Controls.Add(this.Mover);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Elipse);
             this.Controls.Add(this.Cycle);
             this.Controls.Add(this.square);
             this.Controls.Add(this.minimizeButton);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.Max);
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.lupa);
             this.Controls.Add(this.SizeLabel);
@@ -567,6 +622,7 @@ namespace VectorGraphicsEditor
             this.Controls.Add(this.createLine);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "EditorForm";
@@ -607,15 +663,18 @@ namespace VectorGraphicsEditor
         private System.Windows.Forms.Label SizeLabel;
         private System.Windows.Forms.Button lupa;
         private System.Windows.Forms.Button closeButton;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button Max;
         private System.Windows.Forms.Button minimizeButton;
         private System.Windows.Forms.Button Elipse;
         private System.Windows.Forms.Button Cycle;
-        private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button minusLupa;
+        private System.Windows.Forms.Button WindowButton;
+        private System.Windows.Forms.PictureBox pictureBox;
+        private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
     }
 }
 

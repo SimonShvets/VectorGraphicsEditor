@@ -8,11 +8,12 @@ using System.Windows.Forms;
 
 namespace VectorGraphicsEditor.Selector
 {
-    public class PipetteSelector: AbstractSelector
+    public class ClearSelector: AbstractSelector
     {
-        public bool Select(Color color, Pen pen, MouseEventArgs e, Bitmap bmp)
+        public bool Select(Color color, Pen pen, MouseEventArgs e, Bitmap Bmp)
         {
             return true;
-        }        
+        }
+        
     }
 }

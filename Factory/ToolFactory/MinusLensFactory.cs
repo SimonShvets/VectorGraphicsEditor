@@ -3,11 +3,11 @@ using VectorGraphicsEditor.Tools;
 
 namespace VectorGraphicsEditor.Factory.ToolFactory
 {
-    public class PipetteFactory : IToolFactory
+    public class MinusLensFactory : IToolFactory
     {
         public AbstractTool CreateTool(AbstractSelector abstractSelector)
         {
-            return new Pipette(new PipetteSelector());
+            return new MinusLens(new MinusLensSelector());
         }
     }
 }

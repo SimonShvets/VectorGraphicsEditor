@@ -22,14 +22,22 @@ namespace VectorGraphicsEditor.Figure
             int y = (int)StartPoint.Y;
             int x2 = (int)endPoint.X;
             int y2 = (int)endPoint.Y;
-            int a = Math.Abs(x2 - x);
-            int b = Math.Abs(y2 - y);
+            //int a = Math.Abs(x2 - x);
+            //int b = Math.Abs(y2 - y);
+            int a = Math.Abs(x - x2);
+
+            if (y > y2)
+            {
+                a = -a;
+            }
+
+
             Markup = new List<PointF>
             {
-                 new PointF(x, y),
-                 new PointF(x, y2 + a),
-                 new PointF(x2 + b, y2 + a),
-                 new PointF(x2 + b, y),
+                new PointF(x, y),
+                new PointF(x, y + a),
+                new PointF(x2, y + a),
+                new PointF(x2, y),
             };
         }
     }

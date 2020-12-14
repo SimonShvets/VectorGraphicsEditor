@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace VectorGraphicsEditor.Selector
 {
-    public class PipetteSelector: AbstractSelector
+    public class MinusLensSelector: AbstractSelector
     {
-        public bool Select(Color color, Pen pen, MouseEventArgs e, Bitmap bmp)
+        public bool Select(Canvas canvas, PointF point)
         {
             return true;
         }        

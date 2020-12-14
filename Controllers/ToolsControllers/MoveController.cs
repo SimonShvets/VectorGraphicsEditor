@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Windows.Forms;
 using VectorGraphicsEditor.Figure;
 using VectorGraphicsEditor.Tools;
 
@@ -33,6 +34,10 @@ namespace VectorGraphicsEditor.Controllers.ToolsControllers
         {
             mouseDown = true;
             ModifiedFigure = null;
+            //if (tool is Pipette)
+            //{
+            //    ((Pipette)tool).changeColor(Color.Red, pen, point, canvas);
+            //}
             for (int i = 0; i < figures.Length; i++)
             {
                 if (tool.Selector.Select(figures[i].StartPoint,figures[i].EndPoint, point, 50))
@@ -49,6 +54,10 @@ namespace VectorGraphicsEditor.Controllers.ToolsControllers
 
         public void MouseMoveHandle(PointF point, Pen pen, AbstractFigure figure, Canvas canvas, Container figures, AbstractTool tool)
         {
+            if (mouseDown)
+            {
+               
+            }
             if (mouseDown && ModifiedFigure != null)
             {
                 PointF delta = new PointF(point.X - _pullStartPoint.X, point.Y - _pullStartPoint.Y);

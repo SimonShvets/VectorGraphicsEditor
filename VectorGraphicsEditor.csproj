@@ -59,6 +59,9 @@
     <Compile Include="Controllers\FigureControllers\SquareController.cs" />
     <Compile Include="Controllers\FigureControllers\CurveController.cs" />
     <Compile Include="Controllers\FigureControllers\IFigureController.cs" />
+    <Compile Include="Controllers\ToolsControllers\MinusLensController.cs" />
+    <Compile Include="Controllers\ToolsControllers\LensController.cs" />
+    <Compile Include="Controllers\ToolsControllers\PipetteController .cs" />
     <Compile Include="Controllers\ToolsControllers\RotateController.cs" />
     <Compile Include="Controllers\ToolsControllers\IToolController.cs" />
     <Compile Include="Factory\FigureFactory\BrushFactory.cs" />
@@ -73,6 +76,9 @@
     <Compile Include="Factory\FigureFactory\CurveFactory.cs" />
     <Compile Include="Factory\FigureFactory\ElipseFactory.cs" />
     <Compile Include="Factory\FigureFactory\IFigureFactory.cs" />
+    <Compile Include="Factory\ToolFactory\ClearFactory.cs" />
+    <Compile Include="Factory\ToolFactory\MinusLensFactory.cs" />
+    <Compile Include="Factory\ToolFactory\LensFactory.cs" />
     <Compile Include="Factory\ToolFactory\PipetteFactory.cs" />
     <Compile Include="Factory\ToolFactory\HandFactory.cs" />
     <Compile Include="Factory\ToolFactory\IToolFactory.cs" />
@@ -112,10 +118,16 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\ToolsControllers\MoveController.cs" />
+    <Compile Include="Selector\ClearSelector.cs" />
+    <Compile Include="Selector\MinusLensSelector.cs" />
+    <Compile Include="Selector\LensSelector.cs" />
     <Compile Include="Selector\PipetteSelector.cs" />
     <Compile Include="Selector\HandSelector.cs" />
     <Compile Include="Selector\AbstractSelector.cs" />
     <Compile Include="Tools\AbstractTool.cs" />
+    <Compile Include="Tools\Clear.cs" />
+    <Compile Include="Tools\MinusLens.cs" />
+    <Compile Include="Tools\Lens.cs" />
     <Compile Include="Tools\Pipette.cs" />
     <Compile Include="Tools\HandTool.cs" />
     <EmbeddedResource Include="EditorForm.resx">

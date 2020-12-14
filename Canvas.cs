@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using System; 
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace VectorGraphicsEditor
 {
@@ -15,8 +16,9 @@ namespace VectorGraphicsEditor
             }
         }
         public Bitmap MainBitmap { get; set; }
-        public Bitmap TmpBitmap { get; set; }
+        public Bitmap TmpBitmap { get; set; }        
         public Graphics Graphics { get; set; }
+        public PictureBox PictureBox { get; set;}
         public Bitmap this[int index]
         {
             get

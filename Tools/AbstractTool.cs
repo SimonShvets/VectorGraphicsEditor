@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using VectorGraphicsEditor.Selector;
 using System.Drawing;
 using VectorGraphicsEditor.Controllers.ToolsControllers;
+using System.Windows.Forms;
 
 namespace VectorGraphicsEditor.Tools
 {
@@ -21,6 +22,7 @@ namespace VectorGraphicsEditor.Tools
         //        markup[i] = new PointF(markup[i].X + delta.X, markup[i].Y + delta.Y);
         //    }
         //}
+
         //RotateSelector - 1я перегрузка в handselector
         public void Rotate(PointF delta, List<PointF> markup)
         {
@@ -30,6 +32,11 @@ namespace VectorGraphicsEditor.Tools
         public void Resize(PointF delta, List<PointF> markup)
         {
 
+        }
+        public void Pipet(Color color, Pen pen, MouseEventArgs e, Bitmap bmp)
+        {
+            bmp.GetPixel(e.Location.X, e.Location.Y);
+            pen.Color = color;
         }
     }
 }
