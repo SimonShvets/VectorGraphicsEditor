@@ -269,5 +269,11 @@
   <ItemGroup>
     <None Include="Resources\noun_magnifier_33571371.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_fill_1536146.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun_fill_1536i146.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
